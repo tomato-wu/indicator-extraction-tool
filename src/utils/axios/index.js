@@ -11,7 +11,7 @@ axios.defaults.baseURL = "http://test.mediastack.cn/";
  */
 axios.interceptors.request.use(
   (config) => {
-    config.data = JSON.stringify(config.data);
+    config.data = JSON.stringify(config.data); //把原来是对象的类型转换成字符串类型
     config.headers = {
       "Content-Type": "application/json",
     };
