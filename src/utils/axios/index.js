@@ -4,7 +4,7 @@
 import axios from "axios";
 
 axios.defaults.timeout = 100000;
-axios.defaults.baseURL = "http://test.mediastack.cn/";
+axios.defaults.baseURL = "http://120.77.245.193:6000/";
 
 /**
  * http request 拦截器
@@ -13,7 +13,7 @@ axios.interceptors.request.use(
   (config) => {
     config.data = JSON.stringify(config.data); //把原来是对象的类型转换成字符串类型
     config.headers = {
-      "Content-Type": "application/json",
+      "Content-Type": "x-www-form-urlencoded",
     };
     return config;
   },
@@ -43,7 +43,7 @@ axios.interceptors.response.use(
  * @param params  请求参数
  * @returns {Promise}
  */
-export function get(url, params = {}) {
+function get(url, params = {}) {
   return new Promise((resolve, reject) => {
     axios
       .get(url, {
@@ -66,7 +66,7 @@ export function get(url, params = {}) {
  * @returns {Promise}
  */
 
-export function post(url, data) {
+function post(url, data) {
   return new Promise((resolve, reject) => {
     axios.post(url, data).then(
       (response) => {
@@ -86,7 +86,7 @@ export function post(url, data) {
  * @param data
  * @returns {Promise}
  */
-export function patch(url, data = {}) {
+function patch(url, data = {}) {
   return new Promise((resolve, reject) => {
     axios.patch(url, data).then(
       (response) => {
@@ -107,7 +107,7 @@ export function patch(url, data = {}) {
  * @returns {Promise}
  */
 
-export function put(url, data = {}) {
+function put(url, data = {}) {
   return new Promise((resolve, reject) => {
     axios.put(url, data).then(
       (response) => {
@@ -122,36 +122,38 @@ export function put(url, data = {}) {
 }
 
 //统一接口处理，返回数据
-export default function (fecth, url, param) {
-  let _data = "";
-  return new Promise((resolve, reject) => {
-    switch (fecth) {
-      case "get":
-        console.log("begin a get request,and url:", url);
-        get(url, param)
-          .then(function (response) {
-            resolve(response);
-          })
-          .catch(function (error) {
-            console.log("get request GET failed.", error);
-            reject(error);
-          });
-        break;
-      case "post":
-        post(url, param)
-          .then(function (response) {
-            resolve(response);
-          })
-          .catch(function (error) {
-            console.log("get request POST failed.", error);
-            reject(error);
-          });
-        break;
-      default:
-        break;
-    }
-  });
-}
+//  default function (fecth, url, param) {
+//   let _data = "";
+//   return new Promise((resolve, reject) => {
+//     switch (fecth) {
+//       case "get":
+//         console.log("begin a get request,and url:", url);
+//         get(url, param)
+//           .then(function (response) {
+//             resolve(response);
+//           })
+//           .catch(function (error) {
+//             console.log("get request GET failed.", error);
+//             reject(error);
+//           });
+//         break;
+
+//       case "post":
+//         post(url, param)
+//           .then(function (response) {
+//             resolve(response);
+//           })
+//           .catch(function (error) {
+//             console.log("get request POST failed.", error);
+//             reject(error);
+//           });
+//         break;
+
+//       default:
+//         break;
+//     }
+//   });
+// }
 
 //失败提示
 function msag(err) {
@@ -217,3 +219,5 @@ function landing(url, params, data) {
 
 // 参考文章
 // https://blog.csdn.net/chf1142152101/article/details/107099403/
+
+export { get, post, put };
