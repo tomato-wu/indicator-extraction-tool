@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Space, Input, Tag } from "antd";
+import { Space, Input, Tag } from "antd";
 const { TextArea } = Input;
 
 function UITextField() {
@@ -10,6 +10,7 @@ function UITextField() {
   // 输入框输入触发的回调
   const onChange = (e) => {
     setStr(e.target.value);
+    console.log(e.target.value);
   };
 
   // 历史记录消除触发的回调
@@ -49,7 +50,7 @@ function UITextField() {
 
       {/* 历史记录 */}
       <div style={{ margin: "30px 0px" }}>
-        {history.map((item, index) => {
+        {history.map((item) => {
           return (
             <Tag
               closable
