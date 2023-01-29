@@ -14,11 +14,11 @@ function SelectBar() {
     setMenu(key);
     let messageStr = "";
     if (key === 1) {
-      messageStr = "汉语计量指标提取";
+      messageStr = "检测到汉语";
     } else if (key === 2) {
-      messageStr = "英语文本可读性指标提取";
+      messageStr = "检测到英语";
     } else {
-      messageStr = "排序字母频率分布拟合";
+      messageStr = "检测到越南语";
     }
     message.info(messageStr);
   };
@@ -40,7 +40,7 @@ function SelectBar() {
     <>
       <Space size="large">
         <Select
-          defaultValue="汉语计量指标提取"
+          defaultValue="检测到汉语"
           style={{
             width: 220,
           }}
@@ -48,15 +48,15 @@ function SelectBar() {
           options={[
             {
               value: "1",
-              label: "汉语计量指标提取",
+              label: "检测到汉语",
             },
             {
               value: "2",
-              label: "英语文本可读性指标提取",
+              label: "检测到英语",
             },
             {
               value: "3",
-              label: "排序字母频率分布拟合",
+              label: "检测到越南语",
             },
           ]}
         />

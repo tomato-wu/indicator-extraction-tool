@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Button, Space, Input, Tag } from "antd";
-const { TextArea } = Input;
+import { Button, Space } from "antd";
+import UITextField from "../UITextField.js";
 
 function ChineseMetrics() {
   const [str, setStr] = useState("");
@@ -48,45 +48,8 @@ function ChineseMetrics() {
           一键提取
         </Button>
       </Space>
-
-      <div>
-        {/* 输入框 */}
-        <Space size="large">
-          <TextArea
-            rows={15}
-            allowClear={true}
-            bordered={true}
-            placeholder="请输入文本"
-            value={str}
-            onChange={onChange}
-            style={{ width: "37vw", marginTop: "4vh" }}
-          ></TextArea>
-          {/* 展示框 */}
-          <TextArea
-            rows={15}
-            allowClear={true}
-            bordered={true}
-            readOnly={true}
-            value={showMessage}
-            style={{ width: "37vw", marginTop: "4vh" }}
-          ></TextArea>
-        </Space>
-      </div>
-      {/* 历史记录 */}
-      <div style={{ margin: "30px 0px" }}>
-        {history.map((item, index) => {
-          return (
-            <Tag
-              closable
-              onClose={log}
-              onClick={selectHistory}
-              style={{ cursor: "pointer", margin: "5px" }}
-            >
-              {item}
-            </Tag>
-          );
-        })}
-      </div>
+      {/* 输入框---可以输入文本--识别语种，然后切换到相应的语种进行处理 */}
+      <UITextField></UITextField>
     </>
   );
 }
