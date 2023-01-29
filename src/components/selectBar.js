@@ -5,6 +5,7 @@ import { Button, Dropdown, message, Space, Select } from "antd";
 import ChineseMetrics from "./chinese_metrics/chineseMetrics";
 import EnglishIndicators from "./english_indicators/englishIndicators";
 import SortLetters from "./sort_letters/sortLetters";
+import UITextField from "./UITextField";
 
 function SelectBar() {
   const [menu, setMenu] = useState(1);
@@ -63,6 +64,9 @@ function SelectBar() {
       </Space>
       <div style={{ marginTop: "30px", marginBottom: "30px" }}>
         <MenuItem menu={menu} />
+
+        {/* 输入框---可以输入文本--识别语种，然后切换到相应的语种进行处理 */}
+        <UITextField></UITextField>
       </div>
     </>
   );
