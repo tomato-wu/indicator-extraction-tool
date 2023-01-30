@@ -1,47 +1,44 @@
 import service from "./service";
 import qs from "qs";
 
-// post 方法
-export function post(url, params) {
-  return new Promise(function (resovle, reject) {
+// get 请求
+export function httpGet({ url, params = {} }) {
+  return new Promise((resolve, reject) => {
     service
-      .post(url, params)
-      .then(
-        (res) => {
-          if (!res.data) {
-            resovle(res);
-          }
-          resovle(res.data);
-        },
-        (err) => {
-          reject(err);
-        }
-      )
+      .get(url, {
+        params,
+      })
+      .then((res) => {
+        resolve(res.data);
+      })
       .catch((err) => {
         reject(err);
       });
   });
 }
 
-// get 方法
-export function get(url, params) {
-  let queryStr = qs.stringify(params); //序列化
-  return new Promise(function (resovle, reject) {
-    service
-      .get(url + "?" + queryStr)
-      .then(
-        (res) => {
-          if (!res.data) {
-            resovle(res);
+// post请求
+export function httpPost({ url, data = {}, params = {} }) {
+  return new Promise((resolve, reject) => {
+    service({
+      url,
+      method: "post",
+      transformRequest: [
+        function (data) {
+          let ret = "";
+          for (let it in data) {
+            ret +=
+              encodeURIComponent(it) + "=" + encodeURIComponent(data[it]) + "&";
           }
-          resovle(res.data);
+          return ret;
         },
-        (err) => {
-          reject(err);
-        }
-      )
-      .catch((err) => {
-        reject(err);
-      });
+      ],
+      // 发送的数据
+      data,
+      //url参数
+      params,
+    }).then((res) => {
+      resolve(res.data);
+    });
   });
 }
