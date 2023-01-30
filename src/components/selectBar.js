@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DownOutlined } from "@ant-design/icons";
 import { Button, Dropdown, message, Space, Select, Input, Tag } from "antd";
-import { get } from "../utils/axios";
+import * as axiosBase from "../utils/axios";
 import ChineseMetrics from "./chinese_metrics/chineseMetrics";
 import EnglishIndicators from "./english_indicators/englishIndicators";
 import SortLetters from "./sort_letters/sortLetters";
@@ -17,14 +17,14 @@ function SelectBar() {
   const [history, setHistory] = useState([]);
 
   async function getLanguages(LanguagesText) {
-    let tag = await get("api/langrc", { text: LanguagesText });
+    let tag = await axiosBase.get("api/langrc", { text: LanguagesText });
     console.log(tag);
   }
   // 输入框输入触发的回调
   const onTextChange = (e) => {
     setStr(e.target.value);
     console.log(e.target.value);
-    getLanguages("哈哈哈");
+    getLanguages("nice");
   };
 
   // 历史记录消除触发的回调
