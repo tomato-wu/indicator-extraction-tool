@@ -8,10 +8,10 @@ import SortLetters from "./sort_letters/sortLetters";
 const { TextArea } = Input;
 
 function SelectBar() {
-  // 切换组件的变量
-  const [menu, setMenu] = useState(1);
+  // 切换不同语种的变量
+  const [menu, setMenu] = useState("zh");
 
-  // 输入框
+  // 输入框文本变量
   const [str, setStr] = useState("");
   const [showMessage, setShowMessage] = useState("");
   const [history, setHistory] = useState([]);
@@ -19,7 +19,7 @@ function SelectBar() {
   async function getLanguages(LanguagesText) {
     // 语种识别接口
     let tag = await getLanguageApi({ text: LanguagesText });
-    console.log(tag.data.lg_type);
+    handleChange(tag.data.lg_type);
   }
   // 输入框输入触发的回调
   const onTextChange = (e) => {
@@ -53,13 +53,12 @@ function SelectBar() {
 
   // 弹窗提示目前处于什么语种下
   const handleChange = (e) => {
-    let key = parseInt(e);
     // 切换组件
-    setMenu(key);
+    setMenu(e);
     let messageStr = "";
-    if (key === 1) {
+    if (e === "zh") {
       messageStr = "检测到汉语";
-    } else if (key === 2) {
+    } else if (e === "en") {
       messageStr = "检测到英语";
     } else {
       messageStr = "检测到越南语";
@@ -70,9 +69,9 @@ function SelectBar() {
   // 切换不同语种的组件
   function MenuItem({ menu }) {
     switch (menu) {
-      case 1:
+      case "zh":
         return <ChineseMetrics />;
-      case 2:
+      case "en":
         return <EnglishIndicators />;
       case 3:
         return <SortLetters />;
@@ -92,11 +91,11 @@ function SelectBar() {
           onChange={handleChange}
           options={[
             {
-              value: "1",
+              value: "zh",
               label: "检测到汉语",
             },
             {
-              value: "2",
+              value: "en",
               label: "检测到英语",
             },
             {
