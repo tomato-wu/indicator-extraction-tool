@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { DownOutlined } from "@ant-design/icons";
 import { Button, Dropdown, message, Space, Select, Input, Tag } from "antd";
-import * as axiosBase from "../utils/axios";
 import { getLanguageApi } from "../utils/axios/api";
 import ChineseMetrics from "./chinese_metrics/chineseMetrics";
 import EnglishIndicators from "./english_indicators/englishIndicators";
@@ -18,15 +17,30 @@ function SelectBar() {
   const [history, setHistory] = useState([]);
 
   async function getLanguages(LanguagesText) {
+    // 语种识别接口
     let tag = await getLanguageApi({ text: LanguagesText });
-    console.log(tag);
+    console.log(tag.data.lg_type);
   }
   // 输入框输入触发的回调
   const onTextChange = (e) => {
     setStr(e.target.value);
-    console.log(e.target.value);
-    getLanguages("nice");
+    loadDebounce(e.target.value);
   };
+  // 输入框进行防抖处理
+  function debounce(func, wait = 1000) {
+    let timer = null;
+    return function (...args) {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(this, args);
+      }, wait);
+    };
+  }
+  const loadDebounce = useCallback(
+    debounce((e) => getLanguages(e), 1000),
+    []
+  );
+  // 文章链接 https://blog.csdn.net/QY_99/article/details/128655901
 
   // 历史记录消除触发的回调
   const log = (e) => {
