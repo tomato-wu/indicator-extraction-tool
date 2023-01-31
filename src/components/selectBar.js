@@ -23,8 +23,12 @@ function SelectBar() {
   }
   // 输入框输入触发的回调
   const onTextChange = (e) => {
-    setStr(e.target.value);
-    loadDebounce(e.target.value);
+    if (e.target.value !== "") {
+      setStr(e.target.value);
+      loadDebounce(e.target.value);
+    } else {
+      setStr(e.target.value);
+    }
   };
   // 输入框进行防抖处理
   function debounce(func, wait = 1000) {
@@ -84,23 +88,24 @@ function SelectBar() {
     <>
       <Space size="large">
         <Select
-          defaultValue="检测到汉语"
+          defaultValue="zh"
           style={{
             width: 220,
           }}
           onChange={handleChange}
+          value={menu}
           options={[
             {
               value: "zh",
-              label: "检测到汉语",
+              label: "汉语",
             },
             {
               value: "en",
-              label: "检测到英语",
+              label: "英语",
             },
             {
               value: "3",
-              label: "检测到越南语",
+              label: "越南语",
             },
           ]}
         />
