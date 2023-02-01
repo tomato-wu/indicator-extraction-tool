@@ -70,6 +70,11 @@ function SelectBar() {
     message.info(messageStr);
   };
 
+  // 点击选择器自助选择需要解析的语种
+  const changeLanguages = (e) => {
+    setMenu(e);
+  };
+
   // 切换不同语种的组件
   function MenuItem({ menu }) {
     switch (menu) {
@@ -92,7 +97,7 @@ function SelectBar() {
           style={{
             width: 220,
           }}
-          onChange={handleChange}
+          onChange={changeLanguages}
           value={menu}
           options={[
             {
