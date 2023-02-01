@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Space } from "antd";
 
-function SortLetters() {
+function JapaneseBar() {
   return (
     <>
       <Space size={[8, 16]} wrap>
@@ -25,4 +25,4 @@ function SortLetters() {
   );
 }
 
-export default SortLetters;
+export default JapaneseBar;

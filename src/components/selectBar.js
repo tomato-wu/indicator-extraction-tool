@@ -2,9 +2,13 @@ import React, { useState, useCallback } from "react";
 import { DownOutlined } from "@ant-design/icons";
 import { Button, Dropdown, message, Space, Select, Input, Tag } from "antd";
 import { getLanguageApi } from "../utils/axios/api";
-import ChineseMetrics from "./chinese_metrics/chineseMetrics";
-import EnglishIndicators from "./english_indicators/englishIndicators";
-import SortLetters from "./sort_letters/sortLetters";
+
+import ChineseBar from "./chinese/chineseBar";
+import EnglishBar from "./english/englishBar";
+import JapaneseBar from "./japanese/JapaneseBar";
+import IndonesianBar from "./indonesian/indonesianBar";
+import FilipinoBar from "./filipino/filipinoBar";
+
 const { TextArea } = Input;
 
 function SelectBar() {
@@ -19,6 +23,7 @@ function SelectBar() {
   async function getLanguages(LanguagesText) {
     // 语种识别接口
     let tag = await getLanguageApi({ text: LanguagesText });
+    console.log(tag);
     handleChange(tag.data.lg_type);
   }
   // 输入框输入触发的回调
@@ -60,12 +65,24 @@ function SelectBar() {
     // 切换组件
     setMenu(e);
     let messageStr = "";
-    if (e === "zh") {
-      messageStr = "检测到汉语";
-    } else if (e === "en") {
-      messageStr = "检测到英语";
-    } else {
-      messageStr = "检测到越南语";
+    switch (e) {
+      case "zh":
+        messageStr = "检测到汉语";
+        break;
+      case "en":
+        messageStr = "检测到英语";
+        break;
+      case "ja":
+        messageStr = "检测到日语";
+        break;
+      case "id":
+        messageStr = "检测到印度尼西亚语";
+        break;
+      case "tl":
+        messageStr = "检测到菲律宾语";
+        break;
+      default:
+        messageStr = "暂不支持该语种的处理";
     }
     message.info(messageStr);
   };
@@ -79,11 +96,15 @@ function SelectBar() {
   function MenuItem({ menu }) {
     switch (menu) {
       case "zh":
-        return <ChineseMetrics />;
+        return <ChineseBar />;
       case "en":
-        return <EnglishIndicators />;
-      case 3:
-        return <SortLetters />;
+        return <EnglishBar />;
+      case "ja":
+        return <JapaneseBar />;
+      case "id":
+        return <IndonesianBar />;
+      case "tl":
+        return <FilipinoBar />;
       default:
         return null;
     }
@@ -109,8 +130,16 @@ function SelectBar() {
               label: "英语",
             },
             {
-              value: "3",
-              label: "越南语",
+              value: "ja",
+              label: "日语",
+            },
+            {
+              value: "id",
+              label: "印度尼西亚语",
+            },
+            {
+              value: "tl",
+              label: "菲律宾语",
             },
           ]}
         />
