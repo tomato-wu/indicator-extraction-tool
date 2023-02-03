@@ -155,22 +155,25 @@ function SelectBar() {
             {/* 输入框 */}
             <Space size="large">
               <TextArea
-                rows={15}
+                rows={18}
                 allowClear={true}
                 bordered={true}
                 placeholder="请输入文本"
                 value={str}
                 onChange={onTextChange}
-                style={{ width: "37vw", marginTop: "4vh" }}
+                style={{
+                  width: "39vw",
+                  marginTop: "4vh",
+                }}
               ></TextArea>
               {/* 展示框 */}
               <TextArea
-                rows={15}
+                rows={18}
                 allowClear={true}
                 bordered={true}
                 readOnly={true}
                 value={showMessage}
-                style={{ width: "37vw", marginTop: "4vh" }}
+                style={{ width: "39vw", marginTop: "4vh" }}
               ></TextArea>
             </Space>
           </div>

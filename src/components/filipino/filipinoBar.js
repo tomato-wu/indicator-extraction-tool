@@ -8,14 +8,26 @@ function FilipinoBar() {
         通用计量指标提取
       </Divider>
       <Space size={[8, 16]} wrap>
-        <Button type="primary">计算 ARI</Button>
-        <Button type="primary">计算 ARIAges</Button>
-        <Button type="primary">计算 ARIGradelevels</Button>
-        <Button type="primary">计算 RIX</Button>
-        <Button type="primary">计算 FleschReading</Button>
+        <Button type="primary" ghost>
+          计算 ARI
+        </Button>
+        <Button type="primary" ghost>
+          计算 ARIAges
+        </Button>
+        <Button type="primary" ghost>
+          计算 ARIGradelevels
+        </Button>
+        <Button type="primary" ghost>
+          计算 RIX
+        </Button>
+        <Button type="primary" ghost>
+          计算 FleschReading
+        </Button>
 
-        <Button type="primary">计算 LWIndex</Button>
-        <Button type="primary" danger>
+        <Button type="primary" ghost>
+          计算 LWIndex
+        </Button>
+        <Button type="primary" ghost danger>
           一键提取
         </Button>
       </Space>
@@ -23,12 +35,20 @@ function FilipinoBar() {
         菲律宾语言
       </Divider>
       <Space size={[8, 16]} wrap>
-        <Button type="primary">计算 ARI</Button>
-        <Button type="primary">计算 ARIAges</Button>
-        <Button type="primary">计算 ARIGradelevels</Button>
-        <Button type="primary">计算 RIX</Button>
+        <Button type="primary" ghost>
+          计算 ARI
+        </Button>
+        <Button type="primary" ghost>
+          计算 ARIAges
+        </Button>
+        <Button type="primary" ghost>
+          计算 ARIGradelevels
+        </Button>
+        <Button type="primary" ghost>
+          计算 RIX
+        </Button>
 
-        <Button type="primary" danger>
+        <Button type="primary" ghost danger>
           一键提取
         </Button>
       </Space>
