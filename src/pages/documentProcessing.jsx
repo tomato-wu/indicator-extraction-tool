@@ -29,7 +29,7 @@ const props = {
   name: "file",
   multiple: true,
   maxCount: 1, //限制上传数量。当为 1 时，始终用最新上传的文件代替当前文件
-  action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
+  action: "http://120.77.245.193:3500/api/langrc",
 };
 
 // 上传之前判断上传的文件格式问题
@@ -66,8 +66,8 @@ function MenuItem({ menu }) {
   }
 }
 
+// 文件上传的不同状态
 function LoadingStatusFn({ status }) {
-  console.log(status);
   switch (status) {
     case "init":
       return <UploadFileInit />;
@@ -123,12 +123,15 @@ function DocumentProcessing() {
     //上传文件改变时的回调
     const { status } = info.file;
     if (status === "uploading") {
-      console.log(info.file, info.fileList);
+      // console.log(info.file, info.fileList);
       setLoadingStatus(status);
     }
     if (status === "done") {
       message.success(`${info.file.name} 上传成功`);
       setLoadingStatus(status);
+      console.log("上传成功");
+      console.log(info.file.response.data.lg_type);
+      handleChange(info.file.response.data.lg_type);
     } else if (status === "error") {
       message.error(`${info.file.name} 上传失败.`);
       setLoadingStatus(status);
@@ -179,6 +182,7 @@ function DocumentProcessing() {
             beforeUpload={beforeUpload}
             onChange={uploadHandleChange}
             onDrop={onDrop}
+            showUploadList={false}
             style={{ borderStyle: "none", background: "white" }}
           >
             <LoadingStatusFn status={loadingStatus} />
