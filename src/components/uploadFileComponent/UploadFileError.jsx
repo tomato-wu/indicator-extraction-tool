@@ -1,4 +1,4 @@
-import logo from "../../assets/uploadFileSuccess.png";
+import logo from "../../assets/UploadFileError.png";
 
 function UploadFileError() {
   return (
@@ -8,8 +8,7 @@ function UploadFileError() {
 
         {/* <InboxOutlined /> */}
       </p>
-      <p className="ant-upload-text">点击或者拖拽上传</p>
-      <p className="ant-upload-hint">点击或者拖拽重新上传</p>
+      <p className="ant-upload-hint">文件上传失败，点击或者拖拽重新上传</p>
     </>
   );
 }

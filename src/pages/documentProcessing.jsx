@@ -20,6 +20,7 @@ import FilipinoBar from "../components/filipino/filipinoBar";
 import UploadFileInit from "../components/uploadFileComponent/UploadFileInit";
 import UploadFileSuccess from "../components/uploadFileComponent/UploadFileSuccess";
 import UploadingFile from "../components/uploadFileComponent/UploadingFile";
+import UploadFileError from "../components/uploadFileComponent/UploadFileError";
 
 // 文档上传
 const { Dragger } = Upload;
@@ -66,6 +67,7 @@ function MenuItem({ menu }) {
 }
 
 function LoadingStatusFn({ status }) {
+  console.log(status);
   switch (status) {
     case "init":
       return <UploadFileInit />;
@@ -73,6 +75,8 @@ function LoadingStatusFn({ status }) {
       return <UploadingFile />;
     case "done":
       return <UploadFileSuccess />;
+    case "error":
+      return <UploadFileError />;
     default:
       return null;
   }
@@ -118,7 +122,6 @@ function DocumentProcessing() {
   const uploadHandleChange = (info) => {
     //上传文件改变时的回调
     const { status } = info.file;
-    console.log("status" + status);
     if (status === "uploading") {
       console.log(info.file, info.fileList);
       setLoadingStatus(status);
@@ -128,6 +131,7 @@ function DocumentProcessing() {
       setLoadingStatus(status);
     } else if (status === "error") {
       message.error(`${info.file.name} 上传失败.`);
+      setLoadingStatus(status);
     }
   };
   const onDrop = (e) => {
@@ -175,7 +179,7 @@ function DocumentProcessing() {
             beforeUpload={beforeUpload}
             onChange={uploadHandleChange}
             onDrop={onDrop}
-            style={{ borderStyle: "none" }}
+            style={{ borderStyle: "none", background: "white" }}
           >
             <LoadingStatusFn status={loadingStatus} />
           </Dragger>
