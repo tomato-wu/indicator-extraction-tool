@@ -67,14 +67,14 @@ function MenuItem({ menu }) {
 }
 
 // 文件上传的不同状态
-function LoadingStatusFn({ status }) {
+function LoadingStatusFn({ status, fileName }) {
   switch (status) {
     case "init":
       return <UploadFileInit />;
     case "uploading":
       return <UploadingFile />;
     case "done":
-      return <UploadFileSuccess />;
+      return <UploadFileSuccess fileName={fileName} />;
     case "error":
       return <UploadFileError />;
     default:
@@ -87,6 +87,8 @@ function DocumentProcessing() {
   const [menu, setMenu] = useState("zh");
 
   const [loadingStatus, setLoadingStatus] = useState("init");
+
+  const [fileName, setFileName] = useState("");
 
   // 点击选择器自助选择需要解析的语种
   const changeLanguages = (e) => {
@@ -123,15 +125,13 @@ function DocumentProcessing() {
     //上传文件改变时的回调
     const { status } = info.file;
     if (status === "uploading") {
-      // console.log(info.file, info.fileList);
       setLoadingStatus(status);
     }
     if (status === "done") {
       message.success(`${info.file.name} 上传成功`);
       setLoadingStatus(status);
-      console.log("上传成功");
-      console.log(info.file.response.data.lg_type);
       handleChange(info.file.response.data.lg_type);
+      setFileName(info.file.name);
     } else if (status === "error") {
       message.error(`${info.file.name} 上传失败.`);
       setLoadingStatus(status);
@@ -185,7 +185,7 @@ function DocumentProcessing() {
             showUploadList={false}
             style={{ borderStyle: "none", background: "white" }}
           >
-            <LoadingStatusFn status={loadingStatus} />
+            <LoadingStatusFn status={loadingStatus} fileName={fileName} />
           </Dragger>
         </div>
       </div>
