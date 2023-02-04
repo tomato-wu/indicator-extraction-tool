@@ -8,6 +8,7 @@ import EnglishBar from "./english/englishBar";
 import JapaneseBar from "./japanese/JapaneseBar";
 import IndonesianBar from "./indonesian/indonesianBar";
 import FilipinoBar from "./filipino/filipinoBar";
+import "./selectBar.css";
 
 const { TextArea } = Input;
 
@@ -112,43 +113,56 @@ function SelectBar() {
 
   return (
     <>
-      <Space size="large">
-        <Select
-          defaultValue="zh"
-          style={{
-            width: 220,
-          }}
-          onChange={changeLanguages}
-          value={menu}
-          options={[
-            {
-              value: "zh",
-              label: "汉语",
-            },
-            {
-              value: "en",
-              label: "英语",
-            },
-            {
-              value: "ja",
-              label: "日语",
-            },
-            {
-              value: "id",
-              label: "印度尼西亚语",
-            },
-            {
-              value: "tl",
-              label: "菲律宾语",
-            },
-          ]}
-        />
-      </Space>
-      {/* 指标提取和输入框 */}
-      <div style={{ marginTop: "30px", marginBottom: "30px" }}>
-        {/* 指标提取 */}
-        <MenuItem menu={menu} />
+      {/* 指标提取 */}
+      <div className="selectCardBox">
+        {/* 标题 */}
+        <div className="selectTitleBox">
+          <h3 className="selectTitleText">指标提取</h3>
+        </div>
+        <div className="selectDistinguish">
+          <div style={{ margin: "20px 2px" }}>
+            <span className="selectSpanText">识别语种：</span>
+            <Select
+              defaultValue="zh"
+              style={{
+                width: 160,
+                marginLeft: "3.5vw",
+              }}
+              onChange={changeLanguages}
+              value={menu}
+              options={[
+                {
+                  value: "zh",
+                  label: "汉语",
+                },
+                {
+                  value: "en",
+                  label: "英语",
+                },
+                {
+                  value: "ja",
+                  label: "日语",
+                },
+                {
+                  value: "id",
+                  label: "印度尼西亚语",
+                },
+                {
+                  value: "tl",
+                  label: "菲律宾语",
+                },
+              ]}
+            />
+          </div>
+          <div>
+            {/* 指标提取 */}
+            <MenuItem menu={menu} />
+          </div>
+        </div>
+      </div>
 
+      {/* 指标提取和输入框 */}
+      <div style={{ marginTop: "10px", marginBottom: "30px" }}>
         {/* 输入框---可以输入文本--识别语种，然后切换到相应的语种进行处理 */}
         <>
           <div>

@@ -1,0 +1,32 @@
+.selectCardBox{
+  width:80vw;
+  height:30vh;
+  border-radius:20px;
+  background-color:white;
+  box-shadow: 1px 1px 3px grey;
+}
+.selectTitleBox{
+  height: 5vh;
+  background-color:rgb(244,246,251);
+  border-radius:20px 20px 0 0;
+  line-height: 5vh;
+  width:80vw;
+
+}
+.selectTitleText{
+  margin-left: 15px;
+  text-shadow: 1px 1px 18px rgb(22,119,255);
+  
+}
+.selectDistinguish{
+  margin-left: 15px;
+  margin-top: 15px;
+  width:80vw;
+  height:40vh;
+
+}
+.selectSpanText{
+  font-size:9px;
+  color: gray;
+  
+}

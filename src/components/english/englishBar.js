@@ -1,62 +1,68 @@
 import React from "react";
-import { Button, Space, Divider } from "antd";
+import { Button, Space } from "antd";
 
 function EnglishBar() {
   return (
     <>
-      <Divider orientation="left" orientationMargin="0">
-        通用计量指标提取
-      </Divider>
+      {/* 功能选择按钮 */}
       <Space size={[8, 16]} wrap>
+        <span style={{ fontSize: "9px", color: "gray" }}>
+          通用计量指标提取：
+        </span>
         <Button type="primary" ghost>
-          计算 ARI
+          总词数提取
         </Button>
         <Button type="primary" ghost>
-          计算 ARIAges
+          词典数提取
         </Button>
         <Button type="primary" ghost>
-          计算 ARIGradelevels
+          独立词数提取
         </Button>
         <Button type="primary" ghost>
-          计算 RIX
+          单现词数提取
         </Button>
         <Button type="primary" ghost>
-          计算 FleschReading
-        </Button>
-
-        <Button type="primary" ghost>
-          计算 ColemanLiauLevel
+          单现词比例提取
         </Button>
         <Button type="primary" ghost>
-          计算 DaleChallIndex
+          H值提取
         </Button>
         <Button type="primary" ghost>
-          计算 DaleChallGradeLevels
+          R值提取
         </Button>
         <Button type="primary" ghost>
-          计算 LWIndex
+          丰富度提取
+        </Button>
+        <Button type="primary" ghost>
+          平均依存距离提取
+        </Button>
+        <Button type="primary" ghost>
+          图书词提取
         </Button>
         <Button type="primary" ghost danger>
           一键提取
         </Button>
       </Space>
-      <Divider orientation="left" orientationMargin="0">
-        英语文本可读性指标提取
-      </Divider>
-      <Space size={[8, 16]} wrap>
+      <Space size={[8, 16]} wrap style={{ marginTop: "15px" }}>
+        <span style={{ fontSize: "9px", color: "gray" }}>
+          英语可读性指标提取：
+        </span>
         <Button type="primary" ghost>
-          计算 ARI
+          总词数提取
         </Button>
         <Button type="primary" ghost>
-          计算 ARIAges
+          词典数提取
         </Button>
         <Button type="primary" ghost>
-          计算 ARIGradelevels
+          独立词数提取
         </Button>
         <Button type="primary" ghost>
-          计算 RIX
+          单现词数提取
         </Button>
 
+        <Button type="primary" ghost>
+          图书词提取
+        </Button>
         <Button type="primary" ghost danger>
           一键提取
         </Button>

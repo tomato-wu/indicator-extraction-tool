@@ -4,36 +4,64 @@ import { Button, Space } from "antd";
 function JapaneseBar() {
   return (
     <>
+      {/* 功能选择按钮 */}
       <Space size={[8, 16]} wrap>
+        <span style={{ fontSize: "9px", color: "gray" }}>
+          通用计量指标提取：
+        </span>
         <Button type="primary" ghost>
-          拟合 Cocho/Beta分布
+          总词数提取
         </Button>
         <Button type="primary" ghost>
-          拟合 Exponential分布
+          词典数提取
         </Button>
         <Button type="primary" ghost>
-          拟合 Frappat分布
+          独立词数提取
         </Button>
         <Button type="primary" ghost>
-          拟合 Gusein-Zade分布
+          单现词数提取
         </Button>
         <Button type="primary" ghost>
-          拟合 Power-Law分布
+          单现词比例提取
         </Button>
         <Button type="primary" ghost>
-          拟合 Logarithmic分布
+          H值提取
         </Button>
         <Button type="primary" ghost>
-          拟合 Weibull分布
+          R值提取
         </Button>
         <Button type="primary" ghost>
-          拟合 Quadratic-Logarithmic分布
+          丰富度提取
         </Button>
         <Button type="primary" ghost>
-          拟合 Yule分布
+          平均依存距离提取
         </Button>
         <Button type="primary" ghost>
-          拟合 Menzerath - Altmann/Inverse - Gamma分布
+          图书词提取
+        </Button>
+        <Button type="primary" ghost danger>
+          一键提取
+        </Button>
+      </Space>
+      <Space size={[8, 16]} wrap style={{ marginTop: "15px" }}>
+        <span style={{ fontSize: "9px", color: "gray" }}>
+          汉语计量指标提取：
+        </span>
+        <Button type="primary" ghost>
+          总词数提取
+        </Button>
+        <Button type="primary" ghost>
+          词典数提取
+        </Button>
+        <Button type="primary" ghost>
+          独立词数提取
+        </Button>
+        <Button type="primary" ghost>
+          单现词数提取
+        </Button>
+
+        <Button type="primary" ghost>
+          图书词提取
         </Button>
         <Button type="primary" ghost danger>
           一键提取

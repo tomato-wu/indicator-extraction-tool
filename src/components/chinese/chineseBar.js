@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { Button, Space, Divider } from "antd";
+import { Button, Space } from "antd";
 
 function ChineseBar() {
   return (
     <>
-      <Divider orientation="left" orientationMargin="0">
-        通用计量指标提取
-      </Divider>
       {/* 功能选择按钮 */}
       <Space size={[8, 16]} wrap>
+        <span style={{ fontSize: "9px", color: "gray" }}>
+          通用计量指标提取：
+        </span>
         <Button type="primary" ghost>
           总词数提取
         </Button>
@@ -43,10 +43,10 @@ function ChineseBar() {
           一键提取
         </Button>
       </Space>
-      <Divider orientation="left" orientationMargin="0">
-        汉语计量指标提取
-      </Divider>
-      <Space size={[8, 16]} wrap>
+      <Space size={[8, 16]} wrap style={{ marginTop: "15px" }}>
+        <span style={{ fontSize: "9px", color: "gray" }}>
+          汉语计量指标提取：
+        </span>
         <Button type="primary" ghost>
           总词数提取
         </Button>
