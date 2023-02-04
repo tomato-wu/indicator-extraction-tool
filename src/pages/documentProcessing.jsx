@@ -16,26 +16,35 @@ import JapaneseBar from "../components/japanese/JapaneseBar";
 import IndonesianBar from "../components/indonesian/indonesianBar";
 import FilipinoBar from "../components/filipino/filipinoBar";
 
+// 导入文件上传状态组件
+import UploadFileInit from "../components/uploadFileComponent/UploadFileInit";
+import UploadFileSuccess from "../components/uploadFileComponent/UploadFileSuccess";
+import UploadingFile from "../components/uploadFileComponent/UploadingFile";
+
 // 文档上传
 const { Dragger } = Upload;
+
 const props = {
   name: "file",
   multiple: true,
+  maxCount: 1, //限制上传数量。当为 1 时，始终用最新上传的文件代替当前文件
   action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-  onChange(info) {
-    const { status } = info.file;
-    if (status !== "uploading") {
-      console.log(info.file, info.fileList);
-    }
-    if (status === "done") {
-      message.success(`${info.file.name} file uploaded successfully.`);
-    } else if (status === "error") {
-      message.error(`${info.file.name} file upload failed.`);
-    }
-  },
-  onDrop(e) {
-    console.log("Dropped files", e.dataTransfer.files);
-  },
+};
+
+// 上传之前判断上传的文件格式问题
+const beforeUpload = (file) => {
+  console.log("file" + file.type);
+  const isFileFormat =
+    file.type === "application/msword" ||
+    file.type ===
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
+    file.type === "text/plain" ||
+    file.type === "" ||
+    file.type === "application/pdf";
+  if (!isFileFormat) {
+    message.error("文件格式不符合");
+  }
+  return isFileFormat;
 };
 
 // 切换不同语种的组件
@@ -56,13 +65,76 @@ function MenuItem({ menu }) {
   }
 }
 
+function LoadingStatusFn({ status }) {
+  switch (status) {
+    case "init":
+      return <UploadFileInit />;
+    case "uploading":
+      return <UploadingFile />;
+    case "done":
+      return <UploadFileSuccess />;
+    default:
+      return null;
+  }
+}
+
 function DocumentProcessing() {
   // 切换不同语种的变量
   const [menu, setMenu] = useState("zh");
+
+  const [loadingStatus, setLoadingStatus] = useState("init");
+
   // 点击选择器自助选择需要解析的语种
   const changeLanguages = (e) => {
     setMenu(e);
   };
+  // 弹窗提示目前处于什么语种下
+  const handleChange = (e) => {
+    // 切换组件
+    setMenu(e);
+    let messageStr = "";
+    switch (e) {
+      case "zh":
+        messageStr = "检测到汉语";
+        break;
+      case "en":
+        messageStr = "检测到英语";
+        break;
+      case "ja":
+        messageStr = "检测到日语";
+        break;
+      case "id":
+        messageStr = "检测到印度尼西亚语";
+        break;
+      case "tl":
+        messageStr = "检测到菲律宾语";
+        break;
+      default:
+        messageStr = "暂不支持该语种的处理";
+    }
+    message.info(messageStr);
+  };
+
+  const uploadHandleChange = (info) => {
+    //上传文件改变时的回调
+    const { status } = info.file;
+    console.log("status" + status);
+    if (status === "uploading") {
+      console.log(info.file, info.fileList);
+      setLoadingStatus(status);
+    }
+    if (status === "done") {
+      message.success(`${info.file.name} 上传成功`);
+      setLoadingStatus(status);
+    } else if (status === "error") {
+      message.error(`${info.file.name} 上传失败.`);
+    }
+  };
+  const onDrop = (e) => {
+    //	当文件被拖入上传区域时执行的回调功能
+    console.log("Dropped files", e.dataTransfer.files);
+  };
+
   return (
     <>
       {/* 步骤条展示流程 */}
@@ -98,16 +170,14 @@ function DocumentProcessing() {
           <h3 className="titleText">文件上传</h3>
         </div>
         <div>
-          <Dragger {...props} style={{ borderStyle: "none" }}>
-            <p className="ant-upload-drag-icon">
-              <img src={logo} alt="图片无法显示" />
-
-              {/* <InboxOutlined /> */}
-            </p>
-            <p className="ant-upload-text">点击或者拖拽上传</p>
-            <p className="ant-upload-hint">
-              支持 txt, md, doc, docx, pdf文件格式
-            </p>
+          <Dragger
+            {...props}
+            beforeUpload={beforeUpload}
+            onChange={uploadHandleChange}
+            onDrop={onDrop}
+            style={{ borderStyle: "none" }}
+          >
+            <LoadingStatusFn status={loadingStatus} />
           </Dragger>
         </div>
       </div>
