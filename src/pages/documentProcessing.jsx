@@ -6,11 +6,18 @@ import {
   SubnodeOutlined,
   InboxOutlined,
 } from "@ant-design/icons";
+import { useState } from "react";
 import "./documentProcessing.css";
 import logo from "../assets/uploadFileImage.jpg";
 
-const { Dragger } = Upload;
+import ChineseBar from "../components/chinese/chineseBar";
+import EnglishBar from "../components/english/englishBar";
+import JapaneseBar from "../components/japanese/JapaneseBar";
+import IndonesianBar from "../components/indonesian/indonesianBar";
+import FilipinoBar from "../components/filipino/filipinoBar";
 
+// 文档上传
+const { Dragger } = Upload;
 const props = {
   name: "file",
   multiple: true,
@@ -31,7 +38,31 @@ const props = {
   },
 };
 
+// 切换不同语种的组件
+function MenuItem({ menu }) {
+  switch (menu) {
+    case "zh":
+      return <ChineseBar />;
+    case "en":
+      return <EnglishBar />;
+    case "ja":
+      return <JapaneseBar />;
+    case "id":
+      return <IndonesianBar />;
+    case "tl":
+      return <FilipinoBar />;
+    default:
+      return null;
+  }
+}
+
 function DocumentProcessing() {
+  // 切换不同语种的变量
+  const [menu, setMenu] = useState("zh");
+  // 点击选择器自助选择需要解析的语种
+  const changeLanguages = (e) => {
+    setMenu(e);
+  };
   return (
     <>
       {/* 步骤条展示流程 */}
@@ -92,8 +123,10 @@ function DocumentProcessing() {
               defaultValue="zh"
               style={{
                 width: 120,
-                marginLeft: "4vw",
+                marginLeft: "3.5vw",
               }}
+              onChange={changeLanguages}
+              value={menu}
               options={[
                 {
                   value: "zh",
@@ -119,19 +152,8 @@ function DocumentProcessing() {
             />
           </div>
           <div>
-            <span className="spanText">通用计量指标提取：</span>
-            <Button type="primary" style={{ marginLeft: "1vw" }} ghost>
-              Primary
-            </Button>
-            <Button type="primary" style={{ marginLeft: "1vw" }} ghost>
-              Primary
-            </Button>
-            <Button type="primary" style={{ marginLeft: "1vw" }} ghost>
-              Primary
-            </Button>
-            <Button type="primary" danger style={{ marginLeft: "1vw" }} ghost>
-              一键提取
-            </Button>
+            {/* 指标提取 */}
+            <MenuItem menu={menu} />
           </div>
         </div>
       </div>
