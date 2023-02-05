@@ -1,6 +1,6 @@
 .cardBox{
   width:80vw;
-  height:27vh;
+  height:33vh;
   border-radius:20px;
   margin: 40px auto;
   background-color:white;
@@ -26,4 +26,21 @@
   font-size:9px;
   color: gray;
   
+}
+
+@media screen and (max-width: 800px) {
+  .cardBox{
+    width:80vw;
+    height:30vh;
+    border-radius:20px;
+    background-color:white;
+    box-shadow: 1px 1px 3px grey;
+  }
+  .distinguish{
+    margin-left: 15px;
+    margin-top: 15px;
+    width:80vw;
+    height:50vh;
+  
+  }
 }
