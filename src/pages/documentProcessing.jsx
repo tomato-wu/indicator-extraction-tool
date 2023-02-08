@@ -6,9 +6,8 @@ import {
   SubnodeOutlined,
   InboxOutlined,
 } from "@ant-design/icons";
-import { useState } from "react";
+import React, { useState } from "react";
 import "./documentProcessing.css";
-import logo from "../assets/uploadFileImage.jpg";
 
 import ChineseBar from "../components/chinese/chineseBar";
 import EnglishBar from "../components/english/englishBar";
@@ -49,18 +48,18 @@ const beforeUpload = (file) => {
 };
 
 // 切换不同语种的组件
-function MenuItem({ menu }) {
+function MenuItem({ menu, lgType, lgText }) {
   switch (menu) {
     case "zh":
-      return <ChineseBar />;
+      return <ChineseBar lgType={lgType} lgText={lgText} />;
     case "en":
-      return <EnglishBar />;
+      return <EnglishBar lgType={lgType} lgText={lgText} />;
     case "ja":
-      return <JapaneseBar />;
+      return <JapaneseBar lgType={lgType} lgText={lgText} />;
     case "id":
-      return <IndonesianBar />;
+      return <IndonesianBar lgType={lgType} lgText={lgText} />;
     case "tl":
-      return <FilipinoBar />;
+      return <FilipinoBar lgType={lgType} lgText={lgText} />;
     default:
       return null;
   }
@@ -89,6 +88,10 @@ function DocumentProcessing() {
   const [loadingStatus, setLoadingStatus] = useState("init");
 
   const [fileName, setFileName] = useState("");
+
+  const [lgType, setLgType] = useState("");
+
+  const [lgText, setLgText] = useState("");
 
   // 点击选择器自助选择需要解析的语种
   const changeLanguages = (e) => {
@@ -132,6 +135,8 @@ function DocumentProcessing() {
       setLoadingStatus(status);
       handleChange(info.file.response.data.lg_type);
       setFileName(info.file.name);
+      setLgType(info.file.response.data.lg_type);
+      setLgText(info.file.response.data.lg_text);
     } else if (status === "error") {
       message.error(`${info.file.name} 上传失败.`);
       setLoadingStatus(status);
@@ -172,7 +177,7 @@ function DocumentProcessing() {
         ]}
       />
       {/* 文件上传 */}
-      <div className="cardBox">
+      <div className="cardBox" style={{ height: "28vh" }}>
         <div className="titleBox">
           <h3 className="titleText">文件上传</h3>
         </div>
@@ -231,7 +236,8 @@ function DocumentProcessing() {
           </div>
           <div>
             {/* 指标提取 */}
-            <MenuItem menu={menu} />
+
+            <MenuItem menu={menu} lgType={lgType} lgText={lgText} />
           </div>
         </div>
       </div>
