@@ -26,40 +26,46 @@ function GeneralIndicators(props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [typeValue, setTypeValue] = useState("");
+  const [typeText, setTypeText] = useState("");
 
   const handleOk = () => {
     setIsModalOpen(false);
     setTypeValue(" ");
+    setTypeText("");
   };
   const handleCancel = () => {
     setIsModalOpen(false);
     setTypeValue(" ");
+    setTypeText("");
   };
 
   const TTR = async () => {
     console.log("触发");
     const getTTR = await getTTRApi({ lg_type: lgType, lg_text: lgText });
-    console.log(getTTR.data.value);
     setTypeValue(getTTR.data.value);
+    setTypeText(getTTR.data.type);
     setIsModalOpen(true);
   };
 
   const R1 = async () => {
     console.log("触发");
     const getR1 = await getR1Api({ lg_type: lgType, lg_text: lgText });
-    console.log(getR1);
+    setTypeValue(getR1.data.value);
+    setTypeText(getR1.data.type);
     setIsModalOpen(true);
   };
   const RR = async () => {
     console.log("触发");
     const getRR = await getRRApi({ lg_type: lgType, lg_text: lgText });
-    console.log(getRR);
+    setTypeValue(getRR.data.value);
+    setTypeText(getRR.data.type);
     setIsModalOpen(true);
   };
   const RRMC = async () => {
     console.log("触发");
     const getRRMC = await getRRMCApi({ lg_type: lgType, lg_text: lgText });
-    console.log(getRRMC);
+    setTypeValue(getRRMC.data.value);
+    setTypeText(getRRMC.data.type);
     setIsModalOpen(true);
   };
   const SecondaryTC = async () => {
@@ -68,7 +74,8 @@ function GeneralIndicators(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    console.log(getSecondaryTC);
+    setTypeValue(getSecondaryTC.data.value);
+    setTypeText(getSecondaryTC.data.type);
     setIsModalOpen(true);
   };
   const TCValue = async () => {
@@ -77,7 +84,8 @@ function GeneralIndicators(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    console.log(getTCValue);
+    setTypeValue(getTCValue.data.value);
+    setTypeText(getTCValue.data.type);
     setIsModalOpen(true);
   };
   const Activity = async () => {
@@ -86,7 +94,8 @@ function GeneralIndicators(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    console.log(getActivity);
+    setTypeValue(getActivity.data.value);
+    setTypeText(getActivity.data.type);
     setIsModalOpen(true);
   };
   const Descriptivity = async () => {
@@ -95,7 +104,8 @@ function GeneralIndicators(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    console.log(getDescriptivity);
+    setTypeValue(getDescriptivity.data.value);
+    setTypeText(getDescriptivity.data.type);
     setIsModalOpen(true);
   };
   const lvalue = async () => {
@@ -104,7 +114,8 @@ function GeneralIndicators(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    console.log(getlvalue);
+    setTypeValue(getlvalue.data.value);
+    setTypeText(getlvalue.data.type);
     setIsModalOpen(true);
   };
   const CurveLength = async () => {
@@ -113,7 +124,8 @@ function GeneralIndicators(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    console.log(getCurveLength);
+    setTypeValue(getCurveLength.data.value);
+    setTypeText(getCurveLength.data.type);
     setIsModalOpen(true);
   };
   const lambda = async () => {
@@ -122,7 +134,8 @@ function GeneralIndicators(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    console.log(getLambda);
+    setTypeValue(getLambda.data.value);
+    setTypeText(getLambda.data.type);
     setIsModalOpen(true);
   };
   const adjustModule = async () => {
@@ -131,7 +144,8 @@ function GeneralIndicators(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    console.log(getAdjustModule);
+    setTypeValue(getAdjustModule.data.value);
+    setTypeText(getAdjustModule.data.type);
     setIsModalOpen(true);
   };
   const Gini = async () => {
@@ -140,7 +154,8 @@ function GeneralIndicators(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    console.log(getGini);
+    setTypeValue(getGini.data.value);
+    setTypeText(getGini.data.type);
     setIsModalOpen(true);
   };
   const R4 = async () => {
@@ -149,7 +164,8 @@ function GeneralIndicators(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    console.log(getR4);
+    setTypeValue(getR4.data.value);
+    setTypeText(getR4.data.type);
     setIsModalOpen(true);
   };
   const Hpax = async () => {
@@ -158,7 +174,8 @@ function GeneralIndicators(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    console.log(getHapax);
+    setTypeValue(getHapax.data.value);
+    setTypeText(getHapax.data.type);
     setIsModalOpen(true);
   };
   const writerView = async () => {
@@ -167,7 +184,8 @@ function GeneralIndicators(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    console.log(getWriterView);
+    setTypeValue(getWriterView.data.value);
+    setTypeText(getWriterView.data.type);
     setIsModalOpen(true);
   };
   const verbDistance = async () => {
@@ -176,7 +194,8 @@ function GeneralIndicators(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    console.log(getVerbDistance);
+    setTypeValue(getVerbDistance.data.value);
+    setTypeText(getVerbDistance.data.type);
     setIsModalOpen(true);
   };
   const Zipf = async () => {
@@ -185,7 +204,8 @@ function GeneralIndicators(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    console.log(getZipf);
+    setTypeValue(getZipf.data.value);
+    setTypeText(getZipf.data.type);
     setIsModalOpen(true);
   };
   return (
@@ -259,7 +279,9 @@ function GeneralIndicators(props) {
           onOk={handleOk}
           onCancel={handleCancel}
         >
-          <p>{typeValue}</p>
+          <p>
+            {typeText} -- {typeValue}
+          </p>
         </Modal>
       </Space>
     </>
