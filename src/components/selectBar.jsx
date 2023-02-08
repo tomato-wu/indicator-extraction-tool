@@ -38,6 +38,8 @@ function SelectBar() {
       loadDebounce(e.target.value);
     } else {
       setStr(e.target.value);
+      setLgType("");
+      setLgText("");
     }
   };
   // 输入框进行防抖处理
