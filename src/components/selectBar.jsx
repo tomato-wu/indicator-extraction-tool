@@ -18,19 +18,23 @@ function SelectBar() {
 
   // 输入框文本变量
   const [str, setStr] = useState("");
-  const [showMessage, setShowMessage] = useState("");
   const [history, setHistory] = useState([]);
+
+  const [lgType, setLgType] = useState("");
+
+  const [lgText, setLgText] = useState("");
 
   async function getLanguages(LanguagesText) {
     // 语种识别接口
     let tag = await getLanguageApi({ text: LanguagesText });
-    console.log(tag);
+    setLgType(tag.data.lg_type);
+    setLgText(LanguagesText);
     handleChange(tag.data.lg_type);
   }
   // 输入框输入触发的回调
   const onTextChange = (e) => {
     if (e.target.value !== "") {
-      setStr(e.target.value);
+      setStr(e.target.value); //输入框同步显示
       loadDebounce(e.target.value);
     } else {
       setStr(e.target.value);
@@ -94,18 +98,18 @@ function SelectBar() {
   };
 
   // 切换不同语种的组件
-  function MenuItem({ menu }) {
+  function MenuItem({ menu, lgType, lgText }) {
     switch (menu) {
       case "zh":
-        return <ChineseBar />;
+        return <ChineseBar lgType={lgType} lgText={lgText} />;
       case "en":
-        return <EnglishBar />;
+        return <EnglishBar lgType={lgType} lgText={lgText} />;
       case "ja":
-        return <JapaneseBar />;
+        return <JapaneseBar lgType={lgType} lgText={lgText} />;
       case "id":
-        return <IndonesianBar />;
+        return <IndonesianBar lgType={lgType} lgText={lgText} />;
       case "tl":
-        return <FilipinoBar />;
+        return <FilipinoBar lgType={lgType} lgText={lgText} />;
       default:
         return null;
     }
@@ -156,7 +160,7 @@ function SelectBar() {
           </div>
           <div>
             {/* 指标提取 */}
-            <MenuItem menu={menu} />
+            <MenuItem menu={menu} lgType={lgType} lgText={lgText} />
           </div>
         </div>
       </div>
@@ -176,18 +180,9 @@ function SelectBar() {
                 value={str}
                 onChange={onTextChange}
                 style={{
-                  width: "39vw",
+                  width: "80vw",
                   marginTop: "4vh",
                 }}
-              ></TextArea>
-              {/* 展示框 */}
-              <TextArea
-                rows={18}
-                allowClear={true}
-                bordered={true}
-                readOnly={true}
-                value={showMessage}
-                style={{ width: "39vw", marginTop: "4vh" }}
               ></TextArea>
             </Space>
           </div>
