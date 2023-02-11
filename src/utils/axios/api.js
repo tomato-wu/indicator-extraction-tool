@@ -71,3 +71,7 @@ export const getVerbDistanceApi = (data = {}) =>
 // 齐普夫检验
 export const getZipfApi = (data = {}) =>
   httpPost({ url: "/common/zipf", data });
+
+// 一键提取所有通用指标
+export const getAllTagApi = (data = {}) =>
+  httpPost({ url: "/common/all", data });

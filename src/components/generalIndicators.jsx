@@ -18,6 +18,7 @@ import {
   getWriterViewApi,
   getVerbDistanceApi,
   getZipfApi,
+  getAllTagApi,
 } from "../utils/axios/api";
 import { useState } from "react";
 function GeneralIndicators(props) {
@@ -27,6 +28,8 @@ function GeneralIndicators(props) {
 
   const [typeValue, setTypeValue] = useState("");
   const [typeText, setTypeText] = useState("");
+
+  const [allTagArr, setallTagArr] = useState([]);
 
   const handleOk = () => {
     setIsModalOpen(false);
@@ -40,7 +43,6 @@ function GeneralIndicators(props) {
   };
 
   const TTR = async () => {
-    console.log("触发");
     const getTTR = await getTTRApi({ lg_type: lgType, lg_text: lgText });
     setTypeValue(getTTR.data.value);
     setTypeText(getTTR.data.type);
@@ -48,28 +50,24 @@ function GeneralIndicators(props) {
   };
 
   const R1 = async () => {
-    console.log("触发");
     const getR1 = await getR1Api({ lg_type: lgType, lg_text: lgText });
     setTypeValue(getR1.data.value);
     setTypeText(getR1.data.type);
     setIsModalOpen(true);
   };
   const RR = async () => {
-    console.log("触发");
     const getRR = await getRRApi({ lg_type: lgType, lg_text: lgText });
     setTypeValue(getRR.data.value);
     setTypeText(getRR.data.type);
     setIsModalOpen(true);
   };
   const RRMC = async () => {
-    console.log("触发");
     const getRRMC = await getRRMCApi({ lg_type: lgType, lg_text: lgText });
     setTypeValue(getRRMC.data.value);
     setTypeText(getRRMC.data.type);
     setIsModalOpen(true);
   };
   const SecondaryTC = async () => {
-    console.log("触发");
     const getSecondaryTC = await getSecondaryTCApi({
       lg_type: lgType,
       lg_text: lgText,
@@ -79,7 +77,6 @@ function GeneralIndicators(props) {
     setIsModalOpen(true);
   };
   const TCValue = async () => {
-    console.log("触发");
     const getTCValue = await getTCValueApi({
       lg_type: lgType,
       lg_text: lgText,
@@ -89,7 +86,6 @@ function GeneralIndicators(props) {
     setIsModalOpen(true);
   };
   const Activity = async () => {
-    console.log("触发");
     const getActivity = await getActivityApi({
       lg_type: lgType,
       lg_text: lgText,
@@ -99,7 +95,6 @@ function GeneralIndicators(props) {
     setIsModalOpen(true);
   };
   const Descriptivity = async () => {
-    console.log("触发");
     const getDescriptivity = await getDescriptivityApi({
       lg_type: lgType,
       lg_text: lgText,
@@ -109,7 +104,6 @@ function GeneralIndicators(props) {
     setIsModalOpen(true);
   };
   const lvalue = async () => {
-    console.log("触发");
     const getlvalue = await getlvalueApi({
       lg_type: lgType,
       lg_text: lgText,
@@ -119,7 +113,6 @@ function GeneralIndicators(props) {
     setIsModalOpen(true);
   };
   const CurveLength = async () => {
-    console.log("触发");
     const getCurveLength = await getCurveLengthApi({
       lg_type: lgType,
       lg_text: lgText,
@@ -129,7 +122,6 @@ function GeneralIndicators(props) {
     setIsModalOpen(true);
   };
   const lambda = async () => {
-    console.log("触发");
     const getLambda = await getLambdaApi({
       lg_type: lgType,
       lg_text: lgText,
@@ -139,7 +131,6 @@ function GeneralIndicators(props) {
     setIsModalOpen(true);
   };
   const adjustModule = async () => {
-    console.log("触发");
     const getAdjustModule = await getAdjustModuleApi({
       lg_type: lgType,
       lg_text: lgText,
@@ -149,7 +140,6 @@ function GeneralIndicators(props) {
     setIsModalOpen(true);
   };
   const Gini = async () => {
-    console.log("触发");
     const getGini = await getGiniApi({
       lg_type: lgType,
       lg_text: lgText,
@@ -159,7 +149,6 @@ function GeneralIndicators(props) {
     setIsModalOpen(true);
   };
   const R4 = async () => {
-    console.log("触发");
     const getR4 = await getR4Api({
       lg_type: lgType,
       lg_text: lgText,
@@ -169,7 +158,6 @@ function GeneralIndicators(props) {
     setIsModalOpen(true);
   };
   const Hpax = async () => {
-    console.log("触发");
     const getHapax = await getHapaxApi({
       lg_type: lgType,
       lg_text: lgText,
@@ -179,7 +167,6 @@ function GeneralIndicators(props) {
     setIsModalOpen(true);
   };
   const writerView = async () => {
-    console.log("触发");
     const getWriterView = await getWriterViewApi({
       lg_type: lgType,
       lg_text: lgText,
@@ -189,7 +176,6 @@ function GeneralIndicators(props) {
     setIsModalOpen(true);
   };
   const verbDistance = async () => {
-    console.log("触发");
     const getVerbDistance = await getVerbDistanceApi({
       lg_type: lgType,
       lg_text: lgText,
@@ -199,7 +185,6 @@ function GeneralIndicators(props) {
     setIsModalOpen(true);
   };
   const Zipf = async () => {
-    console.log("触发");
     const getZipf = await getZipfApi({
       lg_type: lgType,
       lg_text: lgText,
@@ -207,6 +192,17 @@ function GeneralIndicators(props) {
     setTypeValue(getZipf.data.value);
     setTypeText(getZipf.data.type);
     setIsModalOpen(true);
+  };
+
+  const GetAllTag = async () => {
+    const getAllTag = await getAllTagApi({
+      lg_type: lgType,
+      lg_text: lgText,
+    });
+    // setTypeValue(getAllTag.data.value);
+    // setTypeText(getAllTag.data.type);
+    // setIsModalOpen(true);
+    console.log(getAllTag);
   };
   return (
     <>
@@ -269,7 +265,7 @@ function GeneralIndicators(props) {
         <Button type="primary" ghost onClick={Zipf}>
           齐普夫检验
         </Button>
-        <Button type="primary" ghost danger>
+        <Button type="primary" ghost danger onClick={GetAllTag}>
           一键提取
         </Button>
         {/* 展示数据的弹窗 */}
