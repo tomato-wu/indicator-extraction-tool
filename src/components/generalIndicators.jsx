@@ -17,7 +17,7 @@ import {
   getHapaxApi,
   getWriterViewApi,
   getVerbDistanceApi,
-  getZipfApi,
+  // getZipfApi,
   getAllTagApi,
 } from "../utils/axios/api";
 import { useState } from "react";
@@ -184,15 +184,15 @@ function GeneralIndicators(props) {
     setTypeText(getVerbDistance.data.type);
     setIsModalOpen(true);
   };
-  const Zipf = async () => {
-    const getZipf = await getZipfApi({
-      lg_type: lgType,
-      lg_text: lgText,
-    });
-    setTypeValue(getZipf.data.value);
-    setTypeText(getZipf.data.type);
-    setIsModalOpen(true);
-  };
+  // const Zipf = async () => {
+  //   const getZipf = await getZipfApi({
+  //     lg_type: lgType,
+  //     lg_text: lgText,
+  //   });
+  //   setTypeValue(getZipf.data.value);
+  //   setTypeText(getZipf.data.type);
+  //   setIsModalOpen(true);
+  // };
 
   const GetAllTag = async () => {
     const getAllTag = await getAllTagApi({
@@ -262,9 +262,9 @@ function GeneralIndicators(props) {
         <Button type="primary" ghost onClick={verbDistance}>
           动词间距
         </Button>
-        <Button type="primary" ghost onClick={Zipf}>
+        {/* <Button type="primary" ghost onClick={Zipf}>
           齐普夫检验
-        </Button>
+        </Button> */}
         <Button type="primary" ghost danger onClick={GetAllTag}>
           一键提取
         </Button>

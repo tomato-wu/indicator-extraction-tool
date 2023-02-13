@@ -6,7 +6,7 @@ export const getARIApi = (data = {}) =>
 
 // ARIGradeLevels
 export const getARIGradeLevelsApi = (data = {}) =>
-  httpPost({ url: "/readability/ari", data });
+  httpPost({ url: "/readability/ariGrade", data });
 
 // RIX
 export const getRIXApi = (data = {}) =>
