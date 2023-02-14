@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Space, Modal } from "antd";
+import { Button, Space, Modal, Descriptions } from "antd";
 import GeneralIndicators from "../generalIndicators";
 import {
   getARIApi,
@@ -11,31 +11,27 @@ import {
   getColemanLiauIndexApi,
   getDaleChallIndexApi,
   getLWIndexApi,
+  getAllTagsApi,
 } from "../../utils/axios/englishReadabilityApi.js";
 
 function EnglishBar(props) {
   const { lgType, lgText } = props;
-
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [typeValue, setTypeValue] = useState("");
-  const [typeText, setTypeText] = useState("");
-
+  const [obj, setObj] = useState({});
   const handleOk = () => {
+    setObj({});
     setIsModalOpen(false);
-    setTypeValue(" ");
-    setTypeText("");
   };
   const handleCancel = () => {
+    setObj({});
     setIsModalOpen(false);
-    setTypeValue(" ");
-    setTypeText("");
   };
 
   const ARI = async () => {
     const getARI = await getARIApi({ lg_type: lgType, lg_text: lgText });
-    setTypeValue(getARI.data.value);
-    setTypeText(getARI.data.type);
+    const getARIObj = getARI.data;
+    setObj({ ...getARIObj });
     setIsModalOpen(true);
   };
 
@@ -44,14 +40,15 @@ function EnglishBar(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    setTypeValue(getARIGradeLevels.data.value);
-    setTypeText(getARIGradeLevels.data.type);
+    const getARIGradeLevelsObj = getARIGradeLevels.data;
+    setObj({ ...getARIGradeLevelsObj });
+
     setIsModalOpen(true);
   };
   const RIX = async () => {
     const getRIX = await getRIXApi({ lg_type: lgType, lg_text: lgText });
-    setTypeValue(getRIX.data.value);
-    setTypeText(getRIX.data.type);
+    const getRIXObj = getRIX.data;
+    setObj({ ...getRIXObj });
     setIsModalOpen(true);
   };
   const FlsechKincaidGrade = async () => {
@@ -59,8 +56,8 @@ function EnglishBar(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    setTypeValue(getFlsechKincaidGrade.data.value);
-    setTypeText(getFlsechKincaidGrade.data.type);
+    const getFlsechKincaidGradeObj = getFlsechKincaidGrade.data;
+    setObj({ ...getFlsechKincaidGradeObj });
     setIsModalOpen(true);
   };
   const GunningFog = async () => {
@@ -68,8 +65,8 @@ function EnglishBar(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    setTypeValue(getGunningFog.data.value);
-    setTypeText(getGunningFog.data.type);
+    const getGunningFogObj = getGunningFog.data;
+    setObj({ ...getGunningFogObj });
     setIsModalOpen(true);
   };
   const Smog = async () => {
@@ -77,8 +74,8 @@ function EnglishBar(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    setTypeValue(getSmog.data.value);
-    setTypeText(getSmog.data.type);
+    const getSmogObj = getSmog.data;
+    setObj({ ...getSmogObj });
     setIsModalOpen(true);
   };
   const ColemanLiauIndex = async () => {
@@ -86,8 +83,8 @@ function EnglishBar(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    setTypeValue(getColemanLiauIndex.data.value);
-    setTypeText(getColemanLiauIndex.data.type);
+    const getColemanLiauIndexObj = getColemanLiauIndex.data;
+    setObj({ ...getColemanLiauIndexObj });
     setIsModalOpen(true);
   };
   const DaleChallIndex = async () => {
@@ -95,8 +92,8 @@ function EnglishBar(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    setTypeValue(getDaleChallIndex.data.value);
-    setTypeText(getDaleChallIndex.data.type);
+    const getDaleChallIndexObj = getDaleChallIndex.data;
+    setObj({ ...getDaleChallIndexObj });
     setIsModalOpen(true);
   };
   const LWIndex = async () => {
@@ -104,8 +101,18 @@ function EnglishBar(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    setTypeValue(getLWIndex.data.value);
-    setTypeText(getLWIndex.data.type);
+    const getLWIndexObj = getLWIndex.data;
+    setObj({ ...getLWIndexObj });
+    setIsModalOpen(true);
+  };
+
+  const AllTags = async () => {
+    const getAllTags = await getAllTagsApi({
+      lg_type: lgType,
+      lg_text: lgText,
+    });
+    const getAllTagsObj = getAllTags.data;
+    setObj({ ...getAllTagsObj });
     setIsModalOpen(true);
   };
 
@@ -138,20 +145,24 @@ function EnglishBar(props) {
         <Button type="primary" ghost onClick={LWIndex}>
           LWIndex
         </Button>
-        <Button type="primary" ghost danger onClick={ARI}>
+        <Button type="primary" ghost danger onClick={AllTags}>
           一键提取
         </Button>
 
         {/* 展示数据的弹窗 */}
-        <Modal
-          title="指标提取"
-          open={isModalOpen}
-          onOk={handleOk}
-          onCancel={handleCancel}
-        >
-          <p>
-            {typeText} -- {typeValue}
-          </p>
+        <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+          <Descriptions title="计量指标提取" bordered>
+            {Object.keys(obj).map((item) => {
+              return (
+                <>
+                  <Descriptions.Item label={item} span={2} key={item}>
+                    {obj[item]}
+                  </Descriptions.Item>
+                  <br />
+                </>
+              );
+            })}
+          </Descriptions>
         </Modal>
       </Space>
     </>

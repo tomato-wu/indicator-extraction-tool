@@ -35,3 +35,7 @@ export const getDaleChallIndexApi = (data = {}) =>
 // LWIndex
 export const getLWIndexApi = (data = {}) =>
   httpPost({ url: "/readability/lwIndex", data });
+
+// 一件获取所有值
+export const getAllTagsApi = (data = {}) =>
+  httpPost({ url: "/readability/all", data });
