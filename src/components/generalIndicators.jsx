@@ -1,4 +1,4 @@
-import { Button, Space, Modal } from "antd";
+import { Button, Space, Modal, Descriptions } from "antd";
 import {
   getTTRApi,
   getR1Api,
@@ -26,45 +26,40 @@ function GeneralIndicators(props) {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [typeValue, setTypeValue] = useState("");
-  const [typeText, setTypeText] = useState("");
-
-  const [allTagArr, setallTagArr] = useState([]);
+  const [obj, setObj] = useState({});
 
   const handleOk = () => {
+    setObj({});
     setIsModalOpen(false);
-    setTypeValue(" ");
-    setTypeText("");
   };
   const handleCancel = () => {
+    setObj({});
     setIsModalOpen(false);
-    setTypeValue(" ");
-    setTypeText("");
   };
 
   const TTR = async () => {
     const getTTR = await getTTRApi({ lg_type: lgType, lg_text: lgText });
-    setTypeValue(getTTR.data.value);
-    setTypeText(getTTR.data.type);
+    const getTTRObj = getTTR.data;
+    setObj({ ...getTTRObj });
     setIsModalOpen(true);
   };
 
   const R1 = async () => {
     const getR1 = await getR1Api({ lg_type: lgType, lg_text: lgText });
-    setTypeValue(getR1.data.value);
-    setTypeText(getR1.data.type);
+    const getR1Obj = getR1.data;
+    setObj({ ...getR1Obj });
     setIsModalOpen(true);
   };
   const RR = async () => {
     const getRR = await getRRApi({ lg_type: lgType, lg_text: lgText });
-    setTypeValue(getRR.data.value);
-    setTypeText(getRR.data.type);
+    const getRRObj = getRR.data;
+    setObj({ ...getRRObj });
     setIsModalOpen(true);
   };
   const RRMC = async () => {
     const getRRMC = await getRRMCApi({ lg_type: lgType, lg_text: lgText });
-    setTypeValue(getRRMC.data.value);
-    setTypeText(getRRMC.data.type);
+    const getRRMCObj = getRRMC.data;
+    setObj({ ...getRRMCObj });
     setIsModalOpen(true);
   };
   const SecondaryTC = async () => {
@@ -72,8 +67,8 @@ function GeneralIndicators(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    setTypeValue(getSecondaryTC.data.value);
-    setTypeText(getSecondaryTC.data.type);
+    const getSecondaryTCObj = getSecondaryTC.data;
+    setObj({ ...getSecondaryTCObj });
     setIsModalOpen(true);
   };
   const TCValue = async () => {
@@ -81,8 +76,8 @@ function GeneralIndicators(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    setTypeValue(getTCValue.data.value);
-    setTypeText(getTCValue.data.type);
+    const getTCValueObj = getTCValue.data;
+    setObj({ ...getTCValueObj });
     setIsModalOpen(true);
   };
   const Activity = async () => {
@@ -90,8 +85,8 @@ function GeneralIndicators(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    setTypeValue(getActivity.data.value);
-    setTypeText(getActivity.data.type);
+    const getActivityObj = getActivity.data;
+    setObj({ ...getActivityObj });
     setIsModalOpen(true);
   };
   const Descriptivity = async () => {
@@ -99,8 +94,8 @@ function GeneralIndicators(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    setTypeValue(getDescriptivity.data.value);
-    setTypeText(getDescriptivity.data.type);
+    const getDescriptivityObj = getDescriptivity.data;
+    setObj({ ...getDescriptivityObj });
     setIsModalOpen(true);
   };
   const lvalue = async () => {
@@ -108,8 +103,8 @@ function GeneralIndicators(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    setTypeValue(getlvalue.data.value);
-    setTypeText(getlvalue.data.type);
+    const getlvalueObj = getlvalue.data;
+    setObj({ ...getlvalueObj });
     setIsModalOpen(true);
   };
   const CurveLength = async () => {
@@ -117,8 +112,8 @@ function GeneralIndicators(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    setTypeValue(getCurveLength.data.value);
-    setTypeText(getCurveLength.data.type);
+    const getCurveLengthObj = getCurveLength.data;
+    setObj({ ...getCurveLengthObj });
     setIsModalOpen(true);
   };
   const lambda = async () => {
@@ -126,8 +121,8 @@ function GeneralIndicators(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    setTypeValue(getLambda.data.value);
-    setTypeText(getLambda.data.type);
+    const getLambdaObj = getLambda.data;
+    setObj({ ...getLambdaObj });
     setIsModalOpen(true);
   };
   const adjustModule = async () => {
@@ -135,8 +130,8 @@ function GeneralIndicators(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    setTypeValue(getAdjustModule.data.value);
-    setTypeText(getAdjustModule.data.type);
+    const getAdjustModuleObj = getAdjustModule.data;
+    setObj({ ...getAdjustModuleObj });
     setIsModalOpen(true);
   };
   const Gini = async () => {
@@ -144,8 +139,8 @@ function GeneralIndicators(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    setTypeValue(getGini.data.value);
-    setTypeText(getGini.data.type);
+    const getGiniObj = getGini.data;
+    setObj({ ...getGiniObj });
     setIsModalOpen(true);
   };
   const R4 = async () => {
@@ -153,8 +148,8 @@ function GeneralIndicators(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    setTypeValue(getR4.data.value);
-    setTypeText(getR4.data.type);
+    const getR4Obj = getR4.data;
+    setObj({ ...getR4Obj });
     setIsModalOpen(true);
   };
   const Hpax = async () => {
@@ -162,8 +157,8 @@ function GeneralIndicators(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    setTypeValue(getHapax.data.value);
-    setTypeText(getHapax.data.type);
+    const getHapaxObj = getHapax.data;
+    setObj({ ...getHapaxObj });
     setIsModalOpen(true);
   };
   const writerView = async () => {
@@ -171,8 +166,8 @@ function GeneralIndicators(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    setTypeValue(getWriterView.data.value);
-    setTypeText(getWriterView.data.type);
+    const getWriterViewObj = getWriterView.data;
+    setObj({ ...getWriterViewObj });
     setIsModalOpen(true);
   };
   const verbDistance = async () => {
@@ -180,29 +175,19 @@ function GeneralIndicators(props) {
       lg_type: lgType,
       lg_text: lgText,
     });
-    setTypeValue(getVerbDistance.data.value);
-    setTypeText(getVerbDistance.data.type);
+    const getVerbDistanceObj = getVerbDistance.data;
+    setObj({ ...getVerbDistanceObj });
     setIsModalOpen(true);
   };
-  // const Zipf = async () => {
-  //   const getZipf = await getZipfApi({
-  //     lg_type: lgType,
-  //     lg_text: lgText,
-  //   });
-  //   setTypeValue(getZipf.data.value);
-  //   setTypeText(getZipf.data.type);
-  //   setIsModalOpen(true);
-  // };
 
   const GetAllTag = async () => {
     const getAllTag = await getAllTagApi({
       lg_type: lgType,
       lg_text: lgText,
     });
-    // setTypeValue(getAllTag.data.value);
-    // setTypeText(getAllTag.data.type);
-    // setIsModalOpen(true);
-    console.log(getAllTag);
+    const getAllTagObj = getAllTag.data;
+    setObj({ ...getAllTagObj });
+    setIsModalOpen(true);
   };
   return (
     <>
@@ -262,9 +247,6 @@ function GeneralIndicators(props) {
         <Button type="primary" ghost onClick={verbDistance}>
           动词间距
         </Button>
-        {/* <Button type="primary" ghost onClick={Zipf}>
-          齐普夫检验
-        </Button> */}
         <Button type="primary" ghost danger onClick={GetAllTag}>
           一键提取
         </Button>
@@ -275,9 +257,18 @@ function GeneralIndicators(props) {
           onOk={handleOk}
           onCancel={handleCancel}
         >
-          <p>
-            {typeText} -- {typeValue}
-          </p>
+          <Descriptions title="计量指标提取" bordered>
+            {Object.keys(obj).map((item) => {
+              return (
+                <>
+                  <Descriptions.Item label={item} span={2} key={item}>
+                    {obj[item]}
+                  </Descriptions.Item>
+                  <br />
+                </>
+              );
+            })}
+          </Descriptions>
         </Modal>
       </Space>
     </>
