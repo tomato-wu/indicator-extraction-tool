@@ -12,7 +12,7 @@ function JapaneseBar(props) {
       {/* 日语特定语种处理 */}
       <Space size={[8, 16]} wrap style={{ marginTop: "15px" }}>
         <span style={{ fontSize: "9px", color: "gray" }}>
-          汉语计量指标提取：
+          日语计量指标提取：
         </span>
         <Button type="primary" ghost>
           总词数提取
