@@ -34,16 +34,19 @@ const CardStyle = {
   flexDirection: "row",
   justifyContent: "center",
 };
+const CardShadow = {
+  width: 400,
+  height: 200,
+};
 function IntroductionPage() {
   const navigate = useNavigate();
-
   const LinkToHome = () => {
     navigate("/home");
   };
   return (
     <>
       <img src={backGroundImage} alt="图片无法显示" style={{ width: "100%" }} />
-      <h1 style={title}>计量语言学指标提取工具</h1>
+      <h1 style={title}>计量语言学指标提取工具 1.0 </h1>
       <p style={firstIntroduntion}>
         本网站是面向计量语言学学科构建的指标提取工具，并且面向多个不同的语种
       </p>
@@ -68,58 +71,32 @@ function IntroductionPage() {
 
       <div>
         <Space style={CardStyle}>
-          <Card
-            title="汉语计量指标提取"
-            extra={<a href="#">More</a>}
-            style={{
-              width: 400,
-              height: 200,
-            }}
-          >
+          <Card title="汉语" style={CardShadow} extra={<a href="#">More</a>}>
+            <p>通用计量指标提取</p>
+            <p>汉语计量指标提取</p>
+          </Card>
+
+          <Card title="英语" style={CardShadow} extra={<a href="#">More</a>}>
+            <p>通用计量指标提取</p>
+            <p>英语可读性指标提取</p>
+          </Card>
+
+          <Card title="日语" style={CardShadow} extra={<a href="#">More</a>}>
+            <p>通用计量指标提取</p>
+            <p>Card content</p>
+          </Card>
+
+          <Card title="印尼语" style={CardShadow} extra={<a href="#">More</a>}>
+            <p>通用计量指标提取</p>
             <p>Card content</p>
           </Card>
 
           <Card
-            title="英语计量指标提取"
+            title="菲律宾语"
+            style={CardShadow}
             extra={<a href="#">More</a>}
-            style={{
-              width: 400,
-              height: 200,
-            }}
           >
-            <p>Card content</p>
-          </Card>
-
-          <Card
-            title="日语计量指标提取"
-            extra={<a href="#">More</a>}
-            style={{
-              width: 400,
-              height: 200,
-            }}
-          >
-            <p>Card content</p>
-          </Card>
-
-          <Card
-            title="印尼语计量指标提取"
-            extra={<a href="#">More</a>}
-            style={{
-              width: 400,
-              height: 200,
-            }}
-          >
-            <p>Card content</p>
-          </Card>
-
-          <Card
-            title="菲律宾计量指标提取"
-            extra={<a href="#">More</a>}
-            style={{
-              width: 400,
-              height: 200,
-            }}
-          >
+            <p>通用计量指标提取</p>
             <p>Card content</p>
           </Card>
         </Space>

@@ -84,13 +84,9 @@ function LoadingStatusFn({ status, fileName }) {
 function DocumentProcessing() {
   // 切换不同语种的变量
   const [menu, setMenu] = useState("zh");
-
   const [loadingStatus, setLoadingStatus] = useState("init");
-
   const [fileName, setFileName] = useState("");
-
   const [lgType, setLgType] = useState("");
-
   const [lgText, setLgText] = useState("");
 
   // 点击选择器自助选择需要解析的语种
