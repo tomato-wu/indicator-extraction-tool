@@ -29,14 +29,14 @@ const buttonStyle = {
 };
 
 const CardStyle = {
-  marginTop: "100px",
+  marginTop: "70px",
   display: "flex",
   flexDirection: "row",
   justifyContent: "center",
 };
 const CardShadow = {
-  width: 400,
-  height: 200,
+  width: 300,
+  height: 170,
 };
 function IntroductionPage() {
   const navigate = useNavigate();
@@ -71,22 +71,38 @@ function IntroductionPage() {
 
       <div>
         <Space style={CardStyle}>
-          <Card title="汉语" style={CardShadow} extra={<a href="#">More</a>}>
+          <Card
+            title="汉语"
+            style={CardShadow}
+            extra={<a href="/#/home">More</a>}
+          >
             <p>通用计量指标提取</p>
             <p>汉语计量指标提取</p>
           </Card>
 
-          <Card title="英语" style={CardShadow} extra={<a href="#">More</a>}>
+          <Card
+            title="英语"
+            style={CardShadow}
+            extra={<a href="/#/home">More</a>}
+          >
             <p>通用计量指标提取</p>
             <p>英语可读性指标提取</p>
           </Card>
 
-          <Card title="日语" style={CardShadow} extra={<a href="#">More</a>}>
+          <Card
+            title="日语"
+            style={CardShadow}
+            extra={<a href="/#/home">More</a>}
+          >
             <p>通用计量指标提取</p>
             <p>Card content</p>
           </Card>
 
-          <Card title="印尼语" style={CardShadow} extra={<a href="#">More</a>}>
+          <Card
+            title="印尼语"
+            style={CardShadow}
+            extra={<a href="/#/home">More</a>}
+          >
             <p>通用计量指标提取</p>
             <p>Card content</p>
           </Card>
@@ -94,7 +110,7 @@ function IntroductionPage() {
           <Card
             title="菲律宾语"
             style={CardShadow}
-            extra={<a href="#">More</a>}
+            extra={<a href="/#/home">More</a>}
           >
             <p>通用计量指标提取</p>
             <p>Card content</p>

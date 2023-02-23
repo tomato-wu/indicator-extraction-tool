@@ -82,7 +82,6 @@ function Personal() {
               <h3 style={personTitleText}>个人信息</h3>
             </div>
             <div></div>
-            哈哈哈
           </div>
         </Content>
       </Layout>
