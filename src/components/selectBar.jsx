@@ -3,11 +3,17 @@ import { DownOutlined } from "@ant-design/icons";
 import { Button, Dropdown, message, Space, Select, Input, Tag } from "antd";
 import { getLanguageApi } from "../utils/axios/api";
 
-import ChineseBar from "./chinese/chineseBar";
-import EnglishBar from "./english/englishBar";
-import JapaneseBar from "./japanese/JapaneseBar";
-import IndonesianBar from "./indonesian/indonesianBar";
-import FilipinoBar from "./filipino/filipinoBar";
+import ChineseBar from "./chinese";
+import EnglishBar from "./english";
+import JapaneseBar from "./japanese";
+import IndonesianBar from "./indonesian";
+import FilipinoBar from "./filipino";
+
+import Vietnamese from "./vietnamese/";
+import Burmese from "./burmese/";
+import Thai from "./thai/";
+import Lao from "./lao/";
+
 import "./selectBar.css";
 
 const { TextArea } = Input;
@@ -88,6 +94,18 @@ function SelectBar() {
       case "tl":
         messageStr = "检测到菲律宾语";
         break;
+      case "th":
+        messageStr = "检测到泰语";
+        break;
+      case "vi":
+        messageStr = "检测到越南语";
+        break;
+      case "ka":
+        messageStr = "检测到缅甸语";
+        break;
+      case "lo":
+        messageStr = "老挝语";
+        break;
       default:
         messageStr = "暂不支持该语种的处理";
     }
@@ -112,6 +130,14 @@ function SelectBar() {
         return <IndonesianBar lgType={lgType} lgText={lgText} />;
       case "tl":
         return <FilipinoBar lgType={lgType} lgText={lgText} />;
+      case "th":
+        return <Thai lgType={lgType} lgText={lgText} />;
+      case "vi":
+        return <Vietnamese lgType={lgType} lgText={lgText} />;
+      case "ka":
+        return <Burmese lgType={lgType} lgText={lgText} />;
+      case "lo":
+        return <Lao lgType={lgType} lgText={lgText} />;
       default:
         return null;
     }
@@ -156,6 +182,22 @@ function SelectBar() {
                 {
                   value: "tl",
                   label: "菲律宾语",
+                },
+                {
+                  value: "th",
+                  label: "泰语",
+                },
+                {
+                  value: "vi",
+                  label: "越南语",
+                },
+                {
+                  value: "ka",
+                  label: "缅甸语",
+                },
+                {
+                  value: "lo",
+                  label: "老挝语",
                 },
               ]}
             />

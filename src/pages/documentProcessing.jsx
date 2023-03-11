@@ -9,11 +9,11 @@ import {
 import React, { useState } from "react";
 import "./documentProcessing.css";
 
-import ChineseBar from "../components/chinese/chineseBar";
-import EnglishBar from "../components/english/englishBar";
-import JapaneseBar from "../components/japanese/JapaneseBar";
-import IndonesianBar from "../components/indonesian/indonesianBar";
-import FilipinoBar from "../components/filipino/filipinoBar";
+import ChineseBar from "../components/chinese";
+import EnglishBar from "../components/english";
+import JapaneseBar from "../components/japanese";
+import IndonesianBar from "../components/indonesian";
+import FilipinoBar from "../components/filipino";
 
 // 导入文件上传状态组件
 import UploadFileInit from "../components/uploadFileComponent/UploadFileInit";
@@ -201,7 +201,7 @@ function DocumentProcessing() {
             <Select
               defaultValue="zh"
               style={{
-                width: 120,
+                width: 180,
                 marginLeft: "3.5vw",
               }}
               onChange={changeLanguages}

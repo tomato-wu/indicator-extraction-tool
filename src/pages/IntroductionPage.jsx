@@ -3,19 +3,19 @@ import { useNavigate } from "react-router-dom";
 
 import backGroundImage from "../assets/backgrounfImage.png";
 const title = {
-  fontSize: "3.7rem",
+  fontSize: "2.7rem",
   textAlign: "center",
-  marginTop: "10vh",
+  marginTop: "8vh",
   fontWeight: "bolder",
 };
 const introduntion = {
   textAlign: "center",
-  fontSize: "1.7rem",
+  fontSize: "1.3rem",
   fontWeight: "lighter",
 };
 const firstIntroduntion = {
   textAlign: "center",
-  fontSize: "1.7rem",
+  fontSize: "1.3rem",
   fontWeight: "lighter",
   marginTop: "4vh",
 };
@@ -35,8 +35,8 @@ const CardStyle = {
   justifyContent: "center",
 };
 const CardShadow = {
-  width: 300,
-  height: 170,
+  width: 250,
+  height: 110,
 };
 function IntroductionPage() {
   const navigate = useNavigate();
@@ -45,7 +45,11 @@ function IntroductionPage() {
   };
   return (
     <>
-      <img src={backGroundImage} alt="图片无法显示" style={{ width: "100%" }} />
+      <img
+        src={backGroundImage}
+        alt="图片无法显示"
+        style={{ width: "100%", height: "23vh" }}
+      />
       <h1 style={title}>计量语言学指标提取工具 1.0 </h1>
       <p style={firstIntroduntion}>
         本网站是面向计量语言学学科构建的指标提取工具，并且面向多个不同的语种
