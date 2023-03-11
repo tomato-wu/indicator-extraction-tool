@@ -15,6 +15,11 @@ import JapaneseBar from "../components/japanese";
 import IndonesianBar from "../components/indonesian";
 import FilipinoBar from "../components/filipino";
 
+import Vietnamese from "../components/vietnamese/";
+import Burmese from "../components/burmese/";
+import Thai from "../components/thai/";
+import Lao from "../components/lao/";
+
 // 导入文件上传状态组件
 import UploadFileInit from "../components/uploadFileComponent/UploadFileInit";
 import UploadFileSuccess from "../components/uploadFileComponent/UploadFileSuccess";
@@ -60,6 +65,14 @@ function MenuItem({ menu, lgType, lgText }) {
       return <IndonesianBar lgType={lgType} lgText={lgText} />;
     case "tl":
       return <FilipinoBar lgType={lgType} lgText={lgText} />;
+    case "th":
+      return <Thai lgType={lgType} lgText={lgText} />;
+    case "vi":
+      return <Vietnamese lgType={lgType} lgText={lgText} />;
+    case "ka":
+      return <Burmese lgType={lgType} lgText={lgText} />;
+    case "lo":
+      return <Lao lgType={lgType} lgText={lgText} />;
     default:
       return null;
   }
@@ -113,6 +126,18 @@ function DocumentProcessing() {
         break;
       case "tl":
         messageStr = "检测到菲律宾语";
+        break;
+      case "th":
+        messageStr = "检测到泰语";
+        break;
+      case "vi":
+        messageStr = "检测到越南语";
+        break;
+      case "ka":
+        messageStr = "检测到缅甸语";
+        break;
+      case "lo":
+        messageStr = "老挝语";
         break;
       default:
         messageStr = "暂不支持该语种的处理";
@@ -226,6 +251,22 @@ function DocumentProcessing() {
                 {
                   value: "tl",
                   label: "菲律宾语",
+                },
+                {
+                  value: "th",
+                  label: "泰语",
+                },
+                {
+                  value: "vi",
+                  label: "越南语",
+                },
+                {
+                  value: "ka",
+                  label: "缅甸语",
+                },
+                {
+                  value: "lo",
+                  label: "老挝语",
                 },
               ]}
             />
