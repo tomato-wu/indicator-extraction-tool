@@ -100,8 +100,8 @@ function SelectBar() {
       case "vi":
         messageStr = "检测到越南语";
         break;
-      case "ka":
-        messageStr = "检测到缅甸语";
+      case "km":
+        messageStr = "检测到缅甸（高棉语）";
         break;
       case "lo":
         messageStr = "老挝语";
@@ -134,7 +134,7 @@ function SelectBar() {
         return <Thai lgType={lgType} lgText={lgText} />;
       case "vi":
         return <Vietnamese lgType={lgType} lgText={lgText} />;
-      case "ka":
+      case "km":
         return <Burmese lgType={lgType} lgText={lgText} />;
       case "lo":
         return <Lao lgType={lgType} lgText={lgText} />;
@@ -192,8 +192,8 @@ function SelectBar() {
                   label: "越南语",
                 },
                 {
-                  value: "ka",
-                  label: "缅甸语",
+                  value: "km",
+                  label: "缅甸（高棉语）",
                 },
                 {
                   value: "lo",

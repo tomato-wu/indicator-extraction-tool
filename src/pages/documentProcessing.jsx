@@ -33,7 +33,7 @@ const props = {
   name: "file",
   multiple: true,
   maxCount: 1, //限制上传数量。当为 1 时，始终用最新上传的文件代替当前文件
-  action: "http://120.77.245.193:3500/api/langrc",
+  action: "http://192.168.207.233:25001/api/langrc",
 };
 
 // 上传之前判断上传的文件格式问题
@@ -69,7 +69,7 @@ function MenuItem({ menu, lgType, lgText }) {
       return <Thai lgType={lgType} lgText={lgText} />;
     case "vi":
       return <Vietnamese lgType={lgType} lgText={lgText} />;
-    case "ka":
+    case "km":
       return <Burmese lgType={lgType} lgText={lgText} />;
     case "lo":
       return <Lao lgType={lgType} lgText={lgText} />;
@@ -133,8 +133,8 @@ function DocumentProcessing() {
       case "vi":
         messageStr = "检测到越南语";
         break;
-      case "ka":
-        messageStr = "检测到缅甸语";
+      case "km":
+        messageStr = "检测到缅甸（高棉语）";
         break;
       case "lo":
         messageStr = "老挝语";
@@ -261,8 +261,8 @@ function DocumentProcessing() {
                   label: "越南语",
                 },
                 {
-                  value: "ka",
-                  label: "缅甸语",
+                  value: "km",
+                  label: "缅甸（高棉语）",
                 },
                 {
                   value: "lo",
