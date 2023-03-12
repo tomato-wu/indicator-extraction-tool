@@ -254,6 +254,7 @@ function GeneralIndicators(props) {
         <Modal
           title="指标提取"
           open={isModalOpen}
+          width={1000}
           onOk={handleOk}
           onCancel={handleCancel}
         >
