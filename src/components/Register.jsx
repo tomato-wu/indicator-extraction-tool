@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Input, Button, VerificationInput, Space } from "antd";
 const { Search } = Input;
 
-const MailLogin = () => {
+const Register = () => {
   const [code, setCode] = useState(""); // 用来存储验证码的状态
   const [email, setEmail] = useState(""); // 用来存储邮箱的状态
   const [sent, setSent] = useState(false); // 用来存储验证码的状态
@@ -22,6 +22,24 @@ const MailLogin = () => {
 
   return (
     <>
+      <Input
+        placeholder="用户名"
+        size="large"
+        allowClear
+        style={{ width: "300px", marginBottom: "30px" }}
+      />
+      <Input
+        placeholder="密码"
+        size="large"
+        allowClear
+        style={{ width: "300px", marginBottom: "30px" }}
+      />
+      <Input
+        placeholder="确认密码"
+        size="large"
+        allowClear
+        style={{ width: "300px", marginBottom: "30px" }}
+      />
       <Input
         placeholder="请输入邮箱"
         size="large"
@@ -48,4 +66,4 @@ const MailLogin = () => {
   );
 };
 
-export default MailLogin;
+export default Register;

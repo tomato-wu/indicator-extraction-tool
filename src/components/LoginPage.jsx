@@ -1,55 +1,44 @@
-import React, { useState } from "react";
-import { Form, Input, Button, Segmented } from "antd";
-import { UserOutlined, MailOutlined } from "@ant-design/icons";
+import Login from "./Login";
+import Register from "./Register";
 
-import MailLogin from "./MailLogin";
-import AccountLogin from "./AccountLogin";
+import React, { useState } from "react";
+import { Form, Input, Button, VerificationInput, Space } from "antd";
+const { Search } = Input;
 
 const LoginPage = () => {
-  const [value, setValue] = useState("账号登录");
+  let [loginStatus, setLoginStatus] = useState(true);
 
-  function LoginMethodSelection({ currentPage }) {
-    switch (currentPage) {
-      case "账号登录":
-        return <AccountLogin />;
-      case "邮箱登录":
-        return <MailLogin />;
-      default:
-        return null;
-    }
-  }
-
+  const handleLoginStatus = () => {
+    setLoginStatus(!loginStatus);
+  };
   return (
     <>
-      <div
-        style={{
-          margin: "30px",
-        }}
-      >
-        <Segmented
-          options={[
-            {
-              label: "账号登录",
-              value: "账号登录",
-              icon: <UserOutlined />,
-            },
-            {
-              label: "邮箱登录",
-              value: "邮箱登录",
-              icon: <MailOutlined />,
-            },
-          ]}
-          value={value}
-          onChange={setValue}
-        />
-      </div>
-      <div
-        style={{
-          margin: "30px",
-        }}
-      >
-        <LoginMethodSelection currentPage={value} />
-      </div>
+      {loginStatus ? <Login></Login> : <Register></Register>}
+      {loginStatus ? (
+        <div style={{ width: "300px", textAlign: "center", marginTop: "30px" }}>
+          <p>
+            没有账号？
+            <span
+              style={{ color: "rgb(64,150,255)", cursor: "pointer" }}
+              onClick={handleLoginStatus}
+            >
+              立即注册
+            </span>
+          </p>
+        </div>
+      ) : (
+        <div style={{ width: "300px", textAlign: "center", marginTop: "30px" }}>
+          <p>
+            已有账号？
+            <span
+              style={{ color: "rgb(64,150,255)", cursor: "pointer" }}
+              onClick={handleLoginStatus}
+            >
+              登录
+            </span>
+          </p>
+        </div>
+      )}
     </>
   );
 };
