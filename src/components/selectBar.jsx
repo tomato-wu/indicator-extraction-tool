@@ -13,6 +13,13 @@ import Vietnamese from "./vietnamese/";
 import Burmese from "./burmese/";
 import Thai from "./thai/";
 import Lao from "./lao/";
+import Arabic from "./arabic/";
+import Bengali from "./bengali/";
+import Korean from "./korean/";
+import Spanish from "./spanish/";
+import Turkish from "./turkish/";
+import Farsi from "./farsi/";
+import Portuguese from "./portuguese/";
 
 import "./selectBar.css";
 
@@ -159,6 +166,21 @@ function SelectBar() {
         return <Burmese lgType={lgType} lgText={lgText} />;
       case "lo":
         return <Lao lgType={lgType} lgText={lgText} />;
+      case "ar":
+        return <Arabic lgType={lgType} lgText={lgText} />;
+      case "es":
+        return <Spanish lgType={lgType} lgText={lgText} />;
+      case "pt":
+        return <Portuguese lgType={lgType} lgText={lgText} />;
+      case "tr":
+        return <Turkish lgType={lgType} lgText={lgText} />;
+      case "ko":
+        return <Korean lgType={lgType} lgText={lgText} />;
+      case "bn":
+        return <Bengali lgType={lgType} lgText={lgText} />;
+      case "fa":
+        return <Farsi lgType={lgType} lgText={lgText} />;
+
       default:
         return null;
     }

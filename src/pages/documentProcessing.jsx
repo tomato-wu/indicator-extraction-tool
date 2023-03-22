@@ -20,6 +20,14 @@ import Burmese from "../components/burmese/";
 import Thai from "../components/thai/";
 import Lao from "../components/lao/";
 
+import Arabic from "../components/arabic/";
+import Bengali from "../components/bengali/";
+import Korean from "../components/korean/";
+import Spanish from "../components/spanish/";
+import Turkish from "../components/turkish/";
+import Farsi from "../components/farsi/";
+import Portuguese from "../components/portuguese/";
+
 // 导入文件上传状态组件
 import UploadFileInit from "../components/uploadFileComponent/UploadFileInit";
 import UploadFileSuccess from "../components/uploadFileComponent/UploadFileSuccess";
@@ -73,6 +81,20 @@ function MenuItem({ menu, lgType, lgText }) {
       return <Burmese lgType={lgType} lgText={lgText} />;
     case "lo":
       return <Lao lgType={lgType} lgText={lgText} />;
+    case "ar":
+      return <Arabic lgType={lgType} lgText={lgText} />;
+    case "es":
+      return <Spanish lgType={lgType} lgText={lgText} />;
+    case "pt":
+      return <Portuguese lgType={lgType} lgText={lgText} />;
+    case "tr":
+      return <Turkish lgType={lgType} lgText={lgText} />;
+    case "ko":
+      return <Korean lgType={lgType} lgText={lgText} />;
+    case "bn":
+      return <Bengali lgType={lgType} lgText={lgText} />;
+    case "fa":
+      return <Farsi lgType={lgType} lgText={lgText} />;
     default:
       return null;
   }
