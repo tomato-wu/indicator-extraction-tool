@@ -11,7 +11,7 @@ const BurmeseBar = (props) => {
       {/* 特定语种指标提取 */}
       <Space size={[8, 16]} wrap style={{ marginTop: "15px" }}>
         <span style={{ fontSize: "9px", color: "gray" }}>
-          缅甸（高棉语） ：
+          缅甸/柬埔寨（高棉语） ：
         </span>
         <Button type="primary" ghost>
           总词数提取

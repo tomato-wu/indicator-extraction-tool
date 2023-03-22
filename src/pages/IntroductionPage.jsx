@@ -1,9 +1,10 @@
-import { Button, Space, Col, Row } from "antd";
+import { Button, Space, Col, Row, Modal } from "antd";
 import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 
 import backGround from "../assets/background.png";
 import backGroundDown from "../assets/backGroundDown.png";
-
+import LoginPage from "../components/LoginPage";
 const backGroundCss = {
   backgroundImage: `url(${backGround})`,
   backgroundSize: "cover",
@@ -48,10 +49,34 @@ function IntroductionPage() {
     navigate("/home");
   };
 
+  const [open, setOpen] = useState(false);
+
   return (
     <>
       {/* 上方 */}
       <div style={backGroundCss}>
+        <Button
+          type="primary"
+          shape="round"
+          size="middle"
+          style={{ position: "absolute", top: "12px", right: "22px" }}
+          onClick={() => setOpen(true)}
+        >
+          登录
+        </Button>
+
+        <Modal
+          title="登录/注册"
+          centered
+          open={open}
+          onOk={() => setOpen(false)}
+          onCancel={() => setOpen(false)}
+          footer={null}
+          width={500}
+        >
+          <LoginPage></LoginPage>
+        </Modal>
+
         <Row>
           <Col span={18} offset={5}>
             <div style={TitleTextBox}>
@@ -120,7 +145,7 @@ function IntroductionPage() {
               <hr style={{ color: "gray" }} />
               <p>语种识别，输入需处理的文本，自动识别语言</p> <hr />
               <p>
-                系统支持多语种处理，支持的语种多达17种，包括阿拉伯语、孟加拉语、缅甸语、汉语、英语等
+                系统支持多语种处理，支持的语种多达17种，包括阿拉伯语、孟加拉语、缅甸/柬埔寨语、汉语、英语等
               </p>
               <hr style={{ color: "gray" }} />
               <p>

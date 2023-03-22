@@ -134,10 +134,32 @@ function DocumentProcessing() {
         messageStr = "检测到越南语";
         break;
       case "km":
-        messageStr = "检测到缅甸（高棉语）";
+        messageStr = "检测到缅甸/柬埔寨（高棉语）";
         break;
       case "lo":
         messageStr = "老挝语";
+        break;
+      case "ar":
+        messageStr = "阿拉伯语";
+        break;
+      case "es":
+        messageStr = "西班牙语";
+        break;
+
+      case "pt":
+        messageStr = "葡萄牙语";
+        break;
+      case "tr":
+        messageStr = "土耳其语";
+        break;
+      case "ko":
+        messageStr = "韩语";
+        break;
+      case "bn":
+        messageStr = "孟加拉语";
+        break;
+      case "fa":
+        messageStr = "波斯语";
         break;
       default:
         messageStr = "暂不支持该语种的处理";
@@ -262,11 +284,39 @@ function DocumentProcessing() {
                 },
                 {
                   value: "km",
-                  label: "缅甸（高棉语）",
+                  label: "缅甸/柬埔寨（高棉语）",
                 },
                 {
                   value: "lo",
                   label: "老挝语",
+                },
+                {
+                  value: "ar",
+                  label: "阿拉伯语",
+                },
+                {
+                  value: "bn",
+                  label: "孟加拉语",
+                },
+                {
+                  value: "fa",
+                  label: "波斯语",
+                },
+                {
+                  value: "pt",
+                  label: "葡萄牙语",
+                },
+                {
+                  value: "es",
+                  label: "西班牙语",
+                },
+                {
+                  value: "tr",
+                  label: "土耳其语",
+                },
+                {
+                  value: "ko",
+                  label: "朝鲜语(韩国)",
                 },
               ]}
             />
