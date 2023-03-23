@@ -74,7 +74,9 @@ function IntroductionPage() {
           footer={null}
           width={500}
         >
-          <LoginPage></LoginPage>
+          <div style={{ textAlign: "center", marginTop: "30px" }}>
+            <LoginPage></LoginPage>
+          </div>
         </Modal>
 
         <Row>

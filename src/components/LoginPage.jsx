@@ -15,7 +15,16 @@ const LoginPage = () => {
     <>
       {loginStatus ? <Login></Login> : <Register></Register>}
       {loginStatus ? (
-        <div style={{ width: "300px", textAlign: "center", marginTop: "30px" }}>
+        <div
+          style={{
+            width: "300px",
+            textAlign: "center",
+            marginTop: "30px",
+            position: "relative",
+            left: "50%",
+            transform: "translateX(-50%)",
+          }}
+        >
           <p>
             没有账号？
             <span
@@ -27,7 +36,16 @@ const LoginPage = () => {
           </p>
         </div>
       ) : (
-        <div style={{ width: "300px", textAlign: "center", marginTop: "30px" }}>
+        <div
+          style={{
+            width: "300px",
+            textAlign: "center",
+            marginTop: "30px",
+            position: "relative",
+            left: "50%",
+            transform: "translateX(-50%)",
+          }}
+        >
           <p>
             已有账号？
             <span

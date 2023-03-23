@@ -75,3 +75,11 @@ export const getVerbDistanceApi = (data = {}) =>
 // 一键提取所有通用指标
 export const getAllTagApi = (data = {}) =>
   httpPost({ url: "/common/all", data });
+
+// 登录
+export const loginApi = (data = {}) => httpPost({ url: "/user/login", data });
+// 注册
+export const registerApi = (data = {}) =>
+  httpPost({ url: "/api/register", data });
+// 发送验证码
+export const sendCodeApi = (data = {}) => httpPost({ url: "/user/mail", data });
