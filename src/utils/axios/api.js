@@ -77,9 +77,13 @@ export const getAllTagApi = (data = {}) =>
   httpPost({ url: "/common/all", data });
 
 // 登录
-export const loginApi = (data = {}) => httpPost({ url: "/user/login", data });
+export const UserNameLoginApi = (data = {}) =>
+  httpPost({ url: "/user/username/login", data });
+export const EmailLoginApi = (data = {}) =>
+  httpPost({ url: "/user/email/login", data });
+
 // 注册
 export const registerApi = (data = {}) =>
-  httpPost({ url: "/api/register", data });
+  httpPost({ url: "/user/regist", data });
 // 发送验证码
 export const sendCodeApi = (data = {}) => httpPost({ url: "/user/mail", data });

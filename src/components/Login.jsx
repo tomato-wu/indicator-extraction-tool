@@ -1,13 +1,37 @@
 import React, { useState } from "react";
-import { Form, Input, Button, Checkbox } from "antd";
+import { Form, Input, Button, Checkbox, message } from "antd";
+import { UserNameLoginApi, EmailLoginApi } from "../utils/axios/api";
 
 const Login = () => {
   const [username, setUsername] = useState(""); // 用户名
   const [password, setPassword] = useState(""); // 密码
 
-  const LoginFunc = () => {
+  const LoginFunc = async () => {
     // 登录函数
-    console.log("LoginFunc", username, password);
+    if (username.indexOf("@") !== -1) {
+      // 邮箱登录
+      let res = await EmailLoginApi({
+        email: username,
+        password: password,
+      });
+      if (res.data.token) {
+        localStorage.setItem("token", res.data.token);
+        message.success("登录成功");
+      } else {
+        message.error("用户名或密码错误");
+      }
+    } else {
+      let res = await UserNameLoginApi({
+        username: username,
+        password: password,
+      });
+      if (res.data.token) {
+        localStorage.setItem("token", res.data.token);
+        message.success("登录成功");
+      } else {
+        message.error("用户名或密码错误");
+      }
+    }
   };
 
   return (
@@ -23,7 +47,7 @@ const Login = () => {
           rules={[
             {
               required: true,
-              message: "Please input your Username!",
+              message: "请输入你的用户名",
             },
           ]}
         >
@@ -42,7 +66,7 @@ const Login = () => {
           rules={[
             {
               required: true,
-              message: "Please input your Password!",
+              message: "请输入密码",
             },
           ]}
         >
@@ -55,16 +79,6 @@ const Login = () => {
             style={{ width: "300px" }}
           />
         </Form.Item>
-        {/* 忘记密码 */}
-        {/* <Form.Item>
-          <Form.Item name="remember" valuePropName="checked" noStyle>
-            <Checkbox>Remember me</Checkbox>
-          </Form.Item>
-
-          <a className="login-form-forgot" href="">
-            Forgot password
-          </a>
-        </Form.Item> */}
         {/* 登录按钮 */}
         <Form.Item>
           <Button

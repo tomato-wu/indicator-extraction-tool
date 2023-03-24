@@ -1,8 +1,9 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const service = axios.create({
-  // baseURL: "http://192.168.207.233:25001",
-  baseURL: "http://192.168.128.125:5000",
+  baseURL: "http://192.168.207.233:25001",
+  // baseURL: "http://192.168.128.125:5000",
 
   timeout: 100000,
   headers: {
@@ -21,6 +22,7 @@ const service = axios.create({
 service.interceptors.request.use(
   function (config) {
     let token = localStorage.getItem("token");
+    console.log("token", token);
     if (token) {
       config.headers.authorization = token;
     }
@@ -34,6 +36,11 @@ service.interceptors.request.use(
 // 添加响应拦截器
 service.interceptors.response.use(
   function (response) {
+    if (response.data.status === 401) {
+      const navigate = useNavigate();
+      navigate("/");
+    }
+    console.log("response", response);
     return response;
   },
   function (error) {
