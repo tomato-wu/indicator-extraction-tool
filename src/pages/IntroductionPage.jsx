@@ -57,15 +57,17 @@ function IntroductionPage() {
     <>
       {/* 上方 */}
       <div style={backGroundCss}>
-        <Button
-          type="primary"
-          shape="round"
-          size="middle"
-          style={{ position: "absolute", top: "12px", right: "22px" }}
-          onClick={() => setOpen(true)}
-        >
-          登录
-        </Button>
+        {!token ? (
+          <Button
+            type="primary"
+            shape="round"
+            size="middle"
+            style={{ position: "absolute", top: "12px", right: "22px" }}
+            onClick={() => setOpen(true)}
+          >
+            登录
+          </Button>
+        ) : null}
 
         <Modal
           title="登录/注册"
@@ -104,7 +106,7 @@ function IntroductionPage() {
                 </p>
               </div>
 
-              {token ? (
+              {!token ? (
                 <Button
                   type="primary"
                   size="middle"

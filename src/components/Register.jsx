@@ -56,11 +56,6 @@ const Register = () => {
     message.info(res.data.message);
   };
 
-  const ConfirmPasswordFunc = () => {
-    // register with backend
-    console.log("ConfirmPasswordFunc", ConfirmPassword);
-  };
-
   return (
     <>
       <Form
@@ -145,7 +140,6 @@ const Register = () => {
             placeholder="确认密码"
             size="large"
             allowClear
-            focus={ConfirmPasswordFunc}
             value={ConfirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             style={{ width: "300px" }}

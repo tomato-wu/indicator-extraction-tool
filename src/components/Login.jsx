@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Form, Input, Button, Checkbox, message } from "antd";
 import { UserNameLoginApi, EmailLoginApi } from "../utils/axios/api";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState(""); // 用户名
   const [password, setPassword] = useState(""); // 密码
+  const navigate = useNavigate();
 
   const LoginFunc = async () => {
     // 登录函数
@@ -14,9 +16,11 @@ const Login = () => {
         email: username,
         password: password,
       });
+
       if (res.data.token) {
         localStorage.setItem("token", res.data.token);
         message.success("登录成功");
+        navigate("/home");
       } else {
         message.error("用户名或密码错误");
       }
@@ -25,9 +29,11 @@ const Login = () => {
         username: username,
         password: password,
       });
+      console.log(res);
       if (res.data.token) {
         localStorage.setItem("token", res.data.token);
         message.success("登录成功");
+        navigate("/home");
       } else {
         message.error("用户名或密码错误");
       }
