@@ -11,8 +11,6 @@ const Register = () => {
 
   const [username, setUsername] = useState(""); // 用来存储用户名
   const [password, setPassword] = useState(""); // 用来存储密码
-  const [ConfirmPassword, setConfirmPassword] = useState(""); // 用来存储密码
-
   const [email, setEmail] = useState(""); // 用来存储邮箱
   const [code, setCode] = useState(""); // 用来存储验证码
 
@@ -140,8 +138,6 @@ const Register = () => {
             placeholder="确认密码"
             size="large"
             allowClear
-            value={ConfirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
             style={{ width: "300px" }}
           />
         </Form.Item>
