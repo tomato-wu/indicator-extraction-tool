@@ -84,10 +84,10 @@ const Register = () => {
         <Form.Item
           name="password"
           rules={[
-            // {
-            //   pattern: "/[^a-zA-Z0-9]+$/",
-            //   message: "密码只能是数字+字母",
-            // },
+            {
+              pattern: /^(?=.*[a-zA-Z])(?=.*\d)[A-Za-z\d]{5,20}$/,
+              message: "密码只能是数字+字母",
+            },
             {
               required: true,
               message: "请输入密码",
