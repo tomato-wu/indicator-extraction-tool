@@ -14,6 +14,7 @@ import {
 // 自定义组件
 import SelectBar from "../components/selectBar";
 import DocumentProcessing from "./documentProcessing";
+import Personal from "../pages/personal";
 
 const { Header, Content, Footer } = Layout;
 
@@ -36,6 +37,8 @@ function MenuItemPage({ currentPage }) {
       return <SelectBar />;
     case "documentExtraction":
       return <DocumentProcessing />;
+    case "personal":
+      return <Personal />;
     default:
       return null;
   }
@@ -53,7 +56,7 @@ const App = () => {
     if (item.key == "mail") {
       navigate("/myPersonalMessage");
     } else if (item.key == "personal") {
-      navigate("/personal");
+      setCurrent("personal");
     } else if (item.key == "accountSetting") {
       alert("哈哈哈");
     } else if (item.key == "logOut") {

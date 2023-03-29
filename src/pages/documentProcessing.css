@@ -1,6 +1,6 @@
 .cardBox{
   width:80vw;
-  height:33vh;
+  height:42vh;
   border-radius:20px;
   margin: 40px auto;
   background-color:white;
@@ -20,6 +20,7 @@
 .distinguish{
   margin-left: 15px;
   margin-top: 15px;
+  height: 40vh;
 
 }
 .spanText{
@@ -28,10 +29,10 @@
   
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (min-width: 1200px) {
   .cardBox{
     width:80vw;
-    height:30vh;
+    height:38vh;
     border-radius:20px;
     background-color:white;
     box-shadow: 1px 1px 3px grey;
@@ -40,7 +41,6 @@
     margin-left: 15px;
     margin-top: 15px;
     width:80vw;
-    height:50vh;
   
   }
 }

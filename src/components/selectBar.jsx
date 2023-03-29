@@ -3,11 +3,24 @@ import { DownOutlined } from "@ant-design/icons";
 import { Button, Dropdown, message, Space, Select, Input, Tag } from "antd";
 import { getLanguageApi } from "../utils/axios/api";
 
-import ChineseBar from "./chinese/chineseBar";
-import EnglishBar from "./english/englishBar";
-import JapaneseBar from "./japanese/JapaneseBar";
-import IndonesianBar from "./indonesian/indonesianBar";
-import FilipinoBar from "./filipino/filipinoBar";
+import ChineseBar from "./chinese";
+import EnglishBar from "./english";
+import JapaneseBar from "./japanese";
+import IndonesianBar from "./indonesian";
+import FilipinoBar from "./filipino";
+
+import Vietnamese from "./vietnamese/";
+import Burmese from "./burmese/";
+import Thai from "./thai/";
+import Lao from "./lao/";
+import Arabic from "./arabic/";
+import Bengali from "./bengali/";
+import Korean from "./korean/";
+import Spanish from "./spanish/";
+import Turkish from "./turkish/";
+import Farsi from "./farsi/";
+import Portuguese from "./portuguese/";
+
 import "./selectBar.css";
 
 const { TextArea } = Input;
@@ -18,22 +31,28 @@ function SelectBar() {
 
   // 输入框文本变量
   const [str, setStr] = useState("");
-  const [showMessage, setShowMessage] = useState("");
   const [history, setHistory] = useState([]);
+
+  const [lgType, setLgType] = useState("");
+
+  const [lgText, setLgText] = useState("");
 
   async function getLanguages(LanguagesText) {
     // 语种识别接口
     let tag = await getLanguageApi({ text: LanguagesText });
-    console.log(tag);
+    setLgType(tag.data.lg_type);
+    setLgText(LanguagesText);
     handleChange(tag.data.lg_type);
   }
   // 输入框输入触发的回调
   const onTextChange = (e) => {
     if (e.target.value !== "") {
-      setStr(e.target.value);
+      setStr(e.target.value); //输入框同步显示
       loadDebounce(e.target.value);
     } else {
       setStr(e.target.value);
+      setLgType("");
+      setLgText("");
     }
   };
   // 输入框进行防抖处理
@@ -82,6 +101,39 @@ function SelectBar() {
       case "tl":
         messageStr = "检测到菲律宾语";
         break;
+      case "th":
+        messageStr = "检测到泰语";
+        break;
+      case "vi":
+        messageStr = "检测到越南语";
+        break;
+      case "km":
+        messageStr = "检测到缅甸/柬埔寨（高棉语）";
+        break;
+      case "lo":
+        messageStr = "老挝语";
+        break;
+      case "ar":
+        messageStr = "阿拉伯语";
+        break;
+      case "es":
+        messageStr = "西班牙语";
+        break;
+      case "pt":
+        messageStr = "葡萄牙语";
+        break;
+      case "tr":
+        messageStr = "土耳其语";
+        break;
+      case "ko":
+        messageStr = "韩语";
+        break;
+      case "bn":
+        messageStr = "孟加拉语";
+        break;
+      case "fa":
+        messageStr = "波斯语";
+        break;
       default:
         messageStr = "暂不支持该语种的处理";
     }
@@ -94,18 +146,41 @@ function SelectBar() {
   };
 
   // 切换不同语种的组件
-  function MenuItem({ menu }) {
+  function MenuItem({ menu, lgType, lgText }) {
     switch (menu) {
       case "zh":
-        return <ChineseBar />;
+        return <ChineseBar lgType={lgType} lgText={lgText} />;
       case "en":
-        return <EnglishBar />;
+        return <EnglishBar lgType={lgType} lgText={lgText} />;
       case "ja":
-        return <JapaneseBar />;
+        return <JapaneseBar lgType={lgType} lgText={lgText} />;
       case "id":
-        return <IndonesianBar />;
+        return <IndonesianBar lgType={lgType} lgText={lgText} />;
       case "tl":
-        return <FilipinoBar />;
+        return <FilipinoBar lgType={lgType} lgText={lgText} />;
+      case "th":
+        return <Thai lgType={lgType} lgText={lgText} />;
+      case "vi":
+        return <Vietnamese lgType={lgType} lgText={lgText} />;
+      case "km":
+        return <Burmese lgType={lgType} lgText={lgText} />;
+      case "lo":
+        return <Lao lgType={lgType} lgText={lgText} />;
+      case "ar":
+        return <Arabic lgType={lgType} lgText={lgText} />;
+      case "es":
+        return <Spanish lgType={lgType} lgText={lgText} />;
+      case "pt":
+        return <Portuguese lgType={lgType} lgText={lgText} />;
+      case "tr":
+        return <Turkish lgType={lgType} lgText={lgText} />;
+      case "ko":
+        return <Korean lgType={lgType} lgText={lgText} />;
+      case "bn":
+        return <Bengali lgType={lgType} lgText={lgText} />;
+      case "fa":
+        return <Farsi lgType={lgType} lgText={lgText} />;
+
       default:
         return null;
     }
@@ -151,12 +226,56 @@ function SelectBar() {
                   value: "tl",
                   label: "菲律宾语",
                 },
+                {
+                  value: "th",
+                  label: "泰语",
+                },
+                {
+                  value: "vi",
+                  label: "越南语",
+                },
+                {
+                  value: "km",
+                  label: "缅甸/柬埔寨（高棉语）",
+                },
+                {
+                  value: "lo",
+                  label: "老挝语",
+                },
+                {
+                  value: "ar",
+                  label: "阿拉伯语",
+                },
+                {
+                  value: "bn",
+                  label: "孟加拉语",
+                },
+                {
+                  value: "fa",
+                  label: "波斯语",
+                },
+                {
+                  value: "pt",
+                  label: "葡萄牙语",
+                },
+                {
+                  value: "es",
+                  label: "西班牙语",
+                },
+                {
+                  value: "tr",
+                  label: "土耳其语",
+                },
+                {
+                  value: "ko",
+                  label: "朝鲜语(韩国)",
+                },
               ]}
             />
           </div>
           <div>
             {/* 指标提取 */}
-            <MenuItem menu={menu} />
+            <MenuItem menu={menu} lgType={lgType} lgText={lgText} />
           </div>
         </div>
       </div>
@@ -176,18 +295,9 @@ function SelectBar() {
                 value={str}
                 onChange={onTextChange}
                 style={{
-                  width: "39vw",
+                  width: "80vw",
                   marginTop: "4vh",
                 }}
-              ></TextArea>
-              {/* 展示框 */}
-              <TextArea
-                rows={18}
-                allowClear={true}
-                bordered={true}
-                readOnly={true}
-                value={showMessage}
-                style={{ width: "39vw", marginTop: "4vh" }}
               ></TextArea>
             </Space>
           </div>

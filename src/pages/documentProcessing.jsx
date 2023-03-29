@@ -6,15 +6,27 @@ import {
   SubnodeOutlined,
   InboxOutlined,
 } from "@ant-design/icons";
-import { useState } from "react";
+import React, { useState } from "react";
 import "./documentProcessing.css";
-import logo from "../assets/uploadFileImage.jpg";
 
-import ChineseBar from "../components/chinese/chineseBar";
-import EnglishBar from "../components/english/englishBar";
-import JapaneseBar from "../components/japanese/JapaneseBar";
-import IndonesianBar from "../components/indonesian/indonesianBar";
-import FilipinoBar from "../components/filipino/filipinoBar";
+import ChineseBar from "../components/chinese";
+import EnglishBar from "../components/english";
+import JapaneseBar from "../components/japanese";
+import IndonesianBar from "../components/indonesian";
+import FilipinoBar from "../components/filipino";
+
+import Vietnamese from "../components/vietnamese/";
+import Burmese from "../components/burmese/";
+import Thai from "../components/thai/";
+import Lao from "../components/lao/";
+
+import Arabic from "../components/arabic/";
+import Bengali from "../components/bengali/";
+import Korean from "../components/korean/";
+import Spanish from "../components/spanish/";
+import Turkish from "../components/turkish/";
+import Farsi from "../components/farsi/";
+import Portuguese from "../components/portuguese/";
 
 // 导入文件上传状态组件
 import UploadFileInit from "../components/uploadFileComponent/UploadFileInit";
@@ -29,7 +41,7 @@ const props = {
   name: "file",
   multiple: true,
   maxCount: 1, //限制上传数量。当为 1 时，始终用最新上传的文件代替当前文件
-  action: "http://120.77.245.193:3500/api/langrc",
+  action: "http://192.168.207.233:25001/api/langrc",
 };
 
 // 上传之前判断上传的文件格式问题
@@ -49,18 +61,40 @@ const beforeUpload = (file) => {
 };
 
 // 切换不同语种的组件
-function MenuItem({ menu }) {
+function MenuItem({ menu, lgType, lgText }) {
   switch (menu) {
     case "zh":
-      return <ChineseBar />;
+      return <ChineseBar lgType={lgType} lgText={lgText} />;
     case "en":
-      return <EnglishBar />;
+      return <EnglishBar lgType={lgType} lgText={lgText} />;
     case "ja":
-      return <JapaneseBar />;
+      return <JapaneseBar lgType={lgType} lgText={lgText} />;
     case "id":
-      return <IndonesianBar />;
+      return <IndonesianBar lgType={lgType} lgText={lgText} />;
     case "tl":
-      return <FilipinoBar />;
+      return <FilipinoBar lgType={lgType} lgText={lgText} />;
+    case "th":
+      return <Thai lgType={lgType} lgText={lgText} />;
+    case "vi":
+      return <Vietnamese lgType={lgType} lgText={lgText} />;
+    case "km":
+      return <Burmese lgType={lgType} lgText={lgText} />;
+    case "lo":
+      return <Lao lgType={lgType} lgText={lgText} />;
+    case "ar":
+      return <Arabic lgType={lgType} lgText={lgText} />;
+    case "es":
+      return <Spanish lgType={lgType} lgText={lgText} />;
+    case "pt":
+      return <Portuguese lgType={lgType} lgText={lgText} />;
+    case "tr":
+      return <Turkish lgType={lgType} lgText={lgText} />;
+    case "ko":
+      return <Korean lgType={lgType} lgText={lgText} />;
+    case "bn":
+      return <Bengali lgType={lgType} lgText={lgText} />;
+    case "fa":
+      return <Farsi lgType={lgType} lgText={lgText} />;
     default:
       return null;
   }
@@ -85,10 +119,10 @@ function LoadingStatusFn({ status, fileName }) {
 function DocumentProcessing() {
   // 切换不同语种的变量
   const [menu, setMenu] = useState("zh");
-
   const [loadingStatus, setLoadingStatus] = useState("init");
-
   const [fileName, setFileName] = useState("");
+  const [lgType, setLgType] = useState("");
+  const [lgText, setLgText] = useState("");
 
   // 点击选择器自助选择需要解析的语种
   const changeLanguages = (e) => {
@@ -115,6 +149,40 @@ function DocumentProcessing() {
       case "tl":
         messageStr = "检测到菲律宾语";
         break;
+      case "th":
+        messageStr = "检测到泰语";
+        break;
+      case "vi":
+        messageStr = "检测到越南语";
+        break;
+      case "km":
+        messageStr = "检测到缅甸/柬埔寨（高棉语）";
+        break;
+      case "lo":
+        messageStr = "老挝语";
+        break;
+      case "ar":
+        messageStr = "阿拉伯语";
+        break;
+      case "es":
+        messageStr = "西班牙语";
+        break;
+
+      case "pt":
+        messageStr = "葡萄牙语";
+        break;
+      case "tr":
+        messageStr = "土耳其语";
+        break;
+      case "ko":
+        messageStr = "韩语";
+        break;
+      case "bn":
+        messageStr = "孟加拉语";
+        break;
+      case "fa":
+        messageStr = "波斯语";
+        break;
       default:
         messageStr = "暂不支持该语种的处理";
     }
@@ -132,6 +200,8 @@ function DocumentProcessing() {
       setLoadingStatus(status);
       handleChange(info.file.response.data.lg_type);
       setFileName(info.file.name);
+      setLgType(info.file.response.data.lg_type);
+      setLgText(info.file.response.data.lg_text);
     } else if (status === "error") {
       message.error(`${info.file.name} 上传失败.`);
       setLoadingStatus(status);
@@ -172,7 +242,7 @@ function DocumentProcessing() {
         ]}
       />
       {/* 文件上传 */}
-      <div className="cardBox">
+      <div className="cardBox" style={{ height: "28vh" }}>
         <div className="titleBox">
           <h3 className="titleText">文件上传</h3>
         </div>
@@ -200,7 +270,7 @@ function DocumentProcessing() {
             <Select
               defaultValue="zh"
               style={{
-                width: 120,
+                width: 180,
                 marginLeft: "3.5vw",
               }}
               onChange={changeLanguages}
@@ -226,12 +296,57 @@ function DocumentProcessing() {
                   value: "tl",
                   label: "菲律宾语",
                 },
+                {
+                  value: "th",
+                  label: "泰语",
+                },
+                {
+                  value: "vi",
+                  label: "越南语",
+                },
+                {
+                  value: "km",
+                  label: "缅甸/柬埔寨（高棉语）",
+                },
+                {
+                  value: "lo",
+                  label: "老挝语",
+                },
+                {
+                  value: "ar",
+                  label: "阿拉伯语",
+                },
+                {
+                  value: "bn",
+                  label: "孟加拉语",
+                },
+                {
+                  value: "fa",
+                  label: "波斯语",
+                },
+                {
+                  value: "pt",
+                  label: "葡萄牙语",
+                },
+                {
+                  value: "es",
+                  label: "西班牙语",
+                },
+                {
+                  value: "tr",
+                  label: "土耳其语",
+                },
+                {
+                  value: "ko",
+                  label: "朝鲜语(韩国)",
+                },
               ]}
             />
           </div>
           <div>
             {/* 指标提取 */}
-            <MenuItem menu={menu} />
+
+            <MenuItem menu={menu} lgType={lgType} lgText={lgText} />
           </div>
         </div>
       </div>
