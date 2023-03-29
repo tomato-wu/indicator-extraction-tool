@@ -44,6 +44,8 @@ const listCss = {
 };
 
 function IntroductionPage() {
+  let token = localStorage.getItem("token");
+
   const navigate = useNavigate();
   const LinkToHome = () => {
     navigate("/home");
@@ -55,15 +57,17 @@ function IntroductionPage() {
     <>
       {/* 上方 */}
       <div style={backGroundCss}>
-        <Button
-          type="primary"
-          shape="round"
-          size="middle"
-          style={{ position: "absolute", top: "12px", right: "22px" }}
-          onClick={() => setOpen(true)}
-        >
-          登录
-        </Button>
+        {!token ? (
+          <Button
+            type="primary"
+            shape="round"
+            size="middle"
+            style={{ position: "absolute", top: "12px", right: "22px" }}
+            onClick={() => setOpen(true)}
+          >
+            登录
+          </Button>
+        ) : null}
 
         <Modal
           title="登录/注册"
@@ -102,20 +106,31 @@ function IntroductionPage() {
                 </p>
               </div>
 
-              <Space style={buttonStyle}>
+              {!token ? (
                 <Button
                   type="primary"
-                  ghost
                   size="middle"
                   style={{ marginRight: "10px" }}
-                  onClick={LinkToHome}
+                  onClick={() => setOpen(true)}
                 >
-                  开始使用
+                  开始体验
                 </Button>
-                <Button size="middle" type="primary" danger ghost>
-                  了解详情
-                </Button>
-              </Space>
+              ) : (
+                <Space style={buttonStyle}>
+                  <Button
+                    type="primary"
+                    ghost
+                    size="middle"
+                    style={{ marginRight: "10px" }}
+                    onClick={LinkToHome}
+                  >
+                    开始使用
+                  </Button>
+                  <Button size="middle" type="primary" danger ghost>
+                    了解详情
+                  </Button>
+                </Space>
+              )}
             </div>
           </Col>
         </Row>

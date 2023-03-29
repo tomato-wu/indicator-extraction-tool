@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { Layout, Menu, Space, Avatar, Image } from "antd";
+import React, { useState, useEffect } from "react";
+import { Layout, Menu, Space, Avatar, Image, message } from "antd";
 import { useNavigate } from "react-router-dom";
+
 import {
   FolderOutlined,
   MailOutlined,
@@ -60,8 +61,20 @@ const App = () => {
     } else if (item.key == "accountSetting") {
       alert("哈哈哈");
     } else if (item.key == "logOut") {
-      alert("nice");
+      logOut();
     }
+  };
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/");
+    }
+  }, [navigate]);
+
+  const logOut = () => {
+    localStorage.removeItem("token");
+    message.success("退出成功");
+    navigate("/");
   };
   return (
     <Layout className="layout">
@@ -85,18 +98,6 @@ const App = () => {
         {/* 个人信息修改导航栏///////////////////////////////////////////////////////////////////////////////// */}
         <div style={{ float: "right" }}>
           <Space size="large">
-            {/* 头像 */}
-            <Avatar
-              src={
-                <Image
-                  src="https://joeschmoe.io/api/v1/random"
-                  size="large"
-                  style={{
-                    width: 32,
-                  }}
-                />
-              }
-            />
             {/* 个人设置 */}
             <Menu mode="horizontal" onClick={PersonalSettings}>
               <Menu.Item key="mail" icon={<MailOutlined />}>

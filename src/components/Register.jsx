@@ -1,47 +1,57 @@
 import { registerApi, sendCodeApi } from "../utils/axios/api";
 
-import React, { useState } from "react";
-import { Form, Input, Button, VerificationInput, Space } from "antd";
+import React, { useState, useEffect } from "react";
+import { Form, Input, Button, Space, message } from "antd";
 const { Search } = Input;
 
 const Register = () => {
-  const [sent, setSent] = useState(false); // 用来存储验证码的状态
+  let timer; //验证码定时器
+  const [btnDisabled, setBtnDisabled] = useState(false); //按钮是否可点击，false可点击
+  const [second, setSecond] = useState(59); //倒计时秒数
 
   const [username, setUsername] = useState(""); // 用来存储用户名
   const [password, setPassword] = useState(""); // 用来存储密码
-  const [ConfirmPassword, setConfirmPassword] = useState(""); // 用来存储密码
-
   const [email, setEmail] = useState(""); // 用来存储邮箱
-  const [code, setCode] = useState(""); // 用来存储验证码的状态
+  const [code, setCode] = useState(""); // 用来存储验证码
+
+  // 初始化时清除定时器
+  useEffect(() => {
+    clearInterval(timer);
+    return () => clearInterval(timer);
+  }, []);
+
+  // 监听秒数的变动
+  useEffect(() => {
+    if (second > 0 && second < 60) {
+    } else {
+      // 定时器超过时间后，可以重新发送验证码
+      clearInterval(timer);
+      // 可点击
+      setBtnDisabled(false);
+      setSecond(60);
+    }
+  }, [second]);
 
   // 发送验证码到邮箱的函数
-  const handleSendCode = () => {
-    // send code to email number
-    console.log("Sending code to", email);
-    sendCodeApi({ email: email });
-    setSent(true); // 设置发送状态为真
+  const handleSendCode = async () => {
+    // 倒计时递减
+    timer = setInterval(() => setSecond((pre) => pre - 1), 1000);
+    // 不可点击
+    setBtnDisabled(true);
+    let msg = await sendCodeApi({ email: email });
+    message.info(msg.message);
   };
 
-  //  验证验证码是否正确的函数
-  const handleVerifyCode = () => {
-    // verify code with backend
-    console.log("Verifying code", code);
-  };
-
-  const registerFunc = () => {
+  const registerFunc = async () => {
     // register with backend
-    console.log("Registering", username, password, email, code);
-    registerApi({
+    let res = await registerApi({
       username: username,
       password: password,
       email: email,
       code: code,
     });
-  };
 
-  const ConfirmPasswordFunc = () => {
-    // register with backend
-    console.log("ConfirmPasswordFunc", ConfirmPassword);
+    message.info(res.data.message);
   };
 
   return (
@@ -57,7 +67,7 @@ const Register = () => {
           rules={[
             {
               required: true,
-              message: "Please input your Username!",
+              message: "请输入你的用户名",
             },
           ]}
         >
@@ -74,9 +84,13 @@ const Register = () => {
         <Form.Item
           name="password"
           rules={[
+            // {
+            //   pattern: "/[^a-zA-Z0-9]+$/",
+            //   message: "密码只能是数字+字母",
+            // },
             {
               required: true,
-              message: "Please input your Password!",
+              message: "请输入密码",
             },
           ]}
         >
@@ -100,20 +114,48 @@ const Register = () => {
           </a>
         </Form.Item> */}
         {/* 确认密码 */}
-        <Form.Item>
+        <Form.Item
+          name="confirm"
+          dependencies={["password"]}
+          hasFeedback
+          rules={[
+            {
+              required: true,
+              message: "请再次输入您的密码!",
+            },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue("password") === value) {
+                  return Promise.resolve();
+                }
+
+                return Promise.reject(new Error("两次输入的密码不一致!"));
+              },
+            }),
+          ]}
+        >
           <Input.Password
             placeholder="确认密码"
             size="large"
             allowClear
-            focus={ConfirmPasswordFunc}
-            value={ConfirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
             style={{ width: "300px" }}
           />
         </Form.Item>
 
         {/* 邮箱 */}
-        <Form.Item>
+        <Form.Item
+          name="email"
+          rules={[
+            {
+              type: "email",
+              message: "请输入正确的邮箱地址!",
+            },
+            {
+              required: true,
+              message: "请输入您的邮箱地址!",
+            },
+          ]}
+        >
           <Input
             placeholder="请输入邮箱"
             size="large"
@@ -124,7 +166,15 @@ const Register = () => {
           />
         </Form.Item>
 
-        <Form.Item>
+        <Form.Item
+          name="captcha"
+          rules={[
+            {
+              required: true,
+              message: "请输入验证码!",
+            },
+          ]}
+        >
           <Space.Compact style={{ width: "300px", height: "70px" }}>
             <Input
               placeholder="验证码"
@@ -135,15 +185,20 @@ const Register = () => {
               style={{ marginBottom: "30px" }}
             />
             <Button style={{ height: "40px" }} onClick={handleSendCode}>
-              发送验证码
+              {!btnDisabled ? "获取验证码" : `${second}s后重发`}
             </Button>
           </Space.Compact>
         </Form.Item>
 
         {/* 登录按钮 */}
         <Form.Item>
-          <Button type="primary" size="large" style={{ width: "300px" }}>
-            登录
+          <Button
+            type="primary"
+            size="large"
+            style={{ width: "300px" }}
+            onClick={registerFunc}
+          >
+            注册
           </Button>
         </Form.Item>
       </Form>
