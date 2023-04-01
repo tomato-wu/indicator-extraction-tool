@@ -2,6 +2,9 @@ import { registerApi, sendCodeApi } from "../utils/axios/api";
 
 import React, { useState, useEffect } from "react";
 import { Form, Input, Button, Space, message } from "antd";
+// 引入 CryptoJS 库
+import CryptoJS from "crypto-js";
+
 const { Search } = Input;
 
 const Register = () => {
@@ -46,7 +49,7 @@ const Register = () => {
     // register with backend
     let res = await registerApi({
       username: username,
-      password: password,
+      password: CryptoJS.MD5(password).toString(),
       email: email,
       code: code,
     });
