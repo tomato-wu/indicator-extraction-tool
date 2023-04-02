@@ -96,11 +96,10 @@ function SelectBar() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [historyList]);
   // 删除历史记录
   const deleteHistory = (id) => {
-    console.log(String(id));
-    deleteHistoryApi({ history_id: String(id) })
+    deleteHistoryApi({ history_id: id })
       .then((res) => {
         console.log(res);
         message.success("删除历史记录成功");

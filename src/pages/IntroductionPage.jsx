@@ -10,8 +10,8 @@ const backGroundCss = {
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
   backgroundPosition: "center",
-  height: "50vh",
-  width: "100vw",
+  height: "100%",
+  width: "100%",
 };
 // 偏左侧布局
 const TitleTextBox = {
