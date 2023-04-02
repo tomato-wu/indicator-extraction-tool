@@ -1,4 +1,4 @@
-import { httpPost } from "./index";
+import { httpDelete, httpGet, httpPost } from "./index";
 
 // 输入文本 - 语种识别接口
 export const getLanguageApi = (data = {}) =>
@@ -75,6 +75,13 @@ export const getVerbDistanceApi = (data = {}) =>
 // 一键提取所有通用指标
 export const getAllTagApi = (data = {}) =>
   httpPost({ url: "/common/all", data });
+
+// 获取历史记录
+export const getHistoryApi = () => httpGet({ url: "/getUserHistory" });
+
+// 删除历史记录
+export const deleteHistoryApi = (data = {}) =>
+  httpDelete({ url: "/getUserHistory", data });
 
 // 登录
 export const UserNameLoginApi = (data = {}) =>

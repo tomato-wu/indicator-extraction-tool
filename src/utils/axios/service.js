@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { message } from "antd";
 
 const service = axios.create({
-  baseURL: "http://192.168.207.233:25001",
-  // baseURL: "http://192.168.128.125:5000",
+  // baseURL: "http://192.168.207.233:25001",  // 在线
+
+  baseURL: "http://192.168.128.125:5000", // 本地
 
   timeout: 100000,
   headers: {
@@ -23,7 +25,7 @@ service.interceptors.request.use(
   function (config) {
     let token = localStorage.getItem("token");
     if (token) {
-      config.headers.authorization = token;
+      config.headers.authorization = "Bearer" + " " + token;
     }
     return config;
   },
@@ -43,7 +45,9 @@ service.interceptors.response.use(
     return response;
   },
   function (error) {
-    return Promise.reject(error);
+    const msg = error.response.data.msg;
+    message.error(msg);
+    return Promise.reject(error.response);
   }
 );
 

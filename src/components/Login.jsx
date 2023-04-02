@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Form, Input, Button, Checkbox, message } from "antd";
 import { UserNameLoginApi, EmailLoginApi } from "../utils/axios/api";
 import { useNavigate } from "react-router-dom";
+// 引入 CryptoJS 库
+import CryptoJS from "crypto-js";
 
 const Login = () => {
   const [username, setUsername] = useState(""); // 用户名
@@ -14,7 +16,7 @@ const Login = () => {
       // 邮箱登录
       let res = await EmailLoginApi({
         email: username,
-        password: password,
+        password: CryptoJS.MD5(password).toString(),
       });
 
       if (res.data.token) {
@@ -27,7 +29,7 @@ const Login = () => {
     } else {
       let res = await UserNameLoginApi({
         username: username,
-        password: password,
+        password: CryptoJS.MD5(password).toString(),
       });
       console.log(res);
       if (res.data.token) {

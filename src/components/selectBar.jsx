@@ -1,7 +1,20 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { DownOutlined } from "@ant-design/icons";
-import { Button, Dropdown, message, Space, Select, Input, Tag } from "antd";
-import { getLanguageApi } from "../utils/axios/api";
+import {
+  Button,
+  Dropdown,
+  message,
+  Space,
+  Select,
+  Input,
+  Tag,
+  Divider,
+} from "antd";
+import {
+  getLanguageApi,
+  getHistoryApi,
+  deleteHistoryApi,
+} from "../utils/axios/api";
 
 import ChineseBar from "./chinese";
 import EnglishBar from "./english";
@@ -31,7 +44,6 @@ function SelectBar() {
 
   // 输入框文本变量
   const [str, setStr] = useState("");
-  const [history, setHistory] = useState([]);
 
   const [lgType, setLgType] = useState("");
 
@@ -71,13 +83,37 @@ function SelectBar() {
   );
   // 文章链接 https://blog.csdn.net/QY_99/article/details/128655901
 
+  const [historyList, setHistoryList] = useState([]);
   // 历史记录消除触发的回调
-  const log = (e) => {
-    console.log(e);
+  useEffect(() => {
+    // 获取历史记录
+    getHistoryApi()
+      .then((res) => {
+        console.log("获取历史记录成功");
+        console.log(res);
+        setHistoryList(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  // 删除历史记录
+  const deleteHistory = (id) => {
+    console.log(String(id));
+    deleteHistoryApi({ history_id: String(id) })
+      .then((res) => {
+        console.log(res);
+        message.success("删除历史记录成功");
+        setHistoryList(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   // 历史记录选中的时候触发的回调
-  const selectHistory = (e) => {
-    setStr(e.target.innerText);
+  const selectHistory = (historyStr) => {
+    setStr(historyStr);
+    loadDebounce(historyStr);
   };
 
   // 弹窗提示目前处于什么语种下
@@ -301,18 +337,31 @@ function SelectBar() {
               ></TextArea>
             </Space>
           </div>
-
+          <Divider orientation="left" orientationMargin="0">
+            历史记录
+          </Divider>
           {/* 历史记录 */}
           <div style={{ margin: "30px 0px" }}>
-            {history.map((item) => {
+            {historyList.map((item) => {
               return (
                 <Tag
                   closable
-                  onClose={log}
-                  onClick={selectHistory}
-                  style={{ cursor: "pointer", margin: "5px" }}
+                  onClose={() => deleteHistory(item.id)}
+                  onClick={() => selectHistory(item.lg_text)}
+                  style={{
+                    cursor: "pointer",
+                    margin: "5px",
+                  }}
                 >
-                  {item}
+                  <span
+                    style={{
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    {`${item.lg_text.slice(0, 30)}...}`}
+                  </span>
                 </Tag>
               );
             })}
