@@ -35,7 +35,7 @@ const backGroundDownCss = {
   backgroundRepeat: "no-repeat",
   backgroundPosition: "center",
   height: "50vh",
-  width: "100vw",
+  width: "90vw",
 };
 const listCss = {
   fontWeight: "lighter",
