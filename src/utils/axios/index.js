@@ -68,3 +68,28 @@ export function httpPut({ url, data = {}, params = {} }) {
     });
   });
 }
+
+// delete请求
+// https://blog.csdn.net/qq383366204/article/details/80268007
+export function httpDelete({ url, data = {} }) {
+  let sq = "";
+  for (const item in data) {
+    sq += sq === "" ? "" : "&";
+    sq += `${item}=${data[item]}`;
+  }
+  return new Promise((resolve, reject) => {
+    service.delete(url, { data: sq }).then((res) => {
+      console.log(res);
+      resolve(res.data);
+    });
+
+    // service({
+    //   url,
+    //   method: "delete",
+    //   // 发送的数据
+    //   data: sq,
+    // }).then((res) => {
+    //   resolve(res.data);
+    // });
+  });
+}
