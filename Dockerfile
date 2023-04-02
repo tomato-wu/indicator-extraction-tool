@@ -9,4 +9,4 @@ COPY . /build
 RUN npm run build
 
 FROM nginx:alpine
-COPY --from=builder /build/yunshan-qingyu /usr/share/nginx/html/yunshan-qingyu 
+COPY --from=builder /build/build /usr/share/nginx/html/indicator-extraction-tool
