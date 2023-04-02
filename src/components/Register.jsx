@@ -53,8 +53,7 @@ const Register = () => {
       email: email,
       code: code,
     });
-
-    message.info(res.data.message);
+    message.info(res.msg);
   };
 
   return (
