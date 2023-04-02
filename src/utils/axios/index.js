@@ -78,18 +78,16 @@ export function httpDelete({ url, data = {} }) {
     sq += `${item}=${data[item]}`;
   }
   return new Promise((resolve, reject) => {
-    service.delete(url, { data: sq }).then((res) => {
-      console.log(res);
+    service({
+      url,
+      method: "delete",
+      // 发送的数据
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      data: sq,
+    }).then((res) => {
       resolve(res.data);
     });
-
-    // service({
-    //   url,
-    //   method: "delete",
-    //   // 发送的数据
-    //   data: sq,
-    // }).then((res) => {
-    //   resolve(res.data);
-    // });
   });
 }
