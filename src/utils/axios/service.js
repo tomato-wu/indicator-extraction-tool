@@ -25,7 +25,7 @@ service.interceptors.request.use(
   function (config) {
     let token = localStorage.getItem("token");
     if (token) {
-      config.headers.authorization = token;
+      config.headers.authorization = "Bearer" + " " + token;
     }
     return config;
   },
