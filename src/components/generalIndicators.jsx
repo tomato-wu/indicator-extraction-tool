@@ -193,61 +193,58 @@ function GeneralIndicators(props) {
     <>
       {/* 功能选择按钮 */}
       <Space size={[8, 16]} wrap>
-        <span style={{ fontSize: "9px", color: "gray" }}>
-          通用计量指标提取：
-        </span>
+        <span style={{ fontSize: "9px", color: "gray" }}>通用计量提取：</span>
         <Button type="primary" ghost onClick={TTR}>
-          TTR 指标
+          TTR（型例比）
         </Button>
         <Button type="primary" ghost onClick={R1}>
-          R1 指标
+          R1（词汇丰富度）
         </Button>
         <Button type="primary" ghost onClick={RR}>
-          RR 指标
+          RR（重复率）
         </Button>
         <Button type="primary" ghost onClick={RRMC}>
-          RRMC 指标
+          RRMC（相对重复率）
         </Button>
         <Button type="primary" ghost onClick={TCValue}>
-          TCValue 指标
+          TC（主题集中度）
         </Button>
         <Button type="primary" ghost onClick={SecondaryTC}>
-          SecondaryTC 指标
+          SecondaryTC（次主题集中度）
         </Button>
         <Button type="primary" ghost onClick={Activity}>
-          Activity 指标
+          Activity（活动度）
         </Button>
         <Button type="primary" ghost onClick={Descriptivity}>
-          Descriptivity 指标
+          Descriptivity（描写度）
         </Button>
         <Button type="primary" ghost onClick={lvalue}>
-          lvalue 指标
+          L（文本中词的秩频分布的欧氏长度）
         </Button>
         <Button type="primary" ghost onClick={CurveLength}>
-          CurveLength 指标
+          Curve Length R Index（文本中词的秩频分布的R指数）
         </Button>
         <Button type="primary" ghost onClick={lambda}>
-          lambda 指标
+          A（文本的Lambda值）
         </Button>
         <Button type="primary" ghost onClick={adjustModule}>
-          adjustModule 指标
+          Adjusted Module（校正模数）
         </Button>
         <Button type="primary" ghost onClick={Gini}>
-          Gini 系数
+          G（基尼系数）
         </Button>
         <Button type="primary" ghost onClick={R4}>
-          R4 指标
+          R4（基尼系数G的一个补数）
         </Button>
         <Button type="primary" ghost onClick={Hpax}>
-          Hpax Percentage
+          Hpax Percentage（单现词）
         </Button>
         <Button type="primary" ghost onClick={writerView}>
-          作者视野
+          Writer's View（作者视野）
         </Button>
         <Button type="primary" ghost onClick={verbDistance}>
-          动词间距
+          Verb Distance（动词距离）
         </Button>
-
         <Button type="primary" ghost>
           总词数提取
         </Button>
@@ -257,26 +254,19 @@ function GeneralIndicators(props) {
         <Button type="primary" ghost>
           独立词数提取
         </Button>
-        <Button type="primary" ghost>
-          单现词数提取
-        </Button>
-
-        <Button type="primary" ghost>
-          图书词提取
-        </Button>
 
         <Button type="primary" ghost danger onClick={GetAllTag}>
           一键提取
         </Button>
         {/* 展示数据的弹窗 */}
         <Modal
-          title="指标提取"
+          title="提取"
           open={isModalOpen}
           width={1000}
           onOk={handleOk}
           onCancel={handleCancel}
         >
-          <Descriptions title="计量指标提取" bordered>
+          <Descriptions title="计量提取" bordered>
             {Object.keys(obj).map((item) => {
               return (
                 <>
