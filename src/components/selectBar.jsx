@@ -1,5 +1,4 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { DownOutlined } from "@ant-design/icons";
 import {
   Button,
   Dropdown,
@@ -55,6 +54,15 @@ function SelectBar() {
     setLgType(tag.data.lg_type);
     setLgText(LanguagesText);
     handleChange(tag.data.lg_type);
+
+    // 获取最新的历史记录并且更新列表
+    getHistoryApi()
+      .then((res) => {
+        setHistoryList(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   // 输入框输入触发的回调
   const onTextChange = (e) => {
@@ -89,20 +97,16 @@ function SelectBar() {
     // 获取历史记录
     getHistoryApi()
       .then((res) => {
-        console.log("获取历史记录成功");
-        console.log(res);
         setHistoryList(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [historyList]);
+  }, []);
   // 删除历史记录
   const deleteHistory = (id) => {
-    console.log(String(id));
     deleteHistoryApi({ history_id: String(id) })
       .then((res) => {
-        console.log(res);
         message.success("删除历史记录成功");
         setHistoryList(res.data);
       })
