@@ -2,6 +2,6 @@ version: '3.0.0'
 
 services:
   web:
-    build: .
+    image: 172.16.234.200/server_app/indicator-extraction-tool
     ports:
       - 25002:80
