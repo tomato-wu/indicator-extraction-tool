@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 import {
   FolderOutlined,
-  MailOutlined,
   CodeOutlined,
   AppstoreOutlined,
   SettingOutlined,
@@ -54,8 +53,8 @@ const App = () => {
   const navigate = useNavigate();
   // 个人信息模块调用的方法
   const PersonalSettings = (item) => {
-    if (item.key == "mail") {
-      navigate("/myPersonalMessage");
+    if (item.key == "IndicatorDetails") {
+      navigate("/IndicatorDetails");
     } else if (item.key == "personal") {
       setCurrent("personal");
     } else if (item.key == "accountSetting") {
@@ -100,9 +99,7 @@ const App = () => {
           <Space size="large">
             {/* 个人设置 */}
             <Menu mode="horizontal" onClick={PersonalSettings}>
-              <Menu.Item key="mail" icon={<MailOutlined />}>
-                消息
-              </Menu.Item>
+              <Menu.Item key="IndicatorDetails">指标详情</Menu.Item>
               <Menu.SubMenu
                 key="SubMenu"
                 title="个人设置"

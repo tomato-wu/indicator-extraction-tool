@@ -6,7 +6,7 @@ import Login from "./pages/login";
 import Home from "./pages/home";
 import NotFoundPage from "./pages/404";
 import Personal from "./pages/personal";
-import PersonalMessage from "./pages/personalMessage";
+import IndicatorDetails from "./pages/IndicatorDetails";
 import IntroductionPage from "./pages/IntroductionPage.jsx";
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
         <Route exact path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/personal" element={<Personal />} />
-        <Route path="/myPersonalMessage" element={<PersonalMessage />} />
+        <Route path="/IndicatorDetails" element={<IndicatorDetails />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </HashRouter>
