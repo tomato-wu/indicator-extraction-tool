@@ -29,10 +29,10 @@
   
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (max-width: 1450px) {
   .cardBox{
     width:80vw;
-    height:38vh;
+    height:50vh;
     border-radius:20px;
     background-color:white;
     box-shadow: 1px 1px 3px grey;
@@ -41,6 +41,41 @@
     margin-left: 15px;
     margin-top: 15px;
     width:80vw;
+    height:50vh;
+  
+  }
+}
+
+@media screen and (max-width: 1142px) {
+  .cardBox{
+    width:80vw;
+    height:55vh;
+    border-radius:20px;
+    background-color:white;
+    box-shadow: 1px 1px 3px grey;
+  }
+  .distinguish{
+    margin-left: 15px;
+    margin-top: 15px;
+    width:80vw;
+    height:50vh;
+  
+  }
+}
+
+@media screen and (max-width: 1048px) {
+  .cardBox{
+    width:80vw;
+    height:65vh;
+    border-radius:20px;
+    background-color:white;
+    box-shadow: 1px 1px 3px grey;
+  }
+  .distinguish{
+    margin-left: 15px;
+    margin-top: 15px;
+    width:80vw;
+    height:50vh;
   
   }
 }
