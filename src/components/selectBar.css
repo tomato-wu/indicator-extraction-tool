@@ -1,6 +1,6 @@
 .selectCardBox{
   width:80vw;
-  height:35vh;
+  height:43vh;
   border-radius:20px;
   background-color:white;
   box-shadow: 1px 1px 3px grey;
@@ -22,7 +22,7 @@
   margin-left: 15px;
   margin-top: 15px;
   width:80vw;
-  height:40vh;
+  height:50vh;
 
 }
 .selectSpanText{
@@ -31,10 +31,44 @@
   
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1450px) {
   .selectCardBox{
     width:80vw;
-    height:40vh;
+    height:50vh;
+    border-radius:20px;
+    background-color:white;
+    box-shadow: 1px 1px 3px grey;
+  }
+  .selectDistinguish{
+    margin-left: 15px;
+    margin-top: 15px;
+    width:80vw;
+    height:50vh;
+  
+  }
+}
+
+@media screen and (max-width: 1142px) {
+  .selectCardBox{
+    width:80vw;
+    height:55vh;
+    border-radius:20px;
+    background-color:white;
+    box-shadow: 1px 1px 3px grey;
+  }
+  .selectDistinguish{
+    margin-left: 15px;
+    margin-top: 15px;
+    width:80vw;
+    height:50vh;
+  
+  }
+}
+
+@media screen and (max-width: 1048px) {
+  .selectCardBox{
+    width:80vw;
+    height:65vh;
     border-radius:20px;
     background-color:white;
     box-shadow: 1px 1px 3px grey;
