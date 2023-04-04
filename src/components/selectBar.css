@@ -22,8 +22,8 @@
   margin-left: 15px;
   margin-top: 15px;
   width:80vw;
-  height:50vh;
-
+  padding-bottom: 20px;
+  padding-right: 20px;
 }
 .selectSpanText{
   font-size:9px;
@@ -31,10 +31,10 @@
   
 }
 
-@media screen and (max-width: 1450px) {
+@media screen and (min-width: 1100px) {
   .selectCardBox{
     width:80vw;
-    height:50vh;
+    height:auto;
     border-radius:20px;
     background-color:white;
     box-shadow: 1px 1px 3px grey;
@@ -43,32 +43,13 @@
     margin-left: 15px;
     margin-top: 15px;
     width:80vw;
-    height:50vh;
-  
-  }
-}
-
-@media screen and (max-width: 1142px) {
-  .selectCardBox{
-    width:80vw;
-    height:55vh;
-    border-radius:20px;
-    background-color:white;
-    box-shadow: 1px 1px 3px grey;
-  }
-  .selectDistinguish{
-    margin-left: 15px;
-    margin-top: 15px;
-    width:80vw;
-    height:50vh;
-  
   }
 }
 
 @media screen and (max-width: 1048px) {
   .selectCardBox{
     width:80vw;
-    height:65vh;
+    height:auto;
     border-radius:20px;
     background-color:white;
     box-shadow: 1px 1px 3px grey;
@@ -77,7 +58,5 @@
     margin-left: 15px;
     margin-top: 15px;
     width:80vw;
-    height:50vh;
-  
   }
 }
