@@ -17,8 +17,11 @@ import {
   getHapaxApi,
   getWriterViewApi,
   getVerbDistanceApi,
-  // getZipfApi,
   getAllTagApi,
+  getDictsApi,
+  getWordsApi,
+  getHPointApi,
+  getEntropyApi,
 } from "../utils/axios/api";
 import { useState } from "react";
 function GeneralIndicators(props) {
@@ -40,6 +43,7 @@ function GeneralIndicators(props) {
   const TTR = async () => {
     const getTTR = await getTTRApi({ lg_type: lgType, lg_text: lgText });
     const getTTRObj = getTTR.data;
+    console.log(getTTRObj);
     setObj({ ...getTTRObj });
     setIsModalOpen(true);
   };
@@ -180,6 +184,46 @@ function GeneralIndicators(props) {
     setIsModalOpen(true);
   };
 
+  const Words = async () => {
+    const getWords = await getWordsApi({
+      lg_type: lgType,
+      lg_text: lgText,
+    });
+    const getVerbDistanceObj = getWords.data;
+    setObj({ ...getVerbDistanceObj });
+    setIsModalOpen(true);
+  };
+
+  const Dicts = async () => {
+    const getDicts = await getDictsApi({
+      lg_type: lgType,
+      lg_text: lgText,
+    });
+    const getVerbDistanceObj = getDicts.data;
+    setObj({ ...getVerbDistanceObj });
+    setIsModalOpen(true);
+  };
+
+  const Entropy = async () => {
+    const getEntropy = await getEntropyApi({
+      lg_type: lgType,
+      lg_text: lgText,
+    });
+    const getVerbDistanceObj = getEntropy.data;
+    setObj({ ...getVerbDistanceObj });
+    setIsModalOpen(true);
+  };
+
+  const HPoint = async () => {
+    const getHPoint = await getHPointApi({
+      lg_type: lgType,
+      lg_text: lgText,
+    });
+    const getVerbDistanceObj = getHPoint.data;
+    setObj({ ...getVerbDistanceObj });
+    setIsModalOpen(true);
+  };
+
   const GetAllTag = async () => {
     const getAllTag = await getAllTagApi({
       lg_type: lgType,
@@ -245,16 +289,19 @@ function GeneralIndicators(props) {
         <Button type="primary" ghost onClick={verbDistance}>
           Verb Distance（动词距离）
         </Button>
-        <Button type="primary" ghost>
-          总词数提取
+        {/* ///////////////////////////////////////////////////////////////// */}
+        <Button type="primary" ghost onClick={Entropy}>
+          Entropy（文本熵）
         </Button>
-        <Button type="primary" ghost>
-          词典数提取
+        <Button type="primary" ghost onClick={HPoint}>
+          HPoint（h点）
         </Button>
-        <Button type="primary" ghost>
-          独立词数提取
+        <Button type="primary" ghost onClick={Words}>
+          Words（总词数提取）
         </Button>
-
+        <Button type="primary" ghost onClick={Dicts}>
+          Dicts（词典数提取）
+        </Button>
         <Button type="primary" ghost danger onClick={GetAllTag}>
           一键提取
         </Button>

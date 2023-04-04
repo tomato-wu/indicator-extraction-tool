@@ -4,48 +4,48 @@ import { httpDelete, httpGet, httpPost } from "./index";
 export const getLanguageApi = (data = {}) =>
   httpPost({ url: "/api/langrc", data });
 
-// TTR 指标
+// TTR
 export const getTTRApi = (data = {}) => httpPost({ url: "/common/ttr", data });
 
-// R1 指标
+// R1
 export const getR1Api = (data = {}) => httpPost({ url: "/common/r1", data });
 
-// RR 指标
+// RR
 export const getRRApi = (data = {}) => httpPost({ url: "/common/rr", data });
 
-// RRMC 指标
+// RRMC
 export const getRRMCApi = (data = {}) =>
   httpPost({ url: "/common/rrmc", data });
 
-// TCValue 指标
+// TCValue
 export const getTCValueApi = (data = {}) =>
   httpPost({ url: "/common/tc", data });
 
-// SecondaryTC 指标
+// SecondaryTC
 export const getSecondaryTCApi = (data = {}) =>
   httpPost({ url: "/common/secondtc", data });
 
-// Activity 指标
+// Activity
 export const getActivityApi = (data = {}) =>
   httpPost({ url: "/common/activity", data });
 
-// Descriptivity 指标
+// Descriptivity
 export const getDescriptivityApi = (data = {}) =>
   httpPost({ url: "/common/descriptivity", data });
 
-// lvalue 指标
+// lvalue
 export const getlvalueApi = (data = {}) =>
   httpPost({ url: "/common/lvalue", data });
 
-// CurveLength 指标
+// CurveLength
 export const getCurveLengthApi = (data = {}) =>
   httpPost({ url: "/common/curveLength", data });
 
-// lambda 指标
+// lambda
 export const getLambdaApi = (data = {}) =>
   httpPost({ url: "/common/lambda", data });
 
-// adjustModule 指标
+// adjustModule
 export const getAdjustModuleApi = (data = {}) =>
   httpPost({ url: "/common/adjustModule", data });
 
@@ -53,7 +53,7 @@ export const getAdjustModuleApi = (data = {}) =>
 export const getGiniApi = (data = {}) =>
   httpPost({ url: "/common/gini", data });
 
-// R4 指标
+// R4
 export const getR4Api = (data = {}) => httpPost({ url: "/common/r4", data });
 
 // Hpax Percentage
@@ -68,13 +68,27 @@ export const getWriterViewApi = (data = {}) =>
 export const getVerbDistanceApi = (data = {}) =>
   httpPost({ url: "/common/verbDistance", data });
 
-// 齐普夫检验
-// export const getZipfApi = (data = {}) =>
-//   httpPost({ url: "/common/zipf", data });
+//Dicts 词典数
+export const getDictsApi = (data = {}) =>
+  httpPost({ url: "/common/dictWords", data });
 
-// 一键提取所有通用指标
+//Words 总词数
+export const getWordsApi = (data = {}) =>
+  httpPost({ url: "/common/totalWords", data });
+
+// HPoint h点
+export const getHPointApi = (data = {}) =>
+  httpPost({ url: "/common/hpoint", data });
+
+//Entropy 文本熵
+export const getEntropyApi = (data = {}) =>
+  httpPost({ url: "/common/entrop", data });
+
+// 一键提取所有通用
 export const getAllTagApi = (data = {}) =>
   httpPost({ url: "/common/all", data });
+
+// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // 获取历史记录
 export const getHistoryApi = () => httpGet({ url: "/getUserHistory" });
