@@ -1,5 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Layout, Menu, Space, Avatar, Image, message } from "antd";
+import {
+  Layout,
+  Menu,
+  Space,
+  Avatar,
+  Image,
+  message,
+  FloatButton,
+  Modal,
+} from "antd";
+import { QuestionCircleOutlined } from "@ant-design/icons";
+
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -15,6 +26,7 @@ import {
 import SelectBar from "../components/selectBar";
 import DocumentProcessing from "./documentProcessing";
 import Personal from "../pages/personal";
+import IndicatorDescription from "./IndicatorDescription.jsx";
 
 const { Header, Content, Footer } = Layout;
 
@@ -74,6 +86,14 @@ const App = () => {
     localStorage.removeItem("token");
     message.success("退出成功");
     navigate("/");
+  };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
   };
   return (
     <Layout className="layout">
@@ -140,6 +160,28 @@ const App = () => {
       >
         广东外语外贸大学计量语言学指标提取工具 ©2022 Created by Tomato
       </Footer>
+
+      {/* 指标提示 */}
+      <FloatButton
+        icon={<QuestionCircleOutlined />}
+        type="primary"
+        onClick={() => {
+          setIsModalOpen(true);
+        }}
+        style={{
+          right: 94,
+        }}
+      />
+      {/* 展示的弹窗 */}
+      {/* 展示数据的弹窗 */}
+      <Modal
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        width={1000}
+      >
+        <IndicatorDescription />
+      </Modal>
     </Layout>
   );
 };
