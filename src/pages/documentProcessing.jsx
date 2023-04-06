@@ -28,6 +28,14 @@ import Turkish from "../components/turkish/";
 import Farsi from "../components/farsi/";
 import Portuguese from "../components/portuguese/";
 
+import Ukrainian from "../components/Ukrainian/";
+import Russian from "../components/Russian/";
+import German from "../components/German/";
+import French from "../components/French/";
+import Italian from "../components/Italian/";
+import Czech from "../components/Czech/";
+import Swedish from "../components/Swedish/";
+
 // 导入文件上传状态组件
 import UploadFileInit from "../components/uploadFileComponent/UploadFileInit";
 import UploadFileSuccess from "../components/uploadFileComponent/UploadFileSuccess";
@@ -98,6 +106,20 @@ function MenuItem({ menu, lgType, lgText }) {
       return <Bengali lgType={lgType} lgText={lgText} />;
     case "fa":
       return <Farsi lgType={lgType} lgText={lgText} />;
+    case "ru":
+      return <Russian lgType={lgType} lgText={lgText} />;
+    case "dr":
+      return <German lgType={lgType} lgText={lgText} />;
+    case "fr":
+      return <French lgType={lgType} lgText={lgText} />;
+    case "it":
+      return <Italian lgType={lgType} lgText={lgText} />;
+    case "cs":
+      return <Czech lgType={lgType} lgText={lgText} />;
+    case "uk":
+      return <Ukrainian lgType={lgType} lgText={lgText} />;
+    case "sv":
+      return <Swedish lgType={lgType} lgText={lgText} />;
     default:
       return null;
   }
@@ -186,10 +208,31 @@ function DocumentProcessing() {
       case "fa":
         messageStr = "波斯语";
         break;
+      case "ru":
+        messageStr = "俄语";
+        break;
+      case "dr":
+        messageStr = "德语";
+        break;
+      case "fr":
+        messageStr = "法语";
+        break;
+      case "it":
+        messageStr = "意大利语";
+        break;
+      case "cs":
+        messageStr = "捷克语";
+        break;
+      case "uk":
+        messageStr = "乌克兰语";
+        break;
+      case "sv":
+        messageStr = "瑞典语";
+        break;
       default:
         messageStr = "暂不支持该语种的处理";
     }
-    message.info(messageStr);
+    message.success(messageStr);
   };
 
   const uploadHandleChange = (info) => {
@@ -343,12 +386,39 @@ function DocumentProcessing() {
                   value: "ko",
                   label: "朝鲜语(韩国)",
                 },
+                {
+                  value: "fr",
+                  label: "法语",
+                },
+                {
+                  value: "dr",
+                  label: "德语",
+                },
+                {
+                  value: "it",
+                  label: "意大利语",
+                },
+                {
+                  value: "ru",
+                  label: "俄语",
+                },
+                {
+                  value: "cs",
+                  label: "捷克语",
+                },
+                {
+                  value: "sv",
+                  label: "瑞典语",
+                },
+                {
+                  value: "uk",
+                  label: "乌克兰语",
+                },
               ]}
             />
           </div>
           <div>
             {/* 指标提取 */}
-
             <MenuItem menu={menu} lgType={lgType} lgText={lgText} />
           </div>
         </div>

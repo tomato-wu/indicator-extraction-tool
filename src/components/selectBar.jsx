@@ -33,6 +33,14 @@ import Turkish from "./turkish/";
 import Farsi from "./farsi/";
 import Portuguese from "./portuguese/";
 
+import Ukrainian from "./Ukrainian/";
+import Russian from "./Russian/";
+import German from "./German/";
+import French from "./French/";
+import Italian from "./Italian/";
+import Czech from "./Czech/";
+import Swedish from "./Swedish/";
+
 import "./selectBar.css";
 
 const { TextArea } = Input;
@@ -174,10 +182,31 @@ function SelectBar() {
       case "fa":
         messageStr = "波斯语";
         break;
+      case "ru":
+        messageStr = "俄语";
+        break;
+      case "dr":
+        messageStr = "德语";
+        break;
+      case "fr":
+        messageStr = "法语";
+        break;
+      case "it":
+        messageStr = "意大利语";
+        break;
+      case "cs":
+        messageStr = "捷克语";
+        break;
+      case "uk":
+        messageStr = "乌克兰语";
+        break;
+      case "sv":
+        messageStr = "瑞典语";
+        break;
       default:
         messageStr = "暂不支持该语种的处理";
     }
-    message.info(messageStr);
+    message.success(messageStr);
   };
 
   // 点击选择器自助选择需要解析的语种
@@ -220,7 +249,20 @@ function SelectBar() {
         return <Bengali lgType={lgType} lgText={lgText} />;
       case "fa":
         return <Farsi lgType={lgType} lgText={lgText} />;
-
+      case "ru":
+        return <Russian lgType={lgType} lgText={lgText} />;
+      case "dr":
+        return <German lgType={lgType} lgText={lgText} />;
+      case "fr":
+        return <French lgType={lgType} lgText={lgText} />;
+      case "it":
+        return <Italian lgType={lgType} lgText={lgText} />;
+      case "cs":
+        return <Czech lgType={lgType} lgText={lgText} />;
+      case "uk":
+        return <Ukrainian lgType={lgType} lgText={lgText} />;
+      case "sv":
+        return <Swedish lgType={lgType} lgText={lgText} />;
       default:
         return null;
     }
@@ -309,6 +351,34 @@ function SelectBar() {
                 {
                   value: "ko",
                   label: "朝鲜语(韩国)",
+                },
+                {
+                  value: "fr",
+                  label: "法语",
+                },
+                {
+                  value: "dr",
+                  label: "德语",
+                },
+                {
+                  value: "it",
+                  label: "意大利语",
+                },
+                {
+                  value: "ru",
+                  label: "俄语",
+                },
+                {
+                  value: "cs",
+                  label: "捷克语",
+                },
+                {
+                  value: "sv",
+                  label: "瑞典语",
+                },
+                {
+                  value: "uk",
+                  label: "乌克兰语",
                 },
               ]}
             />

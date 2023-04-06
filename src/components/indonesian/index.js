@@ -10,7 +10,7 @@ function IndonesianBar(props) {
       {/* 功能选择按钮 */}
       <GeneralIndicators lgType={lgType} lgText={lgText} />
       {/* 特定语种处理 */}
-      <Space size={[8, 16]} wrap style={{ marginTop: "15px" }}>
+      {/* <Space size={[8, 16]} wrap style={{ marginTop: "15px" }}>
         <span style={{ fontSize: "9px", color: "gray" }}>
           印尼语计量指标提取：
         </span>
@@ -33,7 +33,7 @@ function IndonesianBar(props) {
         <Button type="primary" ghost danger>
           一键提取
         </Button>
-      </Space>
+      </Space> */}
     </>
   );
 }

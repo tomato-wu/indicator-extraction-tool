@@ -1,18 +1,18 @@
-import { useState } from "react";
+// 意大利语
+import React from "react";
 import { Button, Space } from "antd";
 import GeneralIndicators from "../generalIndicators";
 
-const BurmeseBar = (props) => {
+function Italian(props) {
   const { lgType, lgText } = props;
+
   return (
     <>
       {/* 功能选择按钮 */}
       <GeneralIndicators lgType={lgType} lgText={lgText} />
-      {/* 特定语种指标提取 */}
+      {/* 特定语种处理 */}
       {/* <Space size={[8, 16]} wrap style={{ marginTop: "15px" }}>
-        <span style={{ fontSize: "9px", color: "gray" }}>
-          缅甸/柬埔寨（高棉语） ：
-        </span>
+        <span style={{ fontSize: "9px", color: "gray" }}>意大利语：</span>
         <Button type="primary" ghost>
           总词数提取
         </Button>
@@ -35,6 +35,6 @@ const BurmeseBar = (props) => {
       </Space> */}
     </>
   );
-};
+}
 
-export default BurmeseBar;
+export default Italian;

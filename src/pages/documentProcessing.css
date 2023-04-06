@@ -1,6 +1,6 @@
 .cardBox{
   width:80vw;
-  height:40vh;
+  height:auto;
   border-radius:20px;
   margin: 40px auto;
   background-color:white;
@@ -11,6 +11,8 @@
   background-color:rgb(244,246,251);
   border-radius:20px 20px 0 0;
   line-height: 5vh;
+  width:80vw;
+
 
 }
 .titleText{
@@ -20,7 +22,9 @@
 .distinguish{
   margin-left: 15px;
   margin-top: 15px;
-  height: 40vh;
+  width:80vw;
+  padding-bottom: 20px;
+  padding-right: 20px;
 
 }
 .spanText{
@@ -41,27 +45,9 @@
     margin-left: 15px;
     margin-top: 15px;
     width:80vw;
-    height:50vh;
-  
   }
 }
 
-@media screen and (max-width: 1142px) {
-  .cardBox{
-    width:80vw;
-    height:auto;
-    border-radius:20px;
-    background-color:white;
-    box-shadow: 1px 1px 3px grey;
-  }
-  .distinguish{
-    margin-left: 15px;
-    margin-top: 15px;
-    width:80vw;
-    height:50vh;
-  
-  }
-}
 
 @media screen and (max-width: 1048px) {
   .cardBox{
@@ -74,8 +60,6 @@
   .distinguish{
     margin-left: 15px;
     margin-top: 15px;
-    width:80vw;
-    height:50vh;
-  
+    width:80vw;  
   }
 }

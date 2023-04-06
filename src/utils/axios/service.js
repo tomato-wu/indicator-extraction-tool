@@ -5,7 +5,7 @@ import { message } from "antd";
 const service = axios.create({
   // baseURL: "http://192.168.207.233:25001", // 在线
 
-  baseURL: "http://192.168.128.125:25001", // 本地
+  baseURL: "http://192.168.128.125:5000", // 本地
 
   timeout: 100000,
   headers: {
