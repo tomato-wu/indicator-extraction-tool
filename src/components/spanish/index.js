@@ -1,11 +1,9 @@
 //西班牙语
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button, Space, Modal, Descriptions } from "antd";
 import GeneralIndicators from "../generalIndicators";
-
 import {
   getARIApi,
-  getARIGradeLevelsApi,
   getRIXApi,
   getFlsechKincaidGradeApi,
   getGunningFogApi,
@@ -13,15 +11,15 @@ import {
   getColemanLiauIndexApi,
   getDaleChallIndexApi,
   getLWIndexApi,
+  getFleschReadingApi,
   getAllTagsApi,
 } from "../../utils/axios/englishReadabilityApi.js";
 
-const Spanish = (props) => {
+function Spanish(props) {
   const { lgType, lgText } = props;
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [obj, setObj] = useState({});
-
   const handleOk = () => {
     setObj({});
     setIsModalOpen(false);
@@ -38,16 +36,6 @@ const Spanish = (props) => {
     setIsModalOpen(true);
   };
 
-  const ARIGradeLevels = async () => {
-    const getARIGradeLevels = await getARIGradeLevelsApi({
-      lg_type: lgType,
-      lg_text: lgText,
-    });
-    const getARIGradeLevelsObj = getARIGradeLevels.data;
-    setObj({ ...getARIGradeLevelsObj });
-
-    setIsModalOpen(true);
-  };
   const RIX = async () => {
     const getRIX = await getRIXApi({ lg_type: lgType, lg_text: lgText });
     const getRIXObj = getRIX.data;
@@ -99,6 +87,15 @@ const Spanish = (props) => {
     setObj({ ...getDaleChallIndexObj });
     setIsModalOpen(true);
   };
+  const FleschReading = async () => {
+    const getFleschReading = await getFleschReadingApi({
+      lg_type: lgType,
+      lg_text: lgText,
+    });
+    const getDaleChallIndexObj = getFleschReading.data;
+    setObj({ ...getDaleChallIndexObj });
+    setIsModalOpen(true);
+  };
   const LWIndex = async () => {
     const getLWIndex = await getLWIndexApi({
       lg_type: lgType,
@@ -121,9 +118,9 @@ const Spanish = (props) => {
 
   return (
     <>
-      {/* 功能选择按钮 */}
+      {/* 通用指标提取 */}
       <GeneralIndicators lgType={lgType} lgText={lgText} />
-      {/* 特定语种指标提取 */}
+      {/* 特定语种处理 */}
       <Space size={[8, 16]} wrap style={{ marginTop: "15px" }}>
         <span style={{ fontSize: "9px", color: "gray" }}>
           西班牙语可读性指标提取：
@@ -131,11 +128,11 @@ const Spanish = (props) => {
         <Button type="primary" ghost onClick={ARI}>
           ARI
         </Button>
-        <Button type="primary" ghost onClick={ARIGradeLevels}>
-          ARIGradeLevels
-        </Button>
         <Button type="primary" ghost onClick={RIX}>
           RIX
+        </Button>
+        <Button type="primary" ghost onClick={FleschReading}>
+          FleschReading
         </Button>
         <Button type="primary" ghost onClick={FlsechKincaidGrade}>
           FlsechKincaidGrade
@@ -144,9 +141,17 @@ const Spanish = (props) => {
         <Button type="primary" ghost onClick={GunningFog}>
           GunningFog
         </Button>
-
         <Button type="primary" ghost onClick={LWIndex}>
           LWIndex
+        </Button>
+        <Button type="primary" ghost onClick={Smog}>
+          Smog
+        </Button>
+        <Button type="primary" ghost onClick={ColemanLiauIndex}>
+          ColemanLiauIndex
+        </Button>
+        <Button type="primary" ghost onClick={DaleChallIndex}>
+          DaleChallIndex
         </Button>
         <Button type="primary" ghost danger onClick={AllTags}>
           一键提取
@@ -170,6 +175,6 @@ const Spanish = (props) => {
       </Space>
     </>
   );
-};
+}
 
 export default Spanish;

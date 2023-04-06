@@ -4,10 +4,6 @@ import { httpGet, httpPost } from "./index";
 export const getARIApi = (data = {}) =>
   httpPost({ url: "/readability/ari", data });
 
-// ARIGradeLevels
-export const getARIGradeLevelsApi = (data = {}) =>
-  httpPost({ url: "/readability/ariGrade", data });
-
 // RIX
 export const getRIXApi = (data = {}) =>
   httpPost({ url: "/readability/rix", data });
@@ -35,6 +31,10 @@ export const getDaleChallIndexApi = (data = {}) =>
 // LWIndex
 export const getLWIndexApi = (data = {}) =>
   httpPost({ url: "/readability/lwIndex", data });
+
+//FleschReading
+export const getFleschReadingApi = (data = {}) =>
+  httpPost({ url: "/readability/fleschReading", data });
 
 // 一件获取所有值
 export const getAllTagsApi = (data = {}) =>

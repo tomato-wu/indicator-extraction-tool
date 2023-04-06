@@ -3,7 +3,6 @@ import { Button, Space, Modal, Descriptions } from "antd";
 import GeneralIndicators from "../generalIndicators";
 import {
   getARIApi,
-  getARIGradeLevelsApi,
   getRIXApi,
   getFlsechKincaidGradeApi,
   getGunningFogApi,
@@ -11,6 +10,7 @@ import {
   getColemanLiauIndexApi,
   getDaleChallIndexApi,
   getLWIndexApi,
+  getFleschReadingApi,
   getAllTagsApi,
 } from "../../utils/axios/englishReadabilityApi.js";
 
@@ -35,16 +35,6 @@ function EnglishBar(props) {
     setIsModalOpen(true);
   };
 
-  const ARIGradeLevels = async () => {
-    const getARIGradeLevels = await getARIGradeLevelsApi({
-      lg_type: lgType,
-      lg_text: lgText,
-    });
-    const getARIGradeLevelsObj = getARIGradeLevels.data;
-    setObj({ ...getARIGradeLevelsObj });
-
-    setIsModalOpen(true);
-  };
   const RIX = async () => {
     const getRIX = await getRIXApi({ lg_type: lgType, lg_text: lgText });
     const getRIXObj = getRIX.data;
@@ -96,6 +86,15 @@ function EnglishBar(props) {
     setObj({ ...getDaleChallIndexObj });
     setIsModalOpen(true);
   };
+  const FleschReading = async () => {
+    const getFleschReading = await getFleschReadingApi({
+      lg_type: lgType,
+      lg_text: lgText,
+    });
+    const getDaleChallIndexObj = getFleschReading.data;
+    setObj({ ...getDaleChallIndexObj });
+    setIsModalOpen(true);
+  };
   const LWIndex = async () => {
     const getLWIndex = await getLWIndexApi({
       lg_type: lgType,
@@ -128,11 +127,11 @@ function EnglishBar(props) {
         <Button type="primary" ghost onClick={ARI}>
           ARI
         </Button>
-        <Button type="primary" ghost onClick={ARIGradeLevels}>
-          ARIGradeLevels
-        </Button>
         <Button type="primary" ghost onClick={RIX}>
           RIX
+        </Button>
+        <Button type="primary" ghost onClick={FleschReading}>
+          FleschReading
         </Button>
         <Button type="primary" ghost onClick={FlsechKincaidGrade}>
           FlsechKincaidGrade
@@ -141,9 +140,17 @@ function EnglishBar(props) {
         <Button type="primary" ghost onClick={GunningFog}>
           GunningFog
         </Button>
-
         <Button type="primary" ghost onClick={LWIndex}>
           LWIndex
+        </Button>
+        <Button type="primary" ghost onClick={Smog}>
+          Smog
+        </Button>
+        <Button type="primary" ghost onClick={ColemanLiauIndex}>
+          ColemanLiauIndex
+        </Button>
+        <Button type="primary" ghost onClick={DaleChallIndex}>
+          DaleChallIndex
         </Button>
         <Button type="primary" ghost danger onClick={AllTags}>
           一键提取
