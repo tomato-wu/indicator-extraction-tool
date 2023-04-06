@@ -65,9 +65,7 @@ const App = () => {
   const navigate = useNavigate();
   // 个人信息模块调用的方法
   const PersonalSettings = (item) => {
-    if (item.key == "IndicatorDetails") {
-      navigate("/IndicatorDetails");
-    } else if (item.key == "personal") {
+    if (item.key == "personal") {
       setCurrent("personal");
     } else if (item.key == "accountSetting") {
       alert("哈哈哈");
@@ -119,7 +117,6 @@ const App = () => {
           <Space size="large">
             {/* 个人设置 */}
             <Menu mode="horizontal" onClick={PersonalSettings}>
-              <Menu.Item key="IndicatorDetails">指标详情</Menu.Item>
               <Menu.SubMenu
                 key="SubMenu"
                 title="个人设置"
