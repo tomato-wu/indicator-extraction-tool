@@ -22,6 +22,8 @@ import {
   LogoutOutlined,
 } from "@ant-design/icons";
 
+import { logoutApi } from "../utils/axios/api.js";
+
 // 自定义组件
 import SelectBar from "../components/selectBar";
 import DocumentProcessing from "./documentProcessing";
@@ -80,9 +82,10 @@ const App = () => {
     }
   }, [navigate]);
 
-  const logOut = () => {
+  const logOut = async () => {
+    let res = await logoutApi();
     localStorage.removeItem("token");
-    message.success("退出成功");
+    message.success(res.msg);
     navigate("/");
   };
 

@@ -108,3 +108,6 @@ export const registerApi = (data = {}) =>
   httpPost({ url: "/user/regist", data });
 // 发送验证码
 export const sendCodeApi = (data = {}) => httpPost({ url: "/user/mail", data });
+
+// 退出
+export const logoutApi = () => httpPost({ url: "/user/logout" });

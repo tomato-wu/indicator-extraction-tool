@@ -51,6 +51,12 @@ function IntroductionPage() {
     navigate("/home");
   };
 
+  const LinkToIntroduction = () => {
+    window.open(
+      "https://q5javk5hpq.feishu.cn/docx/UUXVdV4FpobEVKx2DyZck9r7nCd"
+    );
+  };
+
   const [open, setOpen] = useState(false);
 
   return (
@@ -126,7 +132,13 @@ function IntroductionPage() {
                   >
                     开始使用
                   </Button>
-                  <Button size="middle" type="primary" danger ghost>
+                  <Button
+                    size="middle"
+                    type="primary"
+                    danger
+                    ghost
+                    onClick={LinkToIntroduction}
+                  >
                     了解详情
                   </Button>
                 </Space>
@@ -162,14 +174,16 @@ function IntroductionPage() {
               <hr style={{ color: "gray" }} />
               <p>语种识别，输入需处理的文本，自动识别语言</p> <hr />
               <p>
-                系统支持多语种处理，支持的语种多达17种，包括阿拉伯语、孟加拉语、缅甸/柬埔寨语、汉语、英语等
+                系统支持多语种处理，支持的语种多达23种，包括阿拉伯语、孟加拉语、缅甸/柬埔寨语、汉语、英语等
               </p>
               <hr style={{ color: "gray" }} />
               <p>
-                系统支持的计量指标也多达20种，包括有在不同语种之间通用的计量指标和语言特有指标
+                系统支持的计量指标也多达21种，包括有在不同语种之间通用的计量指标和语言特有指标
               </p>
               <hr style={{ color: "gray" }} />
               <p>支持文档处理，用户可上传文档解析处理，更加人性化</p>{" "}
+              <hr style={{ color: "gray" }} />
+              <p>历史记录，指标词典等功能，方便用户使用，提高用户体验</p>{" "}
               <hr style={{ color: "gray" }} />
             </Space>
           </Col>
