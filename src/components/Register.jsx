@@ -37,6 +37,10 @@ const Register = () => {
 
   // 发送验证码到邮箱的函数
   const handleSendCode = async () => {
+    if (!email) {
+      message.info("请输入邮箱");
+      return;
+    }
     // 倒计时递减
     timer = setInterval(() => setSecond((pre) => pre - 1), 1000);
     // 不可点击

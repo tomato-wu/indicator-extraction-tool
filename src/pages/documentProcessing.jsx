@@ -51,6 +51,9 @@ const props = {
   maxCount: 1, //限制上传数量。当为 1 时，始终用最新上传的文件代替当前文件
   action: "http://192.168.207.233:25001/api/langrc", //线上地址
   // action: "http://192.168.128.125:5000/api/langrc", //本地测试
+  headers: {
+    authorization: "Bearer " + localStorage.getItem("token"),
+  },
 };
 
 // 上传之前判断上传的文件格式问题
