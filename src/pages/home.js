@@ -31,6 +31,7 @@ import DocumentProcessing from "./documentProcessing";
 import Personal from "../pages/personal";
 import IndicatorDescription from "./IndicatorDescription.jsx";
 import ApiDocumentation from "./ApiDocumentation.jsx";
+import logo from "../assets/logo.png";
 
 const { Header, Content, Footer } = Layout;
 
@@ -115,7 +116,7 @@ const App = () => {
       >
         <Space size="large">
           {/* 首页图标 */}
-          <span style={{ color: "#0B0B0B" }}> 指标提取工具</span>
+          <img src={logo} alt="logo无法显示" width={150} />
           {/* 导航栏，一些路由跳转相关的 */}
           <Menu
             mode="horizontal"
