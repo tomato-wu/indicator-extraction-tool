@@ -69,9 +69,9 @@ const beforeUpload = (file) => {
   if (!isFileFormat) {
     message.error("文件格式不符合");
   }
-  const isLt2M = file.size / 1024 / 1024 < 2;
+  const isLt2M = file.size / 1024 < 2;
   if (!isLt2M) {
-    message.error("文件大小不超过2M!");
+    message.error("文件大小不超过1M!");
   }
   return isFileFormat && isLt2M;
 };

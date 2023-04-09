@@ -9,7 +9,6 @@ import {
   FloatButton,
   Modal,
 } from "antd";
-import { QuestionCircleOutlined } from "@ant-design/icons";
 
 import { useNavigate } from "react-router-dom";
 
@@ -20,6 +19,8 @@ import {
   SettingOutlined,
   UserOutlined,
   LogoutOutlined,
+  QuestionCircleOutlined,
+  ApiOutlined,
 } from "@ant-design/icons";
 
 import { logoutApi } from "../utils/axios/api.js";
@@ -42,6 +43,11 @@ const items = [
     label: "文档提取",
     key: "documentExtraction",
     icon: <FolderOutlined />,
+  },
+  {
+    label: "接口文档",
+    key: "InterfaceDocumentation",
+    icon: <ApiOutlined />,
   },
 ];
 
