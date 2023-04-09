@@ -78,8 +78,8 @@ const App = () => {
   const PersonalSettings = (item) => {
     if (item.key == "personal") {
       setCurrent("personal");
-    } else if (item.key == "accountSetting") {
-      alert("哈哈哈");
+    } else if (item.key == "backToIntrodutionPage") {
+      navigate("/");
     } else if (item.key == "logOut") {
       logOut();
     }
@@ -137,8 +137,11 @@ const App = () => {
                 <Menu.Item key="personal" icon={<UserOutlined />}>
                   个人中心
                 </Menu.Item>
-                <Menu.Item key="accountSetting" icon={<AppstoreOutlined />}>
-                  账号设置
+                <Menu.Item
+                  key="backToIntrodutionPage"
+                  icon={<AppstoreOutlined />}
+                >
+                  返回首页
                 </Menu.Item>
                 <Menu.Item key="logOut" icon={<LogoutOutlined />}>
                   退出登录
