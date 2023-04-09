@@ -4,7 +4,7 @@ import { getPersonApi, changeInformationApi } from "../../utils/axios/personal";
 
 const PersonCardBox = {
   width: "60vw",
-  height: "32vh",
+  height: "auto",
   borderRadius: "20px",
   margin: "20px 120px",
   boxShadow: "1px 1px 3px grey",
@@ -26,7 +26,7 @@ const personTitleText = {
 
 const box = {
   width: "60vw",
-  height: "20vh",
+  height: "auto",
   display: "flex",
   marginLeft: "50px",
   marginTop: "20px",

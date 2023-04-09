@@ -8,7 +8,7 @@ import CryptoJS from "crypto-js";
 
 const PersonCardBox = {
   width: "60vw",
-  height: "35vh",
+  height: "auto",
   borderRadius: "20px",
   margin: "20px 120px",
   boxShadow: "1px 1px 3px grey",
@@ -29,10 +29,10 @@ const personTitleText = {
 };
 const box = {
   width: "60vw",
-  height: "17vh",
+  height: "auto",
   display: "flex",
   marginLeft: "50px",
-  marginTop: "5.9rem",
+  marginTop: "10px",
   alignItems: "center",
 };
 
