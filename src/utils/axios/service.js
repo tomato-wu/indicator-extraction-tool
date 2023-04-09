@@ -36,10 +36,6 @@ service.interceptors.request.use(
 // 添加响应拦截器
 service.interceptors.response.use(
   function (response) {
-    // if (response.data.status === 401) {
-    //   const navigate = useNavigate();
-    //   navigate("/");
-    // }
     console.log("response", response);
     return response;
   },
