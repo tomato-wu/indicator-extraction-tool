@@ -9,7 +9,6 @@ import {
   FloatButton,
   Modal,
 } from "antd";
-import { QuestionCircleOutlined } from "@ant-design/icons";
 
 import { useNavigate } from "react-router-dom";
 
@@ -20,6 +19,8 @@ import {
   SettingOutlined,
   UserOutlined,
   LogoutOutlined,
+  QuestionCircleOutlined,
+  ApiOutlined,
 } from "@ant-design/icons";
 
 import { logoutApi } from "../utils/axios/api.js";
@@ -29,6 +30,7 @@ import SelectBar from "../components/selectBar";
 import DocumentProcessing from "./documentProcessing";
 import Personal from "../pages/personal";
 import IndicatorDescription from "./IndicatorDescription.jsx";
+import ApiDocumentation from "./ApiDocumentation.jsx";
 
 const { Header, Content, Footer } = Layout;
 
@@ -43,6 +45,11 @@ const items = [
     key: "documentExtraction",
     icon: <FolderOutlined />,
   },
+  {
+    label: "Api接入文档",
+    key: "ApiDocumentation",
+    icon: <ApiOutlined />,
+  },
 ];
 
 function MenuItemPage({ currentPage }) {
@@ -51,6 +58,8 @@ function MenuItemPage({ currentPage }) {
       return <SelectBar />;
     case "documentExtraction":
       return <DocumentProcessing />;
+    case "ApiDocumentation":
+      return <ApiDocumentation />;
     case "personal":
       return <Personal />;
     default:
