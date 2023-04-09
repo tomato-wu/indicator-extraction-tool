@@ -357,7 +357,7 @@ function SelectBar() {
                   label: "法语",
                 },
                 {
-                  value: "dr",
+                  value: "de",
                   label: "德语",
                 },
                 {
