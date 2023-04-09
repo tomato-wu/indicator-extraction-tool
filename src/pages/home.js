@@ -30,6 +30,7 @@ import SelectBar from "../components/selectBar";
 import DocumentProcessing from "./documentProcessing";
 import Personal from "../pages/personal";
 import IndicatorDescription from "./IndicatorDescription.jsx";
+import ApiDocumentation from "./ApiDocumentation.jsx";
 
 const { Header, Content, Footer } = Layout;
 
@@ -45,8 +46,8 @@ const items = [
     icon: <FolderOutlined />,
   },
   {
-    label: "接口文档",
-    key: "InterfaceDocumentation",
+    label: "Api接入文档",
+    key: "ApiDocumentation",
     icon: <ApiOutlined />,
   },
 ];
@@ -57,6 +58,8 @@ function MenuItemPage({ currentPage }) {
       return <SelectBar />;
     case "documentExtraction":
       return <DocumentProcessing />;
+    case "ApiDocumentation":
+      return <ApiDocumentation />;
     case "personal":
       return <Personal />;
     default:
