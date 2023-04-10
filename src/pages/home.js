@@ -31,6 +31,7 @@ import DocumentProcessing from "./documentProcessing";
 import Personal from "../pages/personal";
 import IndicatorDescription from "./IndicatorDescription.jsx";
 import ApiDocumentation from "./ApiDocumentation.jsx";
+import logo from "../assets/logo.png";
 
 const { Header, Content, Footer } = Layout;
 
@@ -78,8 +79,8 @@ const App = () => {
   const PersonalSettings = (item) => {
     if (item.key == "personal") {
       setCurrent("personal");
-    } else if (item.key == "accountSetting") {
-      alert("哈哈哈");
+    } else if (item.key == "backToIntrodutionPage") {
+      navigate("/");
     } else if (item.key == "logOut") {
       logOut();
     }
@@ -115,7 +116,7 @@ const App = () => {
       >
         <Space size="large">
           {/* 首页图标 */}
-          <span style={{ color: "#0B0B0B" }}> 指标提取工具</span>
+          <img src={logo} alt="logo无法显示" width={150} />
           {/* 导航栏，一些路由跳转相关的 */}
           <Menu
             mode="horizontal"
@@ -137,8 +138,11 @@ const App = () => {
                 <Menu.Item key="personal" icon={<UserOutlined />}>
                   个人中心
                 </Menu.Item>
-                <Menu.Item key="accountSetting" icon={<AppstoreOutlined />}>
-                  账号设置
+                <Menu.Item
+                  key="backToIntrodutionPage"
+                  icon={<AppstoreOutlined />}
+                >
+                  返回首页
                 </Menu.Item>
                 <Menu.Item key="logOut" icon={<LogoutOutlined />}>
                   退出登录
