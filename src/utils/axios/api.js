@@ -111,3 +111,11 @@ export const sendCodeApi = (data = {}) => httpPost({ url: "/user/mail", data });
 
 // 退出
 export const logoutApi = () => httpPost({ url: "/user/logout" });
+
+// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 获取用户 appid
+export const getAppidApi = () => httpGet({ url: "/getAppid" });
+
+// 创建 appid
+export const createAppidApi = (data = {}) =>
+  httpPost({ url: "/generateAppid", data });

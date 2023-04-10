@@ -29,7 +29,8 @@ const ChatWithUs = () => {
 
         <Title level={4}>如需咨询，可通过下面的邮箱与我们取得联系：</Title>
         <Paragraph>
-          邮箱：<Link href="https://mail.qq.com/">h20333@qq.com</Link>
+          邮箱：<Link href="https://mail.qq.com/">h20333@qq.com</Link> 或者{" "}
+          <Link href="https://mail.qq.com/">3011543110@qq.com</Link>
         </Paragraph>
         <Paragraph>注：接入问题请优先参考接入文档。</Paragraph>
       </div>
