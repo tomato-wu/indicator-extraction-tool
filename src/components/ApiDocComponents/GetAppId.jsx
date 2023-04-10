@@ -8,7 +8,11 @@ import {
   Space,
   Menu,
   Typography,
+  Modal,
 } from "antd";
+// 引入 CryptoJS 库
+import CryptoJS from "crypto-js";
+import { createAppidApi, getAppidApi } from "../../utils/axios/api.js";
 const { Title, Paragraph, Text, Link } = Typography;
 
 const PersonCardBox = {
@@ -20,6 +24,31 @@ const PersonCardBox = {
 };
 
 const GetAppId = () => {
+  const [appid, setAppid] = useState(""); // appid
+  const [password, setPassword] = useState(""); // 密码
+
+  useEffect(() => {
+    // 获取appid
+    const getAppIdFn = async () => {
+      const res = await getAppidApi();
+      setAppid(res.data.appid);
+    };
+    getAppIdFn();
+  }, []);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleOk = async () => {
+    let res = await createAppidApi({
+      password: CryptoJS.MD5(password).toString(),
+    });
+    message.success(res.msg);
+    setAppid(res.data.appid);
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <div style={PersonCardBox}>
@@ -27,12 +56,55 @@ const GetAppId = () => {
           获取AppID
         </Title>
 
-        <Title level={4}>如需咨询，可通过下面的邮箱与我们取得联系：</Title>
-        <Paragraph>
-          邮箱：<Link href="https://mail.qq.com/">h20333@qq.com</Link>
-        </Paragraph>
+        {appid ? (
+          <Title level={4}>
+            AppID：
+            <Paragraph copyable style={{ paddingTop: "2vh" }}>
+              {appid}
+            </Paragraph>
+          </Title>
+        ) : (
+          <Paragraph>
+            <Button
+              type="dashed"
+              onClick={() => {
+                setIsModalOpen(true);
+              }}
+            >
+              获取
+            </Button>
+          </Paragraph>
+        )}
+
         <Paragraph>注：接入问题请优先参考接入文档。</Paragraph>
       </div>
+      <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <Form
+          initialValues={{
+            remember: true,
+          }}
+        >
+          {/* 密码 */}
+          <Form.Item
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: "请输入密码",
+              },
+            ]}
+          >
+            <Input.Password
+              placeholder="密码"
+              size="large"
+              allowClear
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              style={{ width: "300px" }}
+            />
+          </Form.Item>
+        </Form>
+      </Modal>
     </>
   );
 };
