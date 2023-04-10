@@ -88,6 +88,7 @@ const App = () => {
 
   useEffect(() => {
     if (!localStorage.getItem("token")) {
+      localStorage.removeItem("token");
       navigate("/");
     }
   }, [navigate]);
