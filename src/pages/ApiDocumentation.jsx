@@ -5,6 +5,7 @@ import { Layout, Space, Menu } from "antd";
 import ChangePassword from "../components/personal/changePassword.jsx";
 import ApiDocIntroduction from "../components/ApiDocComponents/ApiDocIntroduction.jsx";
 import ChatWithUs from "../components/ApiDocComponents/ChatWithUs.jsx";
+import GetAppId from "../components/ApiDocComponents/GetAppId.jsx";
 const { Sider, Content } = Layout;
 
 const contentStyle = {
@@ -24,6 +25,10 @@ const items = [
   {
     label: "接入服务介绍",
     key: "ApiDocIntroduction",
+  },
+  {
+    label: "获取AppID",
+    key: "GetAppId",
   },
   {
     label: "开发者文档",
@@ -57,6 +62,8 @@ function MenuItemPage({ currentPage }) {
   switch (currentPage) {
     case "ApiDocIntroduction":
       return <ApiDocIntroduction />;
+    case "GetAppId":
+      return <GetAppId />;
     case "changePassword":
       return <ChangePassword />;
     case "ChatWithUs":
