@@ -19,7 +19,7 @@ const PersonCardBox = {
   width: "100%",
   height: "100%",
   marginLeft: "100px",
-  padding: "20px",
+  padding: "50px",
   backgroundColor: "#FDFDFD",
 };
 

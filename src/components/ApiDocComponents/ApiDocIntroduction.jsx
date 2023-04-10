@@ -5,7 +5,7 @@ const { Title, Paragraph, Text } = Typography;
 const PersonCardBox = {
   width: "100%",
   height: "100%",
-  padding: "20px",
+  padding: "80px",
   backgroundColor: "#FDFDFD",
 };
 
