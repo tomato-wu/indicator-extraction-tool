@@ -45,6 +45,7 @@ service.interceptors.response.use(
     message.error(msg);
     if (status === 401) {
       // redirect to login page
+      localStorage.removeItem("token");
       history.push("/");
       window.location.reload();
     }
