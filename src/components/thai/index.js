@@ -3,11 +3,15 @@ import { Button, Space } from "antd";
 import GeneralIndicators from "../generalIndicators";
 
 const ThaiBar = (props) => {
-  const { lgType, lgText } = props;
+  const { lgType, lgText, isSplitingText } = props;
   return (
     <>
       {/* 功能选择按钮 */}
-      <GeneralIndicators lgType={lgType} lgText={lgText} />
+      <GeneralIndicators
+        lgType={lgType}
+        lgText={lgText}
+        isSplitingText={isSplitingText}
+      />
       {/* 特定语种指标提取 */}
       {/* <Space size={[8, 16]} wrap style={{ marginTop: "15px" }}>
         <span style={{ fontSize: "9px", color: "gray" }}>泰语：</span>

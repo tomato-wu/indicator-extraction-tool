@@ -16,7 +16,7 @@ import {
 } from "../../utils/axios/englishReadabilityApi.js";
 
 function Spanish(props) {
-  const { lgType, lgText } = props;
+  const { lgType, lgText, isSplitingText } = props;
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [obj, setObj] = useState({});
@@ -30,14 +30,22 @@ function Spanish(props) {
   };
 
   const ARI = async () => {
-    const getARI = await getARIApi({ lg_type: lgType, lg_text: lgText });
+    const getARI = await getARIApi({
+      lg_type: lgType,
+      lg_text: lgText,
+      isSplitingText: isSplitingText,
+    });
     const getARIObj = getARI.data;
     setObj({ ...getARIObj });
     setIsModalOpen(true);
   };
 
   const RIX = async () => {
-    const getRIX = await getRIXApi({ lg_type: lgType, lg_text: lgText });
+    const getRIX = await getRIXApi({
+      lg_type: lgType,
+      lg_text: lgText,
+      isSplitingText: isSplitingText,
+    });
     const getRIXObj = getRIX.data;
     setObj({ ...getRIXObj });
     setIsModalOpen(true);
@@ -46,6 +54,7 @@ function Spanish(props) {
     const getFlsechKincaidGrade = await getFlsechKincaidGradeApi({
       lg_type: lgType,
       lg_text: lgText,
+      isSplitingText: isSplitingText,
     });
     const getFlsechKincaidGradeObj = getFlsechKincaidGrade.data;
     setObj({ ...getFlsechKincaidGradeObj });
@@ -55,6 +64,7 @@ function Spanish(props) {
     const getGunningFog = await getGunningFogApi({
       lg_type: lgType,
       lg_text: lgText,
+      isSplitingText: isSplitingText,
     });
     const getGunningFogObj = getGunningFog.data;
     setObj({ ...getGunningFogObj });
@@ -64,6 +74,7 @@ function Spanish(props) {
     const getSmog = await getSmogApi({
       lg_type: lgType,
       lg_text: lgText,
+      isSplitingText: isSplitingText,
     });
     const getSmogObj = getSmog.data;
     setObj({ ...getSmogObj });
@@ -73,6 +84,7 @@ function Spanish(props) {
     const getColemanLiauIndex = await getColemanLiauIndexApi({
       lg_type: lgType,
       lg_text: lgText,
+      isSplitingText: isSplitingText,
     });
     const getColemanLiauIndexObj = getColemanLiauIndex.data;
     setObj({ ...getColemanLiauIndexObj });
@@ -82,6 +94,7 @@ function Spanish(props) {
     const getDaleChallIndex = await getDaleChallIndexApi({
       lg_type: lgType,
       lg_text: lgText,
+      isSplitingText: isSplitingText,
     });
     const getDaleChallIndexObj = getDaleChallIndex.data;
     setObj({ ...getDaleChallIndexObj });
@@ -91,6 +104,7 @@ function Spanish(props) {
     const getFleschReading = await getFleschReadingApi({
       lg_type: lgType,
       lg_text: lgText,
+      isSplitingText: isSplitingText,
     });
     const getDaleChallIndexObj = getFleschReading.data;
     setObj({ ...getDaleChallIndexObj });
@@ -100,6 +114,7 @@ function Spanish(props) {
     const getLWIndex = await getLWIndexApi({
       lg_type: lgType,
       lg_text: lgText,
+      isSplitingText: isSplitingText,
     });
     const getLWIndexObj = getLWIndex.data;
     setObj({ ...getLWIndexObj });
@@ -110,6 +125,7 @@ function Spanish(props) {
     const getAllTags = await getAllTagsApi({
       lg_type: lgType,
       lg_text: lgText,
+      isSplitingText: isSplitingText,
     });
     const getAllTagsObj = getAllTags.data;
     setObj({ ...getAllTagsObj });
@@ -119,7 +135,11 @@ function Spanish(props) {
   return (
     <>
       {/* 通用指标提取 */}
-      <GeneralIndicators lgType={lgType} lgText={lgText} />
+      <GeneralIndicators
+        lgType={lgType}
+        lgText={lgText}
+        isSplitingText={isSplitingText}
+      />
       {/* 特定语种处理 */}
       <Space size={[8, 16]} wrap style={{ marginTop: "15px" }}>
         <span style={{ fontSize: "9px", color: "gray" }}>

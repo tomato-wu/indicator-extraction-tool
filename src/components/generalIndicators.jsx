@@ -25,7 +25,7 @@ import {
 } from "../utils/axios/api";
 import { useState } from "react";
 function GeneralIndicators(props) {
-  const { lgType, lgText } = props;
+  const { lgType, lgText, isSplitingText } = props;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -41,7 +41,11 @@ function GeneralIndicators(props) {
   };
 
   const TTR = async () => {
-    const getTTR = await getTTRApi({ lg_type: lgType, lg_text: lgText });
+    const getTTR = await getTTRApi({
+      lg_type: lgType,
+      lg_text: lgText,
+      isSplitingText: isSplitingText,
+    });
     const getTTRObj = getTTR.data;
     console.log(getTTRObj);
     setObj({ ...getTTRObj });
@@ -49,19 +53,31 @@ function GeneralIndicators(props) {
   };
 
   const R1 = async () => {
-    const getR1 = await getR1Api({ lg_type: lgType, lg_text: lgText });
+    const getR1 = await getR1Api({
+      lg_type: lgType,
+      lg_text: lgText,
+      isSplitingText: isSplitingText,
+    });
     const getR1Obj = getR1.data;
     setObj({ ...getR1Obj });
     setIsModalOpen(true);
   };
   const RR = async () => {
-    const getRR = await getRRApi({ lg_type: lgType, lg_text: lgText });
+    const getRR = await getRRApi({
+      lg_type: lgType,
+      lg_text: lgText,
+      isSplitingText: isSplitingText,
+    });
     const getRRObj = getRR.data;
     setObj({ ...getRRObj });
     setIsModalOpen(true);
   };
   const RRMC = async () => {
-    const getRRMC = await getRRMCApi({ lg_type: lgType, lg_text: lgText });
+    const getRRMC = await getRRMCApi({
+      lg_type: lgType,
+      lg_text: lgText,
+      isSplitingText: isSplitingText,
+    });
     const getRRMCObj = getRRMC.data;
     setObj({ ...getRRMCObj });
     setIsModalOpen(true);
@@ -70,6 +86,7 @@ function GeneralIndicators(props) {
     const getSecondaryTC = await getSecondaryTCApi({
       lg_type: lgType,
       lg_text: lgText,
+      isSplitingText: isSplitingText,
     });
     const getSecondaryTCObj = getSecondaryTC.data;
     setObj({ ...getSecondaryTCObj });
@@ -79,6 +96,7 @@ function GeneralIndicators(props) {
     const getTCValue = await getTCValueApi({
       lg_type: lgType,
       lg_text: lgText,
+      isSplitingText: isSplitingText,
     });
     const getTCValueObj = getTCValue.data;
     setObj({ ...getTCValueObj });
@@ -88,6 +106,7 @@ function GeneralIndicators(props) {
     const getActivity = await getActivityApi({
       lg_type: lgType,
       lg_text: lgText,
+      isSplitingText: isSplitingText,
     });
     const getActivityObj = getActivity.data;
     setObj({ ...getActivityObj });
@@ -97,6 +116,7 @@ function GeneralIndicators(props) {
     const getDescriptivity = await getDescriptivityApi({
       lg_type: lgType,
       lg_text: lgText,
+      isSplitingText: isSplitingText,
     });
     const getDescriptivityObj = getDescriptivity.data;
     setObj({ ...getDescriptivityObj });
@@ -106,6 +126,7 @@ function GeneralIndicators(props) {
     const getlvalue = await getlvalueApi({
       lg_type: lgType,
       lg_text: lgText,
+      isSplitingText: isSplitingText,
     });
     const getlvalueObj = getlvalue.data;
     setObj({ ...getlvalueObj });
@@ -115,6 +136,7 @@ function GeneralIndicators(props) {
     const getCurveLength = await getCurveLengthApi({
       lg_type: lgType,
       lg_text: lgText,
+      isSplitingText: isSplitingText,
     });
     const getCurveLengthObj = getCurveLength.data;
     setObj({ ...getCurveLengthObj });
@@ -124,6 +146,7 @@ function GeneralIndicators(props) {
     const getLambda = await getLambdaApi({
       lg_type: lgType,
       lg_text: lgText,
+      isSplitingText: isSplitingText,
     });
     const getLambdaObj = getLambda.data;
     setObj({ ...getLambdaObj });
@@ -133,6 +156,7 @@ function GeneralIndicators(props) {
     const getAdjustModule = await getAdjustModuleApi({
       lg_type: lgType,
       lg_text: lgText,
+      isSplitingText: isSplitingText,
     });
     const getAdjustModuleObj = getAdjustModule.data;
     setObj({ ...getAdjustModuleObj });
@@ -142,6 +166,7 @@ function GeneralIndicators(props) {
     const getGini = await getGiniApi({
       lg_type: lgType,
       lg_text: lgText,
+      isSplitingText: isSplitingText,
     });
     const getGiniObj = getGini.data;
     setObj({ ...getGiniObj });
@@ -151,6 +176,7 @@ function GeneralIndicators(props) {
     const getR4 = await getR4Api({
       lg_type: lgType,
       lg_text: lgText,
+      isSplitingText: isSplitingText,
     });
     const getR4Obj = getR4.data;
     setObj({ ...getR4Obj });
@@ -160,6 +186,7 @@ function GeneralIndicators(props) {
     const getHapax = await getHapaxApi({
       lg_type: lgType,
       lg_text: lgText,
+      isSplitingText: isSplitingText,
     });
     const getHapaxObj = getHapax.data;
     setObj({ ...getHapaxObj });
@@ -169,6 +196,7 @@ function GeneralIndicators(props) {
     const getWriterView = await getWriterViewApi({
       lg_type: lgType,
       lg_text: lgText,
+      isSplitingText: isSplitingText,
     });
     const getWriterViewObj = getWriterView.data;
     setObj({ ...getWriterViewObj });
@@ -178,6 +206,7 @@ function GeneralIndicators(props) {
     const getVerbDistance = await getVerbDistanceApi({
       lg_type: lgType,
       lg_text: lgText,
+      isSplitingText: isSplitingText,
     });
     const getVerbDistanceObj = getVerbDistance.data;
     setObj({ ...getVerbDistanceObj });
@@ -188,6 +217,7 @@ function GeneralIndicators(props) {
     const getWords = await getWordsApi({
       lg_type: lgType,
       lg_text: lgText,
+      isSplitingText: isSplitingText,
     });
     const getVerbDistanceObj = getWords.data;
     setObj({ ...getVerbDistanceObj });
@@ -198,6 +228,7 @@ function GeneralIndicators(props) {
     const getDicts = await getDictsApi({
       lg_type: lgType,
       lg_text: lgText,
+      isSplitingText: isSplitingText,
     });
     const getVerbDistanceObj = getDicts.data;
     setObj({ ...getVerbDistanceObj });
@@ -208,6 +239,7 @@ function GeneralIndicators(props) {
     const getEntropy = await getEntropyApi({
       lg_type: lgType,
       lg_text: lgText,
+      isSplitingText: isSplitingText,
     });
     const getVerbDistanceObj = getEntropy.data;
     setObj({ ...getVerbDistanceObj });
@@ -218,6 +250,7 @@ function GeneralIndicators(props) {
     const getHPoint = await getHPointApi({
       lg_type: lgType,
       lg_text: lgText,
+      isSplitingText: isSplitingText,
     });
     const getVerbDistanceObj = getHPoint.data;
     setObj({ ...getVerbDistanceObj });
@@ -228,6 +261,7 @@ function GeneralIndicators(props) {
     const getAllTag = await getAllTagApi({
       lg_type: lgType,
       lg_text: lgText,
+      isSplitingText: isSplitingText,
     });
     const getAllTagObj = getAllTag.data;
     setObj({ ...getAllTagObj });
