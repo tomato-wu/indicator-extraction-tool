@@ -8,6 +8,7 @@ import {
   message,
   FloatButton,
   Modal,
+  BackTop,
 } from "antd";
 
 import { useNavigate } from "react-router-dom";
@@ -21,6 +22,7 @@ import {
   LogoutOutlined,
   QuestionCircleOutlined,
   ApiOutlined,
+  FolderOpenOutlined,
 } from "@ant-design/icons";
 
 import { logoutApi } from "../utils/axios/api.js";
@@ -28,6 +30,7 @@ import { logoutApi } from "../utils/axios/api.js";
 // 自定义组件
 import SelectBar from "../components/selectBar";
 import DocumentProcessing from "./documentProcessing";
+import MultiDocumentProcessing from "./multiDocumentProcessing";
 import Personal from "../pages/personal";
 import IndicatorDescription from "./IndicatorDescription.jsx";
 import ApiDocumentation from "./ApiDocumentation.jsx";
@@ -42,9 +45,14 @@ const items = [
     icon: <CodeOutlined />,
   },
   {
-    label: "文档提取",
+    label: "单文档提取",
     key: "documentExtraction",
     icon: <FolderOutlined />,
+  },
+  {
+    label: "多文档提取",
+    key: "multiDocumentExtraction",
+    icon: <FolderOpenOutlined />,
   },
   {
     label: "Api接入文档",
@@ -63,6 +71,8 @@ function MenuItemPage({ currentPage }) {
       return <ApiDocumentation />;
     case "personal":
       return <Personal />;
+    case "multiDocumentExtraction":
+      return <MultiDocumentProcessing />;
     default:
       return null;
   }
@@ -107,6 +117,10 @@ const App = () => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+
+  const BackToIntroduction = () => {
+    navigate("/");
+  };
   return (
     <Layout className="layout">
       {/* Header 头部导航栏 */}
@@ -117,12 +131,19 @@ const App = () => {
       >
         <Space size="large">
           {/* 首页图标 */}
-          <img src={logo} alt="logo无法显示" width={150} />
+          <img
+            src={logo}
+            alt="logo无法显示"
+            width={150}
+            onClick={BackToIntroduction}
+            style={{ cursor: "pointer" }}
+          />
           {/* 导航栏，一些路由跳转相关的 */}
           <Menu
             mode="horizontal"
             onClick={onClick}
             selectedKeys={[current]}
+            width={{ width: "100%" }}
             items={items}
           />
         </Space>

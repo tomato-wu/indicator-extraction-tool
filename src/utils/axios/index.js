@@ -18,7 +18,7 @@ export function httpGet({ url, params = {} }) {
 }
 
 // post请求
-export function httpPost({ url, data = {}, params = {} }) {
+export function httpPost({ url, data = {}, params = {}, responseType }) {
   return new Promise((resolve, reject) => {
     service({
       url,
@@ -37,6 +37,7 @@ export function httpPost({ url, data = {}, params = {} }) {
       data,
       //url参数
       params,
+      responseType,
     }).then((res) => {
       resolve(res.data);
     });

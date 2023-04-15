@@ -119,3 +119,11 @@ export const getAppidApi = () => httpGet({ url: "/getAppid" });
 // 创建 appid
 export const createAppidApi = (data = {}) =>
   httpPost({ url: "/generateAppid", data });
+// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//上传文件列表
+export const getUploadFileListApi = (data = {}) =>
+  httpPost({ url: "/open/common", data });
+
+// 导出 excel
+export const exportExcelApi = (data = {}) =>
+  httpPost({ url: "/common/download", data, responseType: "blob" });
