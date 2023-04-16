@@ -68,12 +68,14 @@ const beforeUpload = (file) => {
     file.type === "application/pdf";
   if (!isFileFormat) {
     message.error("文件格式不符合");
+    return false;
   }
-  const isLt2M = file.size / 1024 < 2;
-  if (!isLt2M) {
+
+  if (file.size > 1024 * 1024) {
     message.error("文件大小不超过1M!");
+    return false;
   }
-  return isFileFormat && isLt2M;
+  return true;
 };
 
 // 切换不同语种的组件

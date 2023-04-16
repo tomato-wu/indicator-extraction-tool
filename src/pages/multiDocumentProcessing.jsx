@@ -18,12 +18,26 @@ function MultiDocumentProcessing() {
 
   const props = {
     onChange: (arg) => {
-      const _fileList = arg.fileList;
-      _fileList.length < fileList.length
-        ? setFileList((fileList) =>
-            fileList.filter((item) => item.uid !== arg.file.uid)
+      // 当文件上传组件的值发生变化时，调用 onChange 函数
+      const _fileList = arg.fileList; // 获取文件列表
+      _fileList.length < fileList.length // 如果文件列表长度小于之前的长度，说明用户删除了旧的文件
+        ? setFileList(
+            (fileList) => fileList.filter((item) => item.uid !== arg.file.uid) // 从 fileList 中移除对应的文件
           )
-        : setFileList((fileList) => fileList.concat(arg.file));
+        : setFileList((fileList) => {
+            const isFileFormat =
+              arg.file.type === "application/msword" ||
+              arg.file.type ===
+                "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
+              arg.file.type === "text/plain" ||
+              arg.file.type === "" ||
+              arg.file.type === "application/pdf";
+            if (!isFileFormat) {
+              message.error("文件格式不符合");
+              return fileList;
+            }
+            return fileList.concat(arg.file); // 将新的文件添加到 fileList 中
+          });
     },
     beforeUpload: (file, _fileList) => {
       return false;
@@ -40,7 +54,7 @@ function MultiDocumentProcessing() {
     getUploadFileListApi(formData).then(
       (res) => {
         if (res.code === 0) {
-          message.success("上传成功");
+          message.success("上传成功，处理结果蒋通过您的邮箱发送给您");
           setUploading(false);
           setFileList([]);
         } else {
@@ -125,7 +139,7 @@ function MultiDocumentProcessing() {
           transform: "translateX(-50%)",
         }}
       >
-        {uploading ? "Uploading" : "确定上传"}
+        {uploading ? "正在上传中，请稍等..." : "确定上传"}
       </Button>
     </>
   );
