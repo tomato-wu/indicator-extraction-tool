@@ -21,6 +21,13 @@ const commonIndicatoreparamsLists = [
     description:
       '需要处理的通用计量指标简称(不传则默认全部处理)，如"words,dicts"，简称间以","进行分隔',
   },
+  {
+    key: 4,
+    name: 'cumulatives',
+    type: 'string',
+    required: '-',
+    description: '增量计算指标，传入形式如 indicators一致，不传则默认为 indicators'
+  }
 ]
 
 const commonIndicatorExampleResponseParams = [
@@ -38,7 +45,13 @@ const commonIndicatorExampleResponseParams = [
   },
   {
     key: 3,
-    name: 'data[0]',
+    name: 'data.directory_indicators',
+    type: 'object',
+    description: '包含指定处理指标{key: value}结果',
+  },
+  {
+    key: 4,
+    name: 'data.cumulative_indicators',
     type: 'object',
     description: '包含指定处理指标{key: value}结果',
   },
@@ -85,8 +98,19 @@ let supportingIndicators = {
   作者视野: 'writerView',
   动词间距: 'verbDistance',
 }
+
+const excludes = ['writerView', 'verbDistance', 'adjustModel']
+const supportingCumulativeIndicators = Object.keys(supportingIndicators).filter(item => !excludes.includes(supportingIndicators[item])).map(item => {
+  return {
+    key: supportingIndicators[item],
+    indicator: item,
+    name: supportingIndicators[item]
+  }
+})
+
 supportingIndicators = Object.keys(supportingIndicators).map((item) => {
   return {
+    key: supportingIndicators[item],
     indicator: item,
     name: supportingIndicators[item],
   }
@@ -95,60 +119,46 @@ supportingIndicators = Object.keys(supportingIndicators).map((item) => {
 const commonIndicatorCorrectExampleResponse = JSON.stringify(
   {
     code: 0,
-    data: [
-      {
-        words: 215,
-        dicts: 153,
-        hapaxs: 128,
-        ttr: 0.7116279069767442,
-        hpoint: 3.5,
-        entropy: 6.587934979072887,
-        r1: 0.916860465116279,
-        rr: 0.010859924283396348,
-        rrmc: 0.9745790890250252,
-        tc: 0.7161904761904762,
-        secondTc: -0.022857142857142857,
-        activity: 0.8783783783783784,
-        descriptivity: 0.12162162162162163,
-        l: 162.7067298706133,
-        curveLength: 0.9208496000373919,
-        lambda: 1.7651322531968265,
-        adjustModel: 18.831736870579647,
-        gini: 0.26763945888432894,
-        r4: 0.7323605411156711,
-        writerView: -0.22873840635658252,
-        verbDistance: 3.15625,
+    data: {
+      directory_indicators: [
+        {
+          file_name: 'news1.txt',
+          words: 215,
+          dicts: 153,
+          hapaxs: 128,
+          ttr: 0.7116279069767442,
+          hpoint: 3.5,
+        },
+        {
+          file_name: 'news2.txt',
+          words: 182,
+          dicts: 110,
+          hapaxs: 81,
+          ttr: 0.6043956043956044,
+          hpoint: 4,
+        },
+        {
+          file_name: 'news5.txt',
+          words: 205,
+          dicts: 116,
+          hapaxs: 85,
+          ttr: 0.5658536585365853,
+          hpoint: 4.5,
+        },
+      ],
+      cumulative_indicators: {
+        words: 602,
+        dicts: 333,
+        hapaxs: 237,
+        ttr: 0.553156146179402,
+        hpoint: 6,
       },
-      {
-        words: 182,
-        dicts: 110,
-        hapaxs: 81,
-        ttr: 0.6043956043956044,
-        hpoint: 4,
-        entropy: 6.006881851470348,
-        r1: 0.8901098901098901,
-        rr: 0.014068349233184414,
-        rrmc: 0.9742842899509416,
-        tc: 0.5,
-        secondTc: 0,
-        activity: 0.9183673469387755,
-        descriptivity: 0.08163265306122448,
-        l: 117.48768087758589,
-        curveLength: 0.9127990261281842,
-        lambda: 1.458959043912929,
-        adjustModel: 12.252435773602388,
-        gini: 0.34665334665334663,
-        r4: 0.6533466533466534,
-        writerView: -0.3429399739025931,
-        verbDistance: 3.840909090909091,
-      },
-    ],
+    },
     msg: 'success',
   },
   null,
   4
 )
-
 const commonIndicatorErrortExampleResponse = JSON.stringify(
   {
     code: -1,
@@ -164,6 +174,7 @@ export {
   commonIndicatorExampleResponseParams,
   supportingIndicators,
   supportingIndictorsColumns,
+  supportingCumulativeIndicators,
   commonIndicatorCorrectExampleResponse,
   commonIndicatorErrortExampleResponse,
 }

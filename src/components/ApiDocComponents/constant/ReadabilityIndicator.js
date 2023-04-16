@@ -87,6 +87,7 @@ const readabilityCorrectExampleResponse = JSON.stringify(
     code: 0,
     data: [
       {
+        filename: 'news1.txt',
         ari: 17.42960552268245,
         rix: 10.166666666666666,
         fleschreading: 44.58784516765286,
@@ -98,6 +99,7 @@ const readabilityCorrectExampleResponse = JSON.stringify(
         lwIndex: 251.5,
       },
       {
+        filename: 'news2.txt',
         ari: 22.54322580645161,
         rix: 15.6,
         fleschreading: 26.71248387096773,

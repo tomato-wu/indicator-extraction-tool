@@ -8,6 +8,7 @@ import {
   supportingIndictorsColumns,
   commonIndicatorCorrectExampleResponse,
   commonIndicatorErrortExampleResponse,
+  supportingCumulativeIndicators,
 } from './constant'
 import './style/index.css'
 
@@ -39,6 +40,12 @@ const CommonIndicator = () => {
           <Table
             columns={supportingIndictorsColumns}
             dataSource={supportingIndicators}
+            pagination={false}
+          />
+          <h4>支持增量指标列表</h4>
+          <Table
+            columns={supportingIndictorsColumns}
+            dataSource={supportingCumulativeIndicators}
             pagination={false}
           />
         </Paragraph>
