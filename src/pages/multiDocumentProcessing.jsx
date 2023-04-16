@@ -35,16 +35,24 @@ function MultiDocumentProcessing() {
     fileList,
   };
   // 上传文件列表
-  const handleUpload = async () => {
+  const handleUpload = () => {
     const formData = new FormData();
     fileList.forEach((file) => {
-      formData.append("files", file);
+      formData.append("files[]", file);
     });
     setUploading(true);
-    const res = await getUploadFileListApi({
+    getUploadFileListApi({
       files: formData,
+    }).then((res) => {
+      if (res.code === 200) {
+        message.success("上传成功");
+        setUploading(false);
+        setFileList([]);
+      } else {
+        message.error("上传失败");
+        setUploading(false);
+      }
     });
-    console.log(res);
   };
 
   return (
