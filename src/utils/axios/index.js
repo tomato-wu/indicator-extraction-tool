@@ -25,16 +25,16 @@ export function httpPost({ url, data = {}, params = {}, responseType }) {
     service({
       url,
       method: "post",
-      transformRequest: [
-        function (data) {
-          let ret = "";
-          for (let it in data) {
-            ret +=
-              encodeURIComponent(it) + "=" + encodeURIComponent(data[it]) + "&";
-          }
-          return ret;
-        },
-      ],
+      // transformRequest: [
+      //   function (data) {
+      //     let ret = "";
+      //     for (let it in data) {
+      //       ret +=
+      //         encodeURIComponent(it) + "=" + encodeURIComponent(data[it]) + "&";
+      //     }
+      //     return ret;
+      //   },
+      // ],
       // 发送的数据
       data,
       //url参数

@@ -122,7 +122,7 @@ export const createAppidApi = (data = {}) =>
 // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //上传文件列表
 export const getUploadFileListApi = (data = {}) =>
-  httpPost({ url: "/open/common", data });
+  httpPost({ url: "/open/commonIndicator", data });
 
 // 导出 excel
 export const exportExcelApi = (data = {}) =>

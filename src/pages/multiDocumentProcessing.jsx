@@ -38,12 +38,10 @@ function MultiDocumentProcessing() {
   const handleUpload = () => {
     const formData = new FormData();
     fileList.forEach((file) => {
-      formData.append("files[]", file);
+      formData.append("files", file);
     });
     setUploading(true);
-    getUploadFileListApi({
-      files: formData,
-    }).then((res) => {
+    getUploadFileListApi(formData).then((res) => {
       if (res.code === 200) {
         message.success("上传成功");
         setUploading(false);
