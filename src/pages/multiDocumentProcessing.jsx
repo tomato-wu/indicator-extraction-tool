@@ -21,9 +21,10 @@ function MultiDocumentProcessing() {
       // 当文件上传组件的值发生变化时，调用 onChange 函数
       const _fileList = arg.fileList; // 获取文件列表
       _fileList.length < fileList.length // 如果文件列表长度小于之前的长度，说明用户删除了旧的文件
-        ? setFileList(
-            (fileList) => fileList.filter((item) => item.uid !== arg.file.uid) // 从 fileList 中移除对应的文件
-          )
+        ? setFileList((fileList) => {
+            setUploading(false);
+            return fileList.filter((item) => item.uid !== arg.file.uid); // 从 fileList 中移除对应的文件
+          })
         : setFileList((fileList) => {
             const isFileFormat =
               arg.file.type === "application/msword" ||
@@ -34,6 +35,10 @@ function MultiDocumentProcessing() {
               arg.file.type === "application/pdf";
             if (!isFileFormat) {
               message.error("文件格式不符合");
+              return fileList;
+            }
+            if (uploading === true) {
+              message.error("请等待上一次上传完成");
               return fileList;
             }
             return fileList.concat(arg.file); // 将新的文件添加到 fileList 中
@@ -82,12 +87,12 @@ function MultiDocumentProcessing() {
             icon: <UploadOutlined />,
           },
           {
-            title: "可通过拖拽文档调整顺序",
+            title: "判断文档格式是否符合要求",
             status: "finish",
             icon: <SyncOutlined />,
           },
           {
-            title: "提交处理",
+            title: "确定上传",
             status: "finish",
             icon: <MonitorOutlined />,
           },
