@@ -18,6 +18,8 @@ export function httpGet({ url, params = {} }) {
 }
 
 // post请求
+//在使用FormData上传文件时，浏览器会自动识别并添加请求头 “Content-Type: multipart/form-data”，无需手动设置。
+
 export function httpPost({ url, data = {}, params = {}, responseType }) {
   return new Promise((resolve, reject) => {
     service({

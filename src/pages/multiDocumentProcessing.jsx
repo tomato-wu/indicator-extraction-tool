@@ -24,23 +24,27 @@ function MultiDocumentProcessing() {
       const newFileList = fileList.slice();
       newFileList.splice(index, 1);
       setFileList(newFileList);
+      message.success("移除成功");
     },
     // 文件上传前的钩子
     beforeUpload: (file) => {
       setFileList([...fileList, file]);
+      message.success("上传成功");
       return false;
     },
     fileList,
   };
   // 上传文件列表
-  const handleUpload = () => {
+  const handleUpload = async () => {
     const formData = new FormData();
     fileList.forEach((file) => {
-      formData.append("files[]", file);
+      formData.append("files", file);
     });
     setUploading(true);
-    console.log("formData" + formData);
-    console.log("fileList" + fileList);
+    const res = await getUploadFileListApi({
+      files: formData,
+    });
+    console.log(res);
   };
 
   return (
