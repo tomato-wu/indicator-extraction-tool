@@ -1,10 +1,9 @@
-import { Steps, message, Upload, Select, Button, Checkbox } from "antd";
+import { Steps, message, Upload, Button } from "antd";
 import {
   UploadOutlined,
   SyncOutlined,
   MonitorOutlined,
   SubnodeOutlined,
-  InboxOutlined,
 } from "@ant-design/icons";
 import React, { useState } from "react";
 
@@ -18,18 +17,15 @@ function MultiDocumentProcessing() {
   const [uploading, setUploading] = useState(false);
 
   const props = {
-    // 移除文件
-    onRemove: (file) => {
-      const index = fileList.indexOf(file);
-      const newFileList = fileList.slice();
-      newFileList.splice(index, 1);
-      setFileList(newFileList);
-      message.success("移除成功");
+    onChange: (arg) => {
+      const _fileList = arg.fileList;
+      _fileList.length < fileList.length
+        ? setFileList((fileList) =>
+            fileList.filter((item) => item.uid !== arg.file.uid)
+          )
+        : setFileList((fileList) => fileList.concat(arg.file));
     },
-    // 文件上传前的钩子
-    beforeUpload: (file) => {
-      setFileList([...fileList, file]);
-      message.success("上传成功");
+    beforeUpload: (file, _fileList) => {
       return false;
     },
     fileList,
@@ -105,6 +101,7 @@ function MultiDocumentProcessing() {
           {/* 多文档上传 */}
           <Upload
             {...props}
+            multiple
             listType="picture"
             style={{
               borderStyle: "none",
