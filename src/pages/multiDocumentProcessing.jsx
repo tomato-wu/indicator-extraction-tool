@@ -41,16 +41,22 @@ function MultiDocumentProcessing() {
       formData.append("files", file);
     });
     setUploading(true);
-    getUploadFileListApi(formData).then((res) => {
-      if (res.code === 200) {
-        message.success("上传成功");
-        setUploading(false);
-        setFileList([]);
-      } else {
-        message.error("上传失败");
+    getUploadFileListApi(formData).then(
+      (res) => {
+        if (res.code === 0) {
+          message.success("上传成功");
+          setUploading(false);
+          setFileList([]);
+        } else {
+          message.error("上传失败");
+          setUploading(false);
+        }
+      },
+      (err) => {
+        message.error("上传失败" + err);
         setUploading(false);
       }
-    });
+    );
   };
 
   return (
