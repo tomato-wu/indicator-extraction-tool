@@ -1,4 +1,4 @@
-import { httpDelete, httpGet, httpPost } from "./index";
+import { httpDelete, httpGet, httpPost, httpMultiForm } from "./index";
 
 // 输入文本 - 语种识别接口
 export const getLanguageApi = (data = {}) =>
@@ -122,7 +122,7 @@ export const createAppidApi = (data = {}) =>
 // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //上传文件列表
 export const getUploadFileListApi = (data = {}) =>
-  httpPost({ url: "/open/commonIndicator", data });
+  httpMultiForm({ url: "/common/multifiles", data });
 
 // 导出 excel
 export const exportExcelApi = (data = {}) =>

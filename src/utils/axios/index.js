@@ -1,5 +1,5 @@
-import service from "./service";
-import qs from "qs";
+import service from './service'
+import qs from 'qs'
 
 // get 请求
 export function httpGet({ url, params = {} }) {
@@ -9,12 +9,26 @@ export function httpGet({ url, params = {} }) {
         params,
       })
       .then((res) => {
-        resolve(res.data);
+        resolve(res.data)
       })
       .catch((err) => {
-        reject(err);
-      });
-  });
+        reject(err)
+      })
+  })
+}
+
+export function httpMultiForm({ url, data = {}, params = {}, responseType }) {
+  return new Promise((resolve, reject) => {
+    service({
+      url,
+      method: 'post',
+      data,
+      params,
+      responseType,
+    }).then((res) => {
+      resolve(res.data)
+    })
+  })
 }
 
 // post请求
@@ -24,7 +38,7 @@ export function httpPost({ url, data = {}, params = {}, responseType }) {
   return new Promise((resolve, reject) => {
     service({
       url,
-      method: "post",
+      method: 'post',
       transformRequest: [
         function (data) {
           let ret = "";
@@ -41,9 +55,9 @@ export function httpPost({ url, data = {}, params = {}, responseType }) {
       params,
       responseType,
     }).then((res) => {
-      resolve(res.data);
-    });
-  });
+      resolve(res.data)
+    })
+  })
 }
 
 // put请求
@@ -51,15 +65,15 @@ export function httpPut({ url, data = {}, params = {} }) {
   return new Promise((resolve, reject) => {
     service({
       url,
-      method: "put",
+      method: 'put',
       transformRequest: [
         function (data) {
-          let ret = "";
+          let ret = ''
           for (let it in data) {
             ret +=
-              encodeURIComponent(it) + "=" + encodeURIComponent(data[it]) + "&";
+              encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
           }
-          return ret;
+          return ret
         },
       ],
       // 发送的数据
@@ -67,30 +81,30 @@ export function httpPut({ url, data = {}, params = {} }) {
       //url参数
       params,
     }).then((res) => {
-      resolve(res.data);
-    });
-  });
+      resolve(res.data)
+    })
+  })
 }
 
 // delete请求
 // https://blog.csdn.net/qq383366204/article/details/80268007
 export function httpDelete({ url, data = {} }) {
-  let sq = "";
+  let sq = ''
   for (const item in data) {
-    sq += sq === "" ? "" : "&";
-    sq += `${item}=${data[item]}`;
+    sq += sq === '' ? '' : '&'
+    sq += `${item}=${data[item]}`
   }
   return new Promise((resolve, reject) => {
     service({
       url,
-      method: "delete",
+      method: 'delete',
       // 发送的数据
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
+        'Content-Type': 'application/x-www-form-urlencoded',
       },
       data: sq,
     }).then((res) => {
-      resolve(res.data);
-    });
-  });
+      resolve(res.data)
+    })
+  })
 }
