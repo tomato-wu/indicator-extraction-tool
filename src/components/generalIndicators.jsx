@@ -28,7 +28,7 @@ import { useState } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
 
 function GeneralIndicators(props) {
-  const { lgType, lgText, isSplitingText } = props;
+  const { lgType, lgText, requireSplit } = props;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -47,7 +47,7 @@ function GeneralIndicators(props) {
     const getTTR = await getTTRApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getTTRObj = getTTR.data;
     console.log(getTTRObj);
@@ -59,7 +59,7 @@ function GeneralIndicators(props) {
     const getR1 = await getR1Api({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getR1Obj = getR1.data;
     setObj({ ...getR1Obj });
@@ -69,7 +69,7 @@ function GeneralIndicators(props) {
     const getRR = await getRRApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getRRObj = getRR.data;
     setObj({ ...getRRObj });
@@ -79,7 +79,7 @@ function GeneralIndicators(props) {
     const getRRMC = await getRRMCApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getRRMCObj = getRRMC.data;
     setObj({ ...getRRMCObj });
@@ -89,7 +89,7 @@ function GeneralIndicators(props) {
     const getSecondaryTC = await getSecondaryTCApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getSecondaryTCObj = getSecondaryTC.data;
     setObj({ ...getSecondaryTCObj });
@@ -99,7 +99,7 @@ function GeneralIndicators(props) {
     const getTCValue = await getTCValueApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getTCValueObj = getTCValue.data;
     setObj({ ...getTCValueObj });
@@ -109,7 +109,7 @@ function GeneralIndicators(props) {
     const getActivity = await getActivityApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getActivityObj = getActivity.data;
     setObj({ ...getActivityObj });
@@ -119,7 +119,7 @@ function GeneralIndicators(props) {
     const getDescriptivity = await getDescriptivityApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getDescriptivityObj = getDescriptivity.data;
     setObj({ ...getDescriptivityObj });
@@ -129,7 +129,7 @@ function GeneralIndicators(props) {
     const getlvalue = await getlvalueApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getlvalueObj = getlvalue.data;
     setObj({ ...getlvalueObj });
@@ -139,7 +139,7 @@ function GeneralIndicators(props) {
     const getCurveLength = await getCurveLengthApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getCurveLengthObj = getCurveLength.data;
     setObj({ ...getCurveLengthObj });
@@ -149,7 +149,7 @@ function GeneralIndicators(props) {
     const getLambda = await getLambdaApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getLambdaObj = getLambda.data;
     setObj({ ...getLambdaObj });
@@ -159,7 +159,7 @@ function GeneralIndicators(props) {
     const getAdjustModule = await getAdjustModuleApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getAdjustModuleObj = getAdjustModule.data;
     setObj({ ...getAdjustModuleObj });
@@ -169,7 +169,7 @@ function GeneralIndicators(props) {
     const getGini = await getGiniApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getGiniObj = getGini.data;
     setObj({ ...getGiniObj });
@@ -179,7 +179,7 @@ function GeneralIndicators(props) {
     const getR4 = await getR4Api({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getR4Obj = getR4.data;
     setObj({ ...getR4Obj });
@@ -189,7 +189,7 @@ function GeneralIndicators(props) {
     const getHapax = await getHapaxApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getHapaxObj = getHapax.data;
     setObj({ ...getHapaxObj });
@@ -199,7 +199,7 @@ function GeneralIndicators(props) {
     const getWriterView = await getWriterViewApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getWriterViewObj = getWriterView.data;
     setObj({ ...getWriterViewObj });
@@ -209,7 +209,7 @@ function GeneralIndicators(props) {
     const getVerbDistance = await getVerbDistanceApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getVerbDistanceObj = getVerbDistance.data;
     setObj({ ...getVerbDistanceObj });
@@ -220,7 +220,7 @@ function GeneralIndicators(props) {
     const getWords = await getWordsApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getVerbDistanceObj = getWords.data;
     setObj({ ...getVerbDistanceObj });
@@ -231,7 +231,7 @@ function GeneralIndicators(props) {
     const getDicts = await getDictsApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getVerbDistanceObj = getDicts.data;
     setObj({ ...getVerbDistanceObj });
@@ -242,7 +242,7 @@ function GeneralIndicators(props) {
     const getEntropy = await getEntropyApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getVerbDistanceObj = getEntropy.data;
     setObj({ ...getVerbDistanceObj });
@@ -253,7 +253,7 @@ function GeneralIndicators(props) {
     const getHPoint = await getHPointApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getVerbDistanceObj = getHPoint.data;
     setObj({ ...getVerbDistanceObj });
@@ -264,7 +264,7 @@ function GeneralIndicators(props) {
     const getAllTag = await getAllTagApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getAllTagObj = getAllTag.data;
     console.log(getAllTagObj);

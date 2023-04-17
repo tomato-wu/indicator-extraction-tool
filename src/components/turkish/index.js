@@ -5,15 +5,11 @@ import { Button, Space } from "antd";
 import GeneralIndicators from "../generalIndicators";
 
 const Turkish = (props) => {
-  const { lgType, lgText, isSplitingText } = props;
+  const { lgType, lgText } = props;
   return (
     <>
       {/* 功能选择按钮 */}
-      <GeneralIndicators
-        lgType={lgType}
-        lgText={lgText}
-        isSplitingText={isSplitingText}
-      />
+      <GeneralIndicators lgType={lgType} lgText={lgText} />
       {/* 特定语种指标提取 */}
       {/* <Space size={[8, 16]} wrap style={{ marginTop: "15px" }}>
         <span style={{ fontSize: "9px", color: "gray" }}>土耳其语 ：</span>

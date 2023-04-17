@@ -3,14 +3,14 @@ import { Button, Space } from "antd";
 import GeneralIndicators from "../generalIndicators";
 
 const VietnameseBar = (props) => {
-  const { lgType, lgText, isSplitingText } = props;
+  const { lgType, lgText, requireSplit } = props;
   return (
     <>
       {/* 功能选择按钮 */}
       <GeneralIndicators
         lgType={lgType}
         lgText={lgText}
-        isSplitingText={isSplitingText}
+        requireSplit={requireSplit}
       />
       {/* 特定语种指标提取 */}
       <Space size={[8, 16]} wrap style={{ marginTop: "15px" }}>

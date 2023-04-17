@@ -1,18 +1,15 @@
+// 菲律宾语计量指标提取：
 import React from "react";
 import { Button, Space } from "antd";
 import GeneralIndicators from "../generalIndicators";
 
 function FilipinoBar(props) {
-  const { lgType, lgText, isSplitingText } = props;
+  const { lgType, lgText } = props;
 
   return (
     <>
       {/* 功能选择按钮 */}
-      <GeneralIndicators
-        lgType={lgType}
-        lgText={lgText}
-        isSplitingText={isSplitingText}
-      />
+      <GeneralIndicators lgType={lgType} lgText={lgText} />
       {/* 特定语种处理 */}
       {/* <Space size={[8, 16]} wrap style={{ marginTop: "15px" }}>
         <span style={{ fontSize: "9px", color: "gray" }}>

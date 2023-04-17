@@ -17,7 +17,7 @@ import {
 import { exportExcelApi } from "../utils/axios/api";
 
 function ReadabilityIndicators(props) {
-  const { lgType, lgText, isSplitingText } = props;
+  const { lgType, lgText, requireSplit } = props;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [obj, setObj] = useState({});
@@ -35,7 +35,7 @@ function ReadabilityIndicators(props) {
     const getARI = await getARIApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getARIObj = getARI.data;
     setObj({ ...getARIObj });
@@ -46,7 +46,7 @@ function ReadabilityIndicators(props) {
     const getRIX = await getRIXApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getRIXObj = getRIX.data;
     setObj({ ...getRIXObj });
@@ -56,7 +56,7 @@ function ReadabilityIndicators(props) {
     const getFlsechKincaidGrade = await getFlsechKincaidGradeApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getFlsechKincaidGradeObj = getFlsechKincaidGrade.data;
     setObj({ ...getFlsechKincaidGradeObj });
@@ -66,7 +66,7 @@ function ReadabilityIndicators(props) {
     const getGunningFog = await getGunningFogApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getGunningFogObj = getGunningFog.data;
     setObj({ ...getGunningFogObj });
@@ -76,7 +76,7 @@ function ReadabilityIndicators(props) {
     const getSmog = await getSmogApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getSmogObj = getSmog.data;
     setObj({ ...getSmogObj });
@@ -86,7 +86,7 @@ function ReadabilityIndicators(props) {
     const getColemanLiauIndex = await getColemanLiauIndexApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getColemanLiauIndexObj = getColemanLiauIndex.data;
     setObj({ ...getColemanLiauIndexObj });
@@ -96,7 +96,7 @@ function ReadabilityIndicators(props) {
     const getDaleChallIndex = await getDaleChallIndexApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getDaleChallIndexObj = getDaleChallIndex.data;
     setObj({ ...getDaleChallIndexObj });
@@ -106,7 +106,7 @@ function ReadabilityIndicators(props) {
     const getFleschReading = await getFleschReadingApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getDaleChallIndexObj = getFleschReading.data;
     setObj({ ...getDaleChallIndexObj });
@@ -116,7 +116,7 @@ function ReadabilityIndicators(props) {
     const getLWIndex = await getLWIndexApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getLWIndexObj = getLWIndex.data;
     setObj({ ...getLWIndexObj });
@@ -127,7 +127,7 @@ function ReadabilityIndicators(props) {
     const getAllTags = await getAllTagsApi({
       lg_type: lgType,
       lg_text: lgText,
-      isSplitingText: isSplitingText,
+      requireSplit: requireSplit === "undefined" ? false : true,
     });
     const getAllTagsObj = getAllTags.data;
     setObj({ ...getAllTagsObj });

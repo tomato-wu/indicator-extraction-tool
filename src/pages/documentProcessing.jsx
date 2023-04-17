@@ -79,14 +79,14 @@ const beforeUpload = (file) => {
 };
 
 // 切换不同语种的组件
-function MenuItem({ menu, lgType, lgText, isSplitingText }) {
+function MenuItem({ menu, lgType, lgText, requireSplit }) {
   switch (menu) {
     case "zh":
       return (
         <ChineseBar
           lgType={lgType}
           lgText={lgText}
-          isSplitingText={isSplitingText}
+          requireSplit={requireSplit}
         />
       );
     case "en":
@@ -94,7 +94,7 @@ function MenuItem({ menu, lgType, lgText, isSplitingText }) {
         <EnglishBar
           lgType={lgType}
           lgText={lgText}
-          isSplitingText={isSplitingText}
+          requireSplit={requireSplit}
         />
       );
     case "ja":
@@ -102,7 +102,7 @@ function MenuItem({ menu, lgType, lgText, isSplitingText }) {
         <JapaneseBar
           lgType={lgType}
           lgText={lgText}
-          isSplitingText={isSplitingText}
+          requireSplit={requireSplit}
         />
       );
     case "id":
@@ -110,7 +110,7 @@ function MenuItem({ menu, lgType, lgText, isSplitingText }) {
         <IndonesianBar
           lgType={lgType}
           lgText={lgText}
-          isSplitingText={isSplitingText}
+          requireSplit={requireSplit}
         />
       );
     case "tl":
@@ -118,144 +118,92 @@ function MenuItem({ menu, lgType, lgText, isSplitingText }) {
         <FilipinoBar
           lgType={lgType}
           lgText={lgText}
-          isSplitingText={isSplitingText}
+          requireSplit={requireSplit}
         />
       );
     case "th":
       return (
-        <Thai lgType={lgType} lgText={lgText} isSplitingText={isSplitingText} />
+        <Thai lgType={lgType} lgText={lgText} requireSplit={requireSplit} />
       );
     case "vi":
       return (
         <Vietnamese
           lgType={lgType}
           lgText={lgText}
-          isSplitingText={isSplitingText}
+          requireSplit={requireSplit}
         />
       );
     case "km":
       return (
-        <Burmese
-          lgType={lgType}
-          lgText={lgText}
-          isSplitingText={isSplitingText}
-        />
+        <Burmese lgType={lgType} lgText={lgText} requireSplit={requireSplit} />
       );
     case "lo":
       return (
-        <Lao lgType={lgType} lgText={lgText} isSplitingText={isSplitingText} />
+        <Lao lgType={lgType} lgText={lgText} requireSplit={requireSplit} />
       );
     case "ar":
       return (
-        <Arabic
-          lgType={lgType}
-          lgText={lgText}
-          isSplitingText={isSplitingText}
-        />
+        <Arabic lgType={lgType} lgText={lgText} requireSplit={requireSplit} />
       );
     case "es":
       return (
-        <Spanish
-          lgType={lgType}
-          lgText={lgText}
-          isSplitingText={isSplitingText}
-        />
+        <Spanish lgType={lgType} lgText={lgText} requireSplit={requireSplit} />
       );
     case "pt":
       return (
         <Portuguese
           lgType={lgType}
           lgText={lgText}
-          isSplitingText={isSplitingText}
+          requireSplit={requireSplit}
         />
       );
     case "tr":
       return (
-        <Turkish
-          lgType={lgType}
-          lgText={lgText}
-          isSplitingText={isSplitingText}
-        />
+        <Turkish lgType={lgType} lgText={lgText} requireSplit={requireSplit} />
       );
     case "ko":
       return (
-        <Korean
-          lgType={lgType}
-          lgText={lgText}
-          isSplitingText={isSplitingText}
-        />
+        <Korean lgType={lgType} lgText={lgText} requireSplit={requireSplit} />
       );
     case "bn":
       return (
-        <Bengali
-          lgType={lgType}
-          lgText={lgText}
-          isSplitingText={isSplitingText}
-        />
+        <Bengali lgType={lgType} lgText={lgText} requireSplit={requireSplit} />
       );
     case "fa":
       return (
-        <Farsi
-          lgType={lgType}
-          lgText={lgText}
-          isSplitingText={isSplitingText}
-        />
+        <Farsi lgType={lgType} lgText={lgText} requireSplit={requireSplit} />
       );
     case "ru":
       return (
-        <Russian
-          lgType={lgType}
-          lgText={lgText}
-          isSplitingText={isSplitingText}
-        />
+        <Russian lgType={lgType} lgText={lgText} requireSplit={requireSplit} />
       );
     case "dr":
       return (
-        <German
-          lgType={lgType}
-          lgText={lgText}
-          isSplitingText={isSplitingText}
-        />
+        <German lgType={lgType} lgText={lgText} requireSplit={requireSplit} />
       );
     case "fr":
       return (
-        <French
-          lgType={lgType}
-          lgText={lgText}
-          isSplitingText={isSplitingText}
-        />
+        <French lgType={lgType} lgText={lgText} requireSplit={requireSplit} />
       );
     case "it":
       return (
-        <Italian
-          lgType={lgType}
-          lgText={lgText}
-          isSplitingText={isSplitingText}
-        />
+        <Italian lgType={lgType} lgText={lgText} requireSplit={requireSplit} />
       );
     case "cs":
       return (
-        <Czech
-          lgType={lgType}
-          lgText={lgText}
-          isSplitingText={isSplitingText}
-        />
+        <Czech lgType={lgType} lgText={lgText} requireSplit={requireSplit} />
       );
     case "uk":
       return (
         <Ukrainian
           lgType={lgType}
           lgText={lgText}
-          isSplitingText={isSplitingText}
+          requireSplit={requireSplit}
         />
       );
     case "sv":
       return (
-        <Swedish
-          lgType={lgType}
-          lgText={lgText}
-          isSplitingText={isSplitingText}
-        />
+        <Swedish lgType={lgType} lgText={lgText} requireSplit={requireSplit} />
       );
     default:
       return null;
@@ -286,9 +234,9 @@ function DocumentProcessing() {
   const [lgType, setLgType] = useState("");
   const [lgText, setLgText] = useState("");
 
-  const [isSplitingText, setIsSplitingText] = useState(false); // 文本是否是已经分词后的文本
+  const [requireSplit, setRequireSplit] = useState(false); // 文本是否是已经分词后的文本
   const onChange = (e) => {
-    setIsSplitingText(e.target.checked);
+    setRequireSplit(e.target.checked);
   };
 
   // 点击选择器自助选择需要解析的语种
@@ -570,7 +518,7 @@ function DocumentProcessing() {
               menu={menu}
               lgType={lgType}
               lgText={lgText}
-              isSplitingText={isSplitingText}
+              requireSplit={requireSplit}
             />
           </div>
         </div>

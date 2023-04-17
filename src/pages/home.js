@@ -55,7 +55,7 @@ const items = [
     icon: <FolderOpenOutlined />,
   },
   {
-    label: "Api接入文档",
+    label: "API接入",
     key: "ApiDocumentation",
     icon: <ApiOutlined />,
   },

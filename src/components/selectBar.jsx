@@ -1,15 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
-import {
-  Button,
-  Dropdown,
-  message,
-  Space,
-  Select,
-  Input,
-  Tag,
-  Divider,
-  Checkbox,
-} from "antd";
+import { message, Space, Select, Input, Tag, Divider } from "antd";
 import {
   getLanguageApi,
   getHistoryApi,
@@ -57,10 +47,6 @@ function SelectBar() {
 
   const [lgText, setLgText] = useState("");
 
-  const [isSplitingText, setIsSplitingText] = useState(false); // 文本是否是已经分词后的文本
-  const onChange = (e) => {
-    setIsSplitingText(e.target.checked);
-  };
   async function getLanguages(LanguagesText) {
     // 语种识别接口
     let tag = await getLanguageApi({ text: LanguagesText });
@@ -220,192 +206,54 @@ function SelectBar() {
   };
 
   // 切换不同语种的组件
-  function MenuItem({ menu, lgType, lgText, isSplitingText }) {
+  function MenuItem({ menu, lgType, lgText }) {
     switch (menu) {
       case "zh":
-        return (
-          <ChineseBar
-            lgType={lgType}
-            lgText={lgText}
-            isSplitingText={isSplitingText}
-          />
-        );
+        return <ChineseBar lgType={lgType} lgText={lgText} />;
       case "en":
-        return (
-          <EnglishBar
-            lgType={lgType}
-            lgText={lgText}
-            isSplitingText={isSplitingText}
-          />
-        );
+        return <EnglishBar lgType={lgType} lgText={lgText} />;
       case "ja":
-        return (
-          <JapaneseBar
-            lgType={lgType}
-            lgText={lgText}
-            isSplitingText={isSplitingText}
-          />
-        );
+        return <JapaneseBar lgType={lgType} lgText={lgText} />;
       case "id":
-        return (
-          <IndonesianBar
-            lgType={lgType}
-            lgText={lgText}
-            isSplitingText={isSplitingText}
-          />
-        );
+        return <IndonesianBar lgType={lgType} lgText={lgText} />;
       case "tl":
-        return (
-          <FilipinoBar
-            lgType={lgType}
-            lgText={lgText}
-            isSplitingText={isSplitingText}
-          />
-        );
+        return <FilipinoBar lgType={lgType} lgText={lgText} />;
       case "th":
-        return (
-          <Thai
-            lgType={lgType}
-            lgText={lgText}
-            isSplitingText={isSplitingText}
-          />
-        );
+        return <Thai lgType={lgType} lgText={lgText} />;
       case "vi":
-        return (
-          <Vietnamese
-            lgType={lgType}
-            lgText={lgText}
-            isSplitingText={isSplitingText}
-          />
-        );
+        return <Vietnamese lgType={lgType} lgText={lgText} />;
       case "km":
-        return (
-          <Burmese
-            lgType={lgType}
-            lgText={lgText}
-            isSplitingText={isSplitingText}
-          />
-        );
+        return <Burmese lgType={lgType} lgText={lgText} />;
       case "lo":
-        return (
-          <Lao
-            lgType={lgType}
-            lgText={lgText}
-            isSplitingText={isSplitingText}
-          />
-        );
+        return <Lao lgType={lgType} lgText={lgText} />;
       case "ar":
-        return (
-          <Arabic
-            lgType={lgType}
-            lgText={lgText}
-            isSplitingText={isSplitingText}
-          />
-        );
+        return <Arabic lgType={lgType} lgText={lgText} />;
       case "es":
-        return (
-          <Spanish
-            lgType={lgType}
-            lgText={lgText}
-            isSplitingText={isSplitingText}
-          />
-        );
+        return <Spanish lgType={lgType} lgText={lgText} />;
       case "pt":
-        return (
-          <Portuguese
-            lgType={lgType}
-            lgText={lgText}
-            isSplitingText={isSplitingText}
-          />
-        );
+        return <Portuguese lgType={lgType} lgText={lgText} />;
       case "tr":
-        return (
-          <Turkish
-            lgType={lgType}
-            lgText={lgText}
-            isSplitingText={isSplitingText}
-          />
-        );
+        return <Turkish lgType={lgType} lgText={lgText} />;
       case "ko":
-        return (
-          <Korean
-            lgType={lgType}
-            lgText={lgText}
-            isSplitingText={isSplitingText}
-          />
-        );
+        return <Korean lgType={lgType} lgText={lgText} />;
       case "bn":
-        return (
-          <Bengali
-            lgType={lgType}
-            lgText={lgText}
-            isSplitingText={isSplitingText}
-          />
-        );
+        return <Bengali lgType={lgType} lgText={lgText} />;
       case "fa":
-        return (
-          <Farsi
-            lgType={lgType}
-            lgText={lgText}
-            isSplitingText={isSplitingText}
-          />
-        );
+        return <Farsi lgType={lgType} lgText={lgText} />;
       case "ru":
-        return (
-          <Russian
-            lgType={lgType}
-            lgText={lgText}
-            isSplitingText={isSplitingText}
-          />
-        );
+        return <Russian lgType={lgType} lgText={lgText} />;
       case "dr":
-        return (
-          <German
-            lgType={lgType}
-            lgText={lgText}
-            isSplitingText={isSplitingText}
-          />
-        );
+        return <German lgType={lgType} lgText={lgText} />;
       case "fr":
-        return (
-          <French
-            lgType={lgType}
-            lgText={lgText}
-            isSplitingText={isSplitingText}
-          />
-        );
+        return <French lgType={lgType} lgText={lgText} />;
       case "it":
-        return (
-          <Italian
-            lgType={lgType}
-            lgText={lgText}
-            isSplitingText={isSplitingText}
-          />
-        );
+        return <Italian lgType={lgType} lgText={lgText} />;
       case "cs":
-        return (
-          <Czech
-            lgType={lgType}
-            lgText={lgText}
-            isSplitingText={isSplitingText}
-          />
-        );
+        return <Czech lgType={lgType} lgText={lgText} />;
       case "uk":
-        return (
-          <Ukrainian
-            lgType={lgType}
-            lgText={lgText}
-            isSplitingText={isSplitingText}
-          />
-        );
+        return <Ukrainian lgType={lgType} lgText={lgText} />;
       case "sv":
-        return (
-          <Swedish
-            lgType={lgType}
-            lgText={lgText}
-            isSplitingText={isSplitingText}
-          />
-        );
+        return <Swedish lgType={lgType} lgText={lgText} />;
       default:
         return null;
     }
@@ -525,19 +373,10 @@ function SelectBar() {
                 },
               ]}
             />
-            <Checkbox onChange={onChange} style={{ marginLeft: "40px" }}>
-              {"   "}
-              文本是否是已经分词后的文本
-            </Checkbox>
           </div>
           <div>
             {/* 指标提取 */}
-            <MenuItem
-              menu={menu}
-              lgType={lgType}
-              lgText={lgText}
-              isSplitingText={isSplitingText}
-            />
+            <MenuItem menu={menu} lgType={lgType} lgText={lgText} />
           </div>
         </div>
       </div>
