@@ -234,11 +234,6 @@ function DocumentProcessing() {
   const [lgType, setLgType] = useState("");
   const [lgText, setLgText] = useState("");
 
-  const [requireSplit, setRequireSplit] = useState(false); // 文本是否是已经分词后的文本
-  const onChange = (e) => {
-    setRequireSplit(e.target.checked);
-  };
-
   // 点击选择器自助选择需要解析的语种
   const changeLanguages = (e) => {
     setMenu(e);
@@ -507,19 +502,10 @@ function DocumentProcessing() {
                 },
               ]}
             />
-            <Checkbox onChange={onChange} style={{ marginLeft: "40px" }}>
-              {"   "}
-              文本是否是已经分词后的文本
-            </Checkbox>
           </div>
           <div>
             {/* 指标提取 */}
-            <MenuItem
-              menu={menu}
-              lgType={lgType}
-              lgText={lgText}
-              requireSplit={requireSplit}
-            />
+            <MenuItem menu={menu} lgType={lgType} lgText={lgText} />
           </div>
         </div>
       </div>

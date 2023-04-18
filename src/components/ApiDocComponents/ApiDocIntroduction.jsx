@@ -1,38 +1,16 @@
-import service from '../../utils/axios/service'
-import React from 'react'
-import { Typography, Upload, Button } from 'antd'
-const { Title, Paragraph } = Typography
+import React from "react";
+import { Typography } from "antd";
+const { Title, Paragraph } = Typography;
 const PersonCardBox = {
-  width: '100%',
-  height: '100%',
-  padding: '80px',
-  backgroundColor: '#FDFDFD',
-}
+  width: "100%",
+  height: "100%",
+  padding: "80px",
+  backgroundColor: "#FDFDFD",
+};
 
 const ApiDocIntroduction = () => {
-  const handleUploadDirectory = (...args) => {
-    console.log(args)
-    const formdata = new FormData()
-
-    // service({
-    //   method: 'post',
-    //   url: '/open/commonIndicator',
-
-    // })
-  }
-  const handleUploadChange = (...args) => {
-    console.log('change', args)
-  }
-
   return (
     <>
-      <Upload
-        directory
-        customRequest={handleUploadDirectory}
-        onChange={handleUploadChange}
-      >
-        <Button>Upload Directory</Button>
-      </Upload>
       <div style={PersonCardBox}>
         <Title level={3}>接入服务介绍</Title>
 
@@ -91,7 +69,7 @@ const ApiDocIntroduction = () => {
         </Paragraph>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default ApiDocIntroduction
+export default ApiDocIntroduction;
