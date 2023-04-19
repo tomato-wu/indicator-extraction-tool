@@ -1,0 +1,9 @@
+.split_word {
+  color: red;
+}
+
+.dict-wrapper {
+  width: 100%;
+  margin: 20px auto;
+  text-align: right;
+}

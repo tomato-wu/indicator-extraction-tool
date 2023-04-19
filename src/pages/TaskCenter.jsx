@@ -6,24 +6,24 @@ import {
   CloseCircleOutlined,
 } from '@ant-design/icons'
 import { httpPost, httpGet } from '../utils/axios'
+import './index.css'
 
 const { Column } = Table
 const { Panel } = Collapse
 
-// download utils
-function downloadExcelFile(filename, binary) {
-  const blob = new Blob([binary], { type: 'application/vnd.ms-excel' }) // 创建一个 Blob 对象，将二进制数据转换为文件对象
-  const url = URL.createObjectURL(blob) // 创建一个 URL 对象，指向该 Blob 对象
-  const a = document.createElement('a') // 创建一个 <a> 标签
-  a.href = url // 将 URL 对象赋值给 <a> 标签的 href 属性
-  a.download = `${filename}.xlsx` // 指定下载文件的名称
-  window.document.body.append(a) //将 <a> 标签添加到文档中
-  a.click() // 模拟点击 <a> 标签以下载文件
-  document.body.removeChild(a) // 从文档中删除 <a> 标签
-  window.URL.revokeObjectURL(blob) // 释放 URL 对象
+function downloadFile(filename, binary, miniType, suffix) {
+  const blob = new Blob([binary], { type: miniType })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = `${filename}.${suffix}`
+  window.document.body.append(a)
+  a.click()
+  document.body.removeChild(a)
+  window.URL.revokeObjectURL(blob)
 }
 
-function TaskInfoModal({ files, isModalOpen, setIsModalOpen }) {
+function TaskInfoModal({ files, isModalOpen, setIsModalOpen, taskId }) {
   const handleOk = () => {
     setIsModalOpen(false)
   }
@@ -32,18 +32,36 @@ function TaskInfoModal({ files, isModalOpen, setIsModalOpen }) {
     setIsModalOpen(false)
   }
 
-  const _span = {
-    color: 'red',
+  const _modal_body_style = {
+    padding: '20px 0',
+  }
+
+  const downloadDict = async () => {
+    const data = await httpPost({
+      url: '/multi/downloadDict',
+      data: {
+        id: taskId,
+      },
+      responseType: 'blob',
+    })
+    downloadFile(taskId, data, 'text/plain', 'txt')
   }
 
   return (
     <>
       <Modal
+        width={1200}
+        bodyStyle={_modal_body_style}
         title="任务详情"
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
       >
+        <div className="dict-wrapper">
+          <Button type="primary" ghost onClick={downloadDict}>
+            导出词典
+          </Button>
+        </div>
         <Collapse accordion>
           {files.map((item) => (
             <Panel header={item.filename} key={item.filename}>
@@ -51,7 +69,7 @@ function TaskInfoModal({ files, isModalOpen, setIsModalOpen }) {
                 dangerouslySetInnerHTML={{
                   __html: item.content.replace(
                     /[ ]{1}/g,
-                    `<span className={_span}> / </span>`
+                    `<span class="split_word"> / </span>`
                   ),
                 }}
               />
@@ -67,6 +85,7 @@ function TaskCenter() {
   const [tasks, setTasks] = useState([])
   const [files, setFile] = useState([])
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [taskId, setTaskId] = useState('')
 
   const getTasks = async () => {
     const tasks = await httpGet({
@@ -89,6 +108,7 @@ function TaskCenter() {
         content: item.content,
       })
     }
+    setTaskId(task_id)
     setFile(infos)
     setIsModalOpen(true)
   }
@@ -100,7 +120,7 @@ function TaskCenter() {
       },
       responseType: 'blob',
     })
-    downloadExcelFile(task_id, data)
+    downloadFile(task_id, data, 'application/vnd.ms-excel', 'xlsx')
   }
 
   useEffect(() => {
@@ -111,6 +131,7 @@ function TaskCenter() {
     <>
       <TaskInfoModal
         files={files}
+        taskId={taskId}
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
       />
