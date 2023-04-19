@@ -1,6 +1,6 @@
 //汉语
 import { useState } from "react";
-import { Button, Space, Checkbox } from "antd";
+import { Space, Checkbox } from "antd";
 import GeneralIndicators from "../generalIndicators";
 
 const ChineseBar = (props) => {

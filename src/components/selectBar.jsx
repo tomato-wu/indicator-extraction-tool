@@ -242,7 +242,7 @@ function SelectBar() {
         return <Farsi lgType={lgType} lgText={lgText} />;
       case "ru":
         return <Russian lgType={lgType} lgText={lgText} />;
-      case "dr":
+      case "de":
         return <German lgType={lgType} lgText={lgText} />;
       case "fr":
         return <French lgType={lgType} lgText={lgText} />;
