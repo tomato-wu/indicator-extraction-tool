@@ -2,9 +2,11 @@ import axios from 'axios'
 import { message } from 'antd'
 import history from '../history'
 
+console.log(process.env.NODE_ENV)
+console.log(process.env)
+
 const service = axios.create({
-  // baseURL: "http://192.168.207.233:25001", // 在线
-  baseURL: "http://192.168.128.125:5000", // 本地
+  baseURL: process.env.REACT_APP_REQUEST_URL, // 在线
   timeout: 100000,
   headers: {
     // get: {
