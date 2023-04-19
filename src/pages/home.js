@@ -3,12 +3,9 @@ import {
   Layout,
   Menu,
   Space,
-  Avatar,
-  Image,
   message,
   FloatButton,
   Modal,
-  BackTop,
 } from "antd";
 
 import { useNavigate } from "react-router-dom";
@@ -23,6 +20,7 @@ import {
   QuestionCircleOutlined,
   ApiOutlined,
   FolderOpenOutlined,
+  FundViewOutlined
 } from "@ant-design/icons";
 
 import { logoutApi } from "../utils/axios/api.js";
@@ -34,6 +32,7 @@ import MultiDocumentProcessing from "./multiDocumentProcessing";
 import Personal from "../pages/personal";
 import IndicatorDescription from "./IndicatorDescription.jsx";
 import ApiDocumentation from "./ApiDocumentation.jsx";
+import TaskCenter from './TaskCenter.jsx'
 import logo from "../assets/logo.png";
 
 const { Header, Content, Footer } = Layout;
@@ -59,6 +58,11 @@ const items = [
     key: "ApiDocumentation",
     icon: <ApiOutlined />,
   },
+  {
+    label: "任务中心",
+    key: 'TaskCenter',
+    icon: <FundViewOutlined />
+  }
 ];
 
 function MenuItemPage({ currentPage }) {
@@ -73,6 +77,8 @@ function MenuItemPage({ currentPage }) {
       return <Personal />;
     case "multiDocumentExtraction":
       return <MultiDocumentProcessing />;
+    case "TaskCenter":
+      return <TaskCenter />
     default:
       return null;
   }
@@ -180,8 +186,8 @@ const App = () => {
         style={{
           padding: "20px 150px",
           backgroundColor: "rgb(237,241,249)",
+          minHeight: 'calc(100vh - 130px)'
         }}
-        height={{ height: "100%" }}
       >
         <MenuItemPage currentPage={current} />
       </Content>

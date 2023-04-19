@@ -122,7 +122,7 @@ export const createAppidApi = (data = {}) =>
 // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //上传文件列表
 export const getUploadFileListApi = (data = {}) =>
-  httpMultiForm({ url: "/common/multifiles", data });
+  httpMultiForm({ url: "/multi/addTask", data });
 
 // 导出 excel
 export const exportExcelApi = (data = {}) =>
