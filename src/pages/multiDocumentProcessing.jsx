@@ -59,7 +59,9 @@ function MultiDocumentProcessing() {
     getUploadFileListApi(formData).then(
       (res) => {
         if (res.code === 0) {
-          message.success("上传成功，处理结果蒋通过您的邮箱发送给您");
+          message.success(
+            "上传成功，处理结果蒋通过您的邮箱发送给您,您也可以在任务中心中查看处理进度"
+          );
           setUploading(false);
           setFileList([]);
         } else {

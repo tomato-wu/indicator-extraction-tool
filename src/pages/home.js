@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Layout,
-  Menu,
-  Space,
-  message,
-  FloatButton,
-  Modal,
-} from "antd";
+import { Layout, Menu, Space, message, FloatButton, Modal } from "antd";
 
 import { useNavigate } from "react-router-dom";
 
@@ -20,7 +13,7 @@ import {
   QuestionCircleOutlined,
   ApiOutlined,
   FolderOpenOutlined,
-  FundViewOutlined
+  FundViewOutlined,
 } from "@ant-design/icons";
 
 import { logoutApi } from "../utils/axios/api.js";
@@ -32,7 +25,7 @@ import MultiDocumentProcessing from "./multiDocumentProcessing";
 import Personal from "../pages/personal";
 import IndicatorDescription from "./IndicatorDescription.jsx";
 import ApiDocumentation from "./ApiDocumentation.jsx";
-import TaskCenter from './TaskCenter.jsx'
+import TaskCenter from "./TaskCenter.jsx";
 import logo from "../assets/logo.png";
 
 const { Header, Content, Footer } = Layout;
@@ -54,15 +47,15 @@ const items = [
     icon: <FolderOpenOutlined />,
   },
   {
+    label: "任务中心",
+    key: "TaskCenter",
+    icon: <FundViewOutlined />,
+  },
+  {
     label: "API接入",
     key: "ApiDocumentation",
     icon: <ApiOutlined />,
   },
-  {
-    label: "任务中心",
-    key: 'TaskCenter',
-    icon: <FundViewOutlined />
-  }
 ];
 
 function MenuItemPage({ currentPage }) {
@@ -78,7 +71,7 @@ function MenuItemPage({ currentPage }) {
     case "multiDocumentExtraction":
       return <MultiDocumentProcessing />;
     case "TaskCenter":
-      return <TaskCenter />
+      return <TaskCenter />;
     default:
       return null;
   }
@@ -186,7 +179,7 @@ const App = () => {
         style={{
           padding: "20px 150px",
           backgroundColor: "rgb(237,241,249)",
-          minHeight: 'calc(100vh - 130px)'
+          minHeight: "calc(100vh - 130px)",
         }}
       >
         <MenuItemPage currentPage={current} />
