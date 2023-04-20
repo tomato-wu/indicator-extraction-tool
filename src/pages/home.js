@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Layout, Menu, Space, message, FloatButton, Modal } from "antd";
+import React, { useState, useEffect } from 'react'
+import { Layout, Menu, Space, message, FloatButton, Modal } from 'antd'
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 
 import {
   FolderOutlined,
@@ -14,118 +14,118 @@ import {
   ApiOutlined,
   FolderOpenOutlined,
   FundViewOutlined,
-} from "@ant-design/icons";
+} from '@ant-design/icons'
 
-import { logoutApi } from "../utils/axios/api.js";
+import { logoutApi } from '../utils/axios/api.js'
 
 // 自定义组件
-import SelectBar from "../components/selectBar";
-import DocumentProcessing from "./documentProcessing";
-import MultiDocumentProcessing from "./multiDocumentProcessing";
-import Personal from "../pages/personal";
-import IndicatorDescription from "./IndicatorDescription.jsx";
-import ApiDocumentation from "./ApiDocumentation.jsx";
-import TaskCenter from "./TaskCenter.jsx";
-import logo from "../assets/logo.png";
+import SelectBar from '../components/selectBar'
+import DocumentProcessing from './documentProcessing'
+import MultiDocumentProcessing from './multiDocumentProcessing'
+import Personal from '../pages/personal'
+import IndicatorDescription from './IndicatorDescription.jsx'
+import ApiDocumentation from './ApiDocumentation.jsx'
+import TaskCenter from './TaskCenter.jsx'
+import logo from '../assets/logo.png'
 
-const { Header, Content, Footer } = Layout;
+const { Header, Content, Footer } = Layout
 
 const items = [
   {
-    label: "文本提取",
-    key: "textExtraction",
+    label: '文本提取',
+    key: 'textExtraction',
     icon: <CodeOutlined />,
   },
   {
-    label: "单文档提取",
-    key: "documentExtraction",
+    label: '单文档提取',
+    key: 'documentExtraction',
     icon: <FolderOutlined />,
   },
   {
-    label: "多文档提取",
-    key: "multiDocumentExtraction",
+    label: '多文档提取',
+    key: 'multiDocumentExtraction',
     icon: <FolderOpenOutlined />,
   },
   {
-    label: "任务中心",
-    key: "TaskCenter",
+    label: '任务中心',
+    key: 'TaskCenter',
     icon: <FundViewOutlined />,
   },
   {
-    label: "API接入",
-    key: "ApiDocumentation",
+    label: 'API接入',
+    key: 'ApiDocumentation',
     icon: <ApiOutlined />,
   },
-];
+]
 
 function MenuItemPage({ currentPage }) {
   switch (currentPage) {
-    case "textExtraction":
-      return <SelectBar />;
-    case "documentExtraction":
-      return <DocumentProcessing />;
-    case "ApiDocumentation":
-      return <ApiDocumentation />;
-    case "personal":
-      return <Personal />;
-    case "multiDocumentExtraction":
-      return <MultiDocumentProcessing />;
-    case "TaskCenter":
-      return <TaskCenter />;
+    case 'textExtraction':
+      return <SelectBar />
+    case 'documentExtraction':
+      return <DocumentProcessing />
+    case 'ApiDocumentation':
+      return <ApiDocumentation />
+    case 'personal':
+      return <Personal />
+    case 'multiDocumentExtraction':
+      return <MultiDocumentProcessing />
+    case 'TaskCenter':
+      return <TaskCenter />
     default:
-      return null;
+      return null
   }
 }
 
 const App = () => {
-  const [current, setCurrent] = useState("textExtraction");
+  const [current, setCurrent] = useState('textExtraction')
   const onClick = (e) => {
-    console.log("click ", e.key);
-    setCurrent(e.key);
-  };
-  const navigate = useNavigate();
+    console.log('click ', e.key)
+    setCurrent(e.key)
+  }
+  const navigate = useNavigate()
   // 个人信息模块调用的方法
   const PersonalSettings = (item) => {
-    if (item.key == "personal") {
-      setCurrent("personal");
-    } else if (item.key == "backToIntrodutionPage") {
-      navigate("/");
-    } else if (item.key == "logOut") {
-      logOut();
+    if (item.key == 'personal') {
+      setCurrent('personal')
+    } else if (item.key == 'backToIntrodutionPage') {
+      navigate('/')
+    } else if (item.key == 'logOut') {
+      logOut()
     }
-  };
+  }
 
   useEffect(() => {
-    if (!localStorage.getItem("token")) {
-      localStorage.removeItem("token");
-      navigate("/");
+    if (!localStorage.getItem('token')) {
+      localStorage.removeItem('token')
+      navigate('/')
     }
-  }, [navigate]);
+  }, [navigate])
 
   const logOut = async () => {
-    let res = await logoutApi();
-    localStorage.removeItem("token");
-    message.success(res.msg);
-    navigate("/");
-  };
+    let res = await logoutApi()
+    localStorage.removeItem('token')
+    message.success(res.msg)
+    navigate('/')
+  }
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const handleOk = () => {
-    setIsModalOpen(false);
-  };
+    setIsModalOpen(false)
+  }
   const handleCancel = () => {
-    setIsModalOpen(false);
-  };
+    setIsModalOpen(false)
+  }
 
   const BackToIntroduction = () => {
-    navigate("/");
-  };
+    navigate('/')
+  }
   return (
     <Layout className="layout">
       {/* Header 头部导航栏 */}
       <Header
         style={{
-          background: "white",
+          background: 'white',
         }}
       >
         <Space size="large">
@@ -135,19 +135,19 @@ const App = () => {
             alt="logo无法显示"
             width={150}
             onClick={BackToIntroduction}
-            style={{ cursor: "pointer" }}
+            style={{ cursor: 'pointer' }}
           />
           {/* 导航栏，一些路由跳转相关的 */}
           <Menu
             mode="horizontal"
             onClick={onClick}
             selectedKeys={[current]}
-            width={{ width: "100%" }}
+            style={{ minWidth: '800px', flex: 'auto' }}
             items={items}
           />
         </Space>
         {/* 个人信息修改导航栏///////////////////////////////////////////////////////////////////////////////// */}
-        <div style={{ float: "right" }}>
+        <div style={{ float: 'right' }}>
           <Space size="large">
             {/* 个人设置 */}
             <Menu mode="horizontal" onClick={PersonalSettings}>
@@ -177,9 +177,9 @@ const App = () => {
       {/* 主体内容区域 */}
       <Content
         style={{
-          padding: "20px 150px",
-          backgroundColor: "rgb(237,241,249)",
-          minHeight: "calc(100vh - 130px)",
+          padding: '20px 150px',
+          backgroundColor: 'rgb(237,241,249)',
+          minHeight: 'calc(100vh - 130px)',
         }}
       >
         <MenuItemPage currentPage={current} />
@@ -188,8 +188,8 @@ const App = () => {
       {/* Footer注脚 */}
       <Footer
         style={{
-          textAlign: "center",
-          background: "rgb(237,241,249)",
+          textAlign: 'center',
+          background: 'rgb(237,241,249)',
         }}
       >
         广东外语外贸大学计量语言学指标提取工具 ©2022 Created by Tomato
@@ -200,7 +200,7 @@ const App = () => {
         icon={<QuestionCircleOutlined />}
         type="primary"
         onClick={() => {
-          setIsModalOpen(true);
+          setIsModalOpen(true)
         }}
         style={{
           right: 94,
@@ -217,6 +217,6 @@ const App = () => {
         <IndicatorDescription />
       </Modal>
     </Layout>
-  );
-};
-export default App;
+  )
+}
+export default App

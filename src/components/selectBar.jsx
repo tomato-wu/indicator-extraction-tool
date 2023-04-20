@@ -176,7 +176,7 @@ function SelectBar() {
       case "ru":
         messageStr = "俄语";
         break;
-      case "dr":
+      case "de":
         messageStr = "德语";
         break;
       case "fr":

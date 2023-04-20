@@ -16,9 +16,6 @@ import { createAppidApi, getAppidApi } from "../../utils/axios/api.js";
 const { Title, Paragraph, Text, Link } = Typography;
 
 const PersonCardBox = {
-  width: "100%",
-  height: "100%",
-  marginLeft: "100px",
   padding: "50px",
   backgroundColor: "#FDFDFD",
 };

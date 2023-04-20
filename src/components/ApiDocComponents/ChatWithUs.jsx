@@ -1,20 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
-  Form,
-  Input,
-  Button,
-  Checkbox,
-  message,
-  Space,
-  Menu,
   Typography,
 } from "antd";
-const { Title, Paragraph, Text, Link } = Typography;
+const { Title, Paragraph, Link } = Typography;
 
 const PersonCardBox = {
-  width: "100%",
-  height: "100%",
-  marginLeft: "100px",
   padding: "50px",
   backgroundColor: "#FDFDFD",
 };
