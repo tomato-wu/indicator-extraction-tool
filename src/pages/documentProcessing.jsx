@@ -174,7 +174,7 @@ function MenuItem({ menu, lgType, lgText, requireSplit }) {
       return (
         <Russian lgType={lgType} lgText={lgText} requireSplit={requireSplit} />
       )
-    case 'dr':
+    case 'de':
       return (
         <German lgType={lgType} lgText={lgText} requireSplit={requireSplit} />
       )
