@@ -82,7 +82,7 @@ function TaskInfoModal({ files, isModalOpen, setIsModalOpen, taskId }) {
 }
 
 function TaskCenter() {
-  const [tasks, setTasks] = useState([])
+  const [tasks, setTasks] = useState(null)
   const [files, setFile] = useState([])
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [taskId, setTaskId] = useState('')
@@ -129,64 +129,71 @@ function TaskCenter() {
 
   return (
     <>
-      <TaskInfoModal
-        files={files}
-        taskId={taskId}
-        isModalOpen={isModalOpen}
-        setIsModalOpen={setIsModalOpen}
-      />
-      <Table dataSource={tasks} rowKey="id">
-        <Column width={350} title="任务id" dataIndex="id" key="id" />
-        <Column
-          title="任务创建时间"
-          dataIndex="update_time"
-          key="update_time"
-        />
-        <Column
-          title="任务状态"
-          dataIndex="status"
-          key="status_01"
-          render={(_, { status }) =>
-            status === 'PENDING' ? (
-              <Tag icon={<SyncOutlined spin />} color="processing">
-                processing
-              </Tag>
-            ) : status === 'SUCCESS' ? (
-              <Tag icon={<CheckCircleOutlined />} color="success">
-                success
-              </Tag>
-            ) : (
-              <Tag icon={<CloseCircleOutlined />} color="error">
-                fail
-              </Tag>
-            )
-          }
-        />
-        <Column
-          width={250}
-          title="任务详情"
-          key="status_02"
-          render={(_, { status, id }) => (
-            <>
-              {status === 'SUCCESS' ? (
+      {tasks && (
+        <>
+          <TaskInfoModal
+            files={files}
+            taskId={taskId}
+            isModalOpen={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
+          />
+          <Table dataSource={tasks} rowKey="id">
+            <Column width={350} title="任务id" dataIndex="id" key="id" />
+            <Column
+              title="任务创建时间"
+              dataIndex="update_time"
+              key="update_time"
+            />
+            <Column
+              title="任务状态"
+              dataIndex="status"
+              key="status_01"
+              render={(_, { status }) =>
+                status === 'PENDING' ? (
+                  <Tag icon={<SyncOutlined spin />} color="processing">
+                    processing
+                  </Tag>
+                ) : status === 'SUCCESS' ? (
+                  <Tag icon={<CheckCircleOutlined />} color="success">
+                    success
+                  </Tag>
+                ) : (
+                  <Tag icon={<CloseCircleOutlined />} color="error">
+                    fail
+                  </Tag>
+                )
+              }
+            />
+            <Column
+              width={250}
+              title="任务详情"
+              key="status_02"
+              render={(_, { status, id }) => (
                 <>
-                  <Button
-                    style={{ marginRight: '20px' }}
-                    onClick={() => getTaskInfo(id)}
-                  >
-                    查看详情
-                  </Button>
-                  <Button type="primary" onClick={() => downloadTaskInfo(id)}>
-                    下载结果
-                  </Button>
+                  {status === 'SUCCESS' ? (
+                    <>
+                      <Button
+                        style={{ marginRight: '20px' }}
+                        onClick={() => getTaskInfo(id)}
+                      >
+                        查看详情
+                      </Button>
+                      <Button
+                        type="primary"
+                        onClick={() => downloadTaskInfo(id)}
+                      >
+                        下载结果
+                      </Button>
+                    </>
+                  ) : (
+                    '暂无处理结果'
+                  )}
                 </>
-              ) : (
-                '暂无处理结果'
               )}
-            </>
-          )}
-        />
-      </Table>
+            />
+          </Table>
+        </>
+      )}
     </>
   )
 }
