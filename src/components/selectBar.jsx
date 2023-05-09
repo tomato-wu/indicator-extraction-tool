@@ -32,6 +32,14 @@ import Italian from "./Italian/";
 import Czech from "./Czech/";
 import Swedish from "./Swedish/";
 
+import Urdu from "./urdu/";
+import Hindi from "./hindi/";
+import Greek from "./greek/";
+import Hebrew from "./hebrew/";
+import Polish from "./polish/";
+import Malay from "./malay/";
+import Serbian from "./serbian/";
+
 import "./selectBar.css";
 
 const { TextArea } = Input;
@@ -194,6 +202,27 @@ function SelectBar() {
       case "sv":
         messageStr = "瑞典语";
         break;
+      case "el":
+        messageStr = "希腊语";
+        break;
+      case "he":
+        messageStr = "希伯来语";
+        break;
+      case "hi":
+        messageStr = "印地语";
+        break;
+      case "ms":
+        messageStr = "马来语";
+        break;
+      case "pl":
+        messageStr = "波兰语";
+        break;
+      case "sr":
+        messageStr = "塞尔维亚语";
+        break;
+      case "ur":
+        messageStr = "乌尔都语";
+        break;
       default:
         messageStr = "暂不支持该语种的处理";
     }
@@ -254,6 +283,20 @@ function SelectBar() {
         return <Ukrainian lgType={lgType} lgText={lgText} />;
       case "sv":
         return <Swedish lgType={lgType} lgText={lgText} />;
+      case "ms":
+        return <Malay lgType={lgType} lgText={lgText} />;
+      case "hi":
+        return <Hindi lgType={lgType} lgText={lgText} />;
+      case "ur":
+        return <Urdu lgType={lgType} lgText={lgText} />;
+      case "el":
+        return <Greek lgType={lgType} lgText={lgText} />;
+      case "he":
+        return <Hebrew lgType={lgType} lgText={lgText} />;
+      case "pl":
+        return <Polish lgType={lgType} lgText={lgText} />;
+      case "sr":
+        return <Serbian lgType={lgType} lgText={lgText} />;
       default:
         return null;
     }
@@ -370,6 +413,34 @@ function SelectBar() {
                 {
                   value: "uk",
                   label: "乌克兰语",
+                },
+                {
+                  value: "el",
+                  label: "希腊语",
+                },
+                {
+                  value: "he",
+                  label: "希伯来语",
+                },
+                {
+                  value: "hi",
+                  label: "印地语",
+                },
+                {
+                  value: "ms",
+                  label: "马来语",
+                },
+                {
+                  value: "pl",
+                  label: "波兰语",
+                },
+                {
+                  value: "sr",
+                  label: "塞尔维亚语",
+                },
+                {
+                  value: "ur",
+                  label: "乌尔都语",
                 },
               ]}
             />
