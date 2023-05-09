@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Space, Checkbox } from "antd";
 import GeneralIndicators from "../generalIndicators";
+import ChineseReadability from "./chineseReadability";
 
 const ChineseBar = (props) => {
   const { lgType, lgText } = props;
@@ -26,6 +27,12 @@ const ChineseBar = (props) => {
       </Space>
       {/* 功能选择按钮 */}
       <GeneralIndicators
+        lgType={lgType}
+        lgText={lgText}
+        requireSplit={requireSplit}
+      />
+      {/* 中文可读性指标 */}
+      <ChineseReadability
         lgType={lgType}
         lgText={lgText}
         requireSplit={requireSplit}
