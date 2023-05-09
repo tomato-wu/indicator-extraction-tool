@@ -1,10 +1,10 @@
-//汉语
+//印地语
+import React from "react";
 import { useState } from "react";
 import { Space, Checkbox } from "antd";
 import GeneralIndicators from "../generalIndicators";
-import ChineseReadability from "./chineseReadability";
 
-const ChineseBar = (props) => {
+function Hindi(props) {
   const { lgType, lgText } = props;
   const [requireSplit, setRequireSplit] = useState(false); // 文本是否是已经分词后的文本
   const onChange = (e) => {
@@ -25,20 +25,14 @@ const ChineseBar = (props) => {
           {"   "}是
         </Checkbox>
       </Space>
-      {/* 功能选择按钮 */}
+      {/* 通用指标提取 */}
       <GeneralIndicators
-        lgType={lgType}
-        lgText={lgText}
-        requireSplit={requireSplit}
-      />
-      {/* 中文可读性指标 */}
-      <ChineseReadability
         lgType={lgType}
         lgText={lgText}
         requireSplit={requireSplit}
       />
     </>
   );
-};
+}
 
-export default ChineseBar;
+export default Hindi;
