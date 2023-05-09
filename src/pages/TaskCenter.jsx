@@ -131,6 +131,9 @@ function TaskCenter() {
     <>
       {tasks && (
         <>
+          <div style={{ textAlign: 'center', margin: '20px auto' }}>
+            任务中心只保留任务详情24小时，逾期任务历史自动销毁！
+          </div>
           <TaskInfoModal
             files={files}
             taskId={taskId}
