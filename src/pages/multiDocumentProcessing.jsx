@@ -84,12 +84,12 @@ function MultiDocumentProcessing() {
         current={0}
         items={[
           {
-            title: "依次上传文档",
+            title: "依次上传",
             status: "finish",
             icon: <UploadOutlined />,
           },
           {
-            title: "判断文档格式是否符合要求",
+            title: "文档格式",
             status: "finish",
             icon: <SyncOutlined />,
           },
@@ -99,7 +99,7 @@ function MultiDocumentProcessing() {
             icon: <MonitorOutlined />,
           },
           {
-            title: "邮箱返回结果",
+            title: "返回结果",
             status: "finish",
             icon: <SubnodeOutlined />,
           },
